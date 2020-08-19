@@ -5,6 +5,8 @@ import RankingContent from '../../components/RankingContent/RankingContent';
 import RankingInteractions from '../../components/RankingInteractions/RankingInteractions';
 import RankingMedia from '../../components/RankingMedia/RankingMedia';
 
+import cls from './Ranking.module.css'
+
 class Ranking extends Component {
     state = {
         title: "Top 100 cars to buy in 2020 under 5000$",
@@ -44,7 +46,9 @@ class Ranking extends Component {
         dislikes: [
             6,
             9
-        ]
+        ],
+        shares: 5,
+        comments: 3
     }
 
 
@@ -52,22 +56,25 @@ class Ranking extends Component {
     render () {
         return(
             <Aux>
-                <RankingContent
-                    title={this.state.title}
-                    ranking_positions={this.state.ranking_positions}/>
-                <RankingInteractions>
-                    Likes, comments, shares
-                </RankingInteractions>
-                <RankingMedia>
-                    Images, author, additional information
-                </RankingMedia>
-                <h1>Ranking Title</h1>
-                <ul>
-                    <li>1</li>
-                    <li>2</li>
-                    <li>3</li>
-                </ul>
-                <h2>zdjecie</h2>
+                <div className={cls.Ranking}>
+                    <div className={cls.FlexRow}>
+                        <RankingContent
+                            title={this.state.title}
+                            ranking_positions={this.state.ranking_positions}/>
+                        <RankingInteractions
+                            likes={this.state.likes}
+                            dislikes={this.state.dislikes}
+                            shares={this.state.shares}
+                            comments={this.state.comments}>
+                            Likes, comments, shares
+                        </RankingInteractions>
+                    </div>
+                    <div className={cls.FlexCol}>
+                        <RankingMedia>
+                            Images, author, additional information
+                        </RankingMedia>
+                    </div>
+                </div>
             </Aux>
         );
     }

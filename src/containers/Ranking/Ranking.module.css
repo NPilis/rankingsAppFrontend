@@ -1,0 +1,15 @@
+.Ranking {
+    background-color: teal;
+    height: 250px;
+    margin-left: 0.5em;
+    display: flex;
+}
+
+.FlexRow {
+    width: 70%;
+}
+
+.FlexCol {
+    height: 100%;
+    width: 30%;
+}
