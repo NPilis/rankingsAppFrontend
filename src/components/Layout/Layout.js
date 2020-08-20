@@ -9,7 +9,12 @@ class Layout extends Component {
         return (
             <Aux>
                 <Ranking>
-
+                </Ranking>
+                <Ranking>
+                </Ranking>
+                <Ranking>
+                </Ranking>
+                <Ranking>
                 </Ranking>
             </Aux>
         );
