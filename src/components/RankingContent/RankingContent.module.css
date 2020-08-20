@@ -1,12 +1,12 @@
 .RankingContent {
-    background-color: slategrey;
-    height: 55%;
-    margin: 0.5em 0.5em 0.5em 0.5em;
+    background-color: rgb(232,247,246);
+    height: 60%;
+    margin: 0.8em 0.8em 0 0.8em;
 }
 
 .RankingContent p {
     margin-bottom: 0.5em;
-    border-bottom: 2px solid gainsboro;
+    border-bottom: 2px solid lightseagreen;
 }
 
 .RankingContent ol {

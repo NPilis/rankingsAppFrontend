@@ -1,0 +1,15 @@
+.RankingImage {
+    border: 3px solid white;
+    justify-items: center;
+    border-radius: 50%;
+    margin: 0 auto 0.5em auto;
+    background-color: white;
+}
+/* HARD-CODED */
+.RankingImage img {
+    margin-top: 0.6em;
+}
+
+.Inline {
+    display: flex;
+}

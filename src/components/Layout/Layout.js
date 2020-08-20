@@ -1,21 +1,14 @@
 import React, { Component } from 'react'
 
 import Aux from '../../hoc/Auxiliary';
-import Ranking from '../../containers/Ranking/Ranking';
+import RankingList from '../../containers/RankingList/RankingList';
 
 class Layout extends Component {
 
     render () {
         return (
             <Aux>
-                <Ranking>
-                </Ranking>
-                <Ranking>
-                </Ranking>
-                <Ranking>
-                </Ranking>
-                <Ranking>
-                </Ranking>
+                <RankingList />
             </Aux>
         );
     }
