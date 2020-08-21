@@ -6,7 +6,7 @@ export default (props) => {
     return (
         <div className={cls.RankingMedia}>
             <RankingImage height={80} />
-            <a href="./">Author</a>
+            <p>Autor</p>
             <p>Created at</p>
             <p>{props.created_at.slice(0,10)}</p>
         </div>

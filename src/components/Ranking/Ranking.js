@@ -10,28 +10,27 @@ import cls from './Ranking.module.css'
 export default (props) => {
     
     return(
-        <Aux>
-            <div className={cls.Ranking}>
-                <div className={cls.FlexRow}>
-                    <RankingContent
-                        title={props.rank.title}
-                        ranking_positions={props.rank.ranking_positions}/>
-                    <RankingInteractions
-                        likes={props.rank.likes}
-                        dislikes={props.rank.dislikes}
-                        shares={props.rank.shares}
-                        comments={props.rank.comments}>
-                        Likes, comments, shares
-                    </RankingInteractions>
-                </div>
-                <div className={cls.FlexCol}>
-                    <RankingMedia
-                        author={props.rank.author}
-                        created_at={props.rank.created_at}>
-                        Images, author, additional information
-                    </RankingMedia>
-                </div>
+        <div className={cls.Ranking} onClick={props.clicked}>
+            <div className={cls.FlexRow}>
+                <RankingContent
+                    title={props.rank.title}
+                    ranking_positions={props.rank.top_three_rp}/>
+                <RankingInteractions
+                    likes={props.rank.likes}
+                    dislikes={props.rank.dislikes}
+                    // shares={props.rank.shares}
+                    // comments={props.rank.comments}
+                    >
+                    Likes, comments, shares
+                </RankingInteractions>
             </div>
-        </Aux>
+            <div className={cls.FlexCol}>
+                <RankingMedia
+                    author={props.rank.author}
+                    created_at={props.rank.created_at}>
+                    Images, author, additional information
+                </RankingMedia>
+            </div>
+        </div>
     );
 }
