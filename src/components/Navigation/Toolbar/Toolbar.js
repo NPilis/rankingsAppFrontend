@@ -7,7 +7,7 @@ import NavbarToogle from '../SideDrawer/NavbarToogle/NavbarToogle';
 
 export default (props) => (
     <header className={cls.Toolbar}>
-        <NavbarToogle />
+        <NavbarToogle clicked={props.toggleClicked} />
         <div className={cls.Logo}>
             <Logo />
         </div>

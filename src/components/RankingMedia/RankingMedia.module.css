@@ -3,5 +3,12 @@
     height: 90%;
     margin: 0.8em 0.8em 0 0;
     text-align: center;
-    
+}
+
+.Img {
+    height: 50%;
+}
+
+.Info {
+    height: 50%;
 }

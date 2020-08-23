@@ -1,9 +1,11 @@
 .RankingImage {
-    border: 3px solid white;
+    border: 2px solid gray;
     justify-items: center;
     border-radius: 50%;
-    margin: 0 auto 0.5em auto;
+    height: 100px;
+    width: 100px;
     background-color: white;
+    margin: 0 auto;
 }
 /* HARD-CODED */
 .RankingImage img {

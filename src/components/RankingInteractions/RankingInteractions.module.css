@@ -4,3 +4,65 @@
     margin: 0 0.8em 0 0.8em;
     display: flex;
 }
+
+.LikeSection {
+    width: 80px;
+    margin-right: 3em;
+}
+
+.OpinionSection {
+    width: 80px;
+}
+
+.Buttons {
+    display: flex;
+    margin: auto 8px;
+    justify-content: space-between;
+    margin-bottom: 4px;
+}
+
+.Counter {
+    display: flex;
+    justify-content: space-around;
+    font-weight: bold;
+}
+
+.Counter p {
+    margin: auto;
+}
+
+/* BUTTONS */
+
+.LikeButton {
+    background-color: darkgreen;
+    border-radius: 50%;
+    height: 24px;
+    width: 24px;
+    position: relative;
+}
+
+.LikeButton svg {
+    top: 50%;
+    left: 50%;
+    position: absolute;
+    transform: translate(-50%, -50%);
+}
+
+.DisLikeButton svg {
+    background-color: darkred;
+    border-radius: 50%;
+}
+
+.ShareButton svg {
+}
+
+.Counter {
+    margin: auto;
+    height: 45%;
+    border-radius: 10%;
+    border: 2px solid black;
+}
+
+.Paragraph {
+    margin: auto 0;
+}
