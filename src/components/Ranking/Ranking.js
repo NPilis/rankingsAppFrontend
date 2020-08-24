@@ -1,5 +1,4 @@
 import React from 'react';
-import Aux from '../../hoc/Auxiliary';
 
 import RankingContent from '../RankingContent/RankingContent';
 import RankingInteractions from '../RankingInteractions/RankingInteractions';

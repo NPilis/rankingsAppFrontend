@@ -1,10 +1,12 @@
-.RankingContent {
+.RankingContent,
+.DetailRankingContent {
     background-color: rgb(242, 252, 247);
     height: 60%;
     margin: 0.8em 0.8em 0 0.8em;
 }
 
-.RankingContent p {
+.RankingContent p,
+.DetailRankingContent p {
     margin-bottom: 0.5em;
     border-bottom: 2px solid lightseagreen;
 }
@@ -12,4 +14,44 @@
 .RankingContent ol {
     margin: 0 0 0 1em;
     padding: 0;
+}
+
+.DetailRankingContent ol {
+    margin: 0 0 0 0;
+    padding: 0;
+    list-style: none;
+    counter-reset: item;
+    width: 100%;
+}
+
+.DetailRankingContent li {
+    counter-increment: item;
+    margin: 0 0 5px 0;
+    box-shadow: 0px 0px 10px -6px black inset;
+}
+
+.DetailRankingContent li:before {
+    font-weight: bold;
+    margin-right: 10px;
+    content: counter(item);
+    background: lightseagreen;
+    color: white;
+    padding: 6px 12px;
+    text-align: center;
+    display: inline-block;
+  }
+
+.DetailRankingContent li:nth-child(1) {
+    font-weight: bold;
+    background-color: rgba(254, 225, 1, 0.3);
+}
+
+.DetailRankingContent li:nth-child(2) {
+    font-weight: bold;
+    background-color: rgba(167, 167, 173, 0.3);
+}
+
+.DetailRankingContent li:nth-child(3) {
+    font-weight: bold;
+    background-color: rgba(167, 112, 68, 0.3);
 }

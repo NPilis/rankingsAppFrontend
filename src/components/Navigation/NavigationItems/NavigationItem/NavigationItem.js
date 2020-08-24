@@ -9,7 +9,8 @@ export default (props) => (
         <NavLink
             to={props.link}
             exact={props.exact}
-            activeClassName={cls.active}>
+            activeClassName={cls.active}
+            component={props.component}>
             {props.children}
         </NavLink>
     </li>

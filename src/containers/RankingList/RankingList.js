@@ -57,9 +57,7 @@ class RankingList extends Component {
                 <div className={cls.RankingList}>
                     {list}
                 </div>
-                <Route path={'/rankings/:uuid'} exact component={RankingDetail} />
             </Aux>
-
         );
     }
 }

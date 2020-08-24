@@ -5,7 +5,7 @@ import cls from './NavigationItems.module.css';
 
 export default (props) => (
     <ul className={cls.NavigationItems}>
-        <NavigationItem link='/rankings/' exact>Test</NavigationItem>
-        <NavigationItem link='/' exact>Public Rankings</NavigationItem>
+        <NavigationItem link='/rankings' exact>Public rankings</NavigationItem>
+        <NavigationItem link='/' exact>Home page</NavigationItem>
     </ul>
 );

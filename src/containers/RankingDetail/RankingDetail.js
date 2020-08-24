@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import Aux from '../../hoc/Auxiliary';
 
 import RankingContent from '../../components/RankingContent/RankingContent';
 import RankingInteractions from '../../components/RankingInteractions/RankingInteractions';
@@ -9,13 +8,15 @@ import cls from './RankingDetail.module.css'
 
 class RankingDetail extends Component {
     state = {
-        loadedRanking: null
+        loadedRanking: null,
+        isLoaded: false,
     }
 
     componentDidMount () {
+        console.log(this.props)
         axios.get('/api/rankings/' + this.props.match.params.uuid)
         .then(response => {
-            this.setState({loadedRanking: response.data})
+            this.setState({loadedRanking: response.data, isLoaded: true})
             console.log(response.data)
         });
     }
@@ -28,7 +29,8 @@ class RankingDetail extends Component {
                     <div className={cls.FlexRow}>
                         <RankingContent
                             title={this.state.loadedRanking.title}
-                            ranking_positions={this.state.loadedRanking.ranking_positions}/>
+                            ranking_positions={this.state.loadedRanking.ranking_positions}
+                            isLoaded={this.state.isLoaded}/>
                         <RankingInteractions
                             likes={this.state.loadedRanking.likes}
                             dislikes={this.state.loadedRanking.dislikes}

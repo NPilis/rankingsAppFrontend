@@ -1,11 +1,11 @@
 .RankingDetail {
 
     display: flex;
-    height: 250px;
+    height: 550px;
     justify-content: space-between;
 
     width: 96%;
-    margin: 0 0 1em 0.4em;
+    margin: 60px 0 1em 0.4em;
 
     background-color: rgb(242, 252, 247);
     -webkit-border-radius: 10px;
