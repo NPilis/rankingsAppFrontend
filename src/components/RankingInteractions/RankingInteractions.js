@@ -43,7 +43,6 @@ export default (props) => {
                     </div>
                 </div>
                 <div className={cls.Counter}>
-
                 </div>
             </div>
         </div>
