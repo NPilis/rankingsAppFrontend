@@ -21,6 +21,17 @@ class RankingDetail extends Component {
         });
     }
 
+    // rankingLike = () => {
+    //     let newCount = this.state.number_likes + 1
+    //     this.setState({number_likes: newCount})
+    //     axios.post('/api/rankings/' + this.props.match.params.uuid + '/like')
+    //         .then(response => {
+    //             let newCount = this.state.number_likes + 1
+    //             this.setState({number_likes: newCount})
+    //             console.log(response.data)
+    //         });
+    // }
+
     render() {
         let ranking = <p>Loading ...</p>
         if ( this.state.loadedRanking ){
