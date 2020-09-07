@@ -4,7 +4,7 @@ import axios from 'axios';
 import { Route, Link } from 'react-router-dom';
 import cls from './RankingList.module.css';
 import Aux from '../../hoc/Auxiliary';
-import RankingDetail from '../RankingDetail/RankingDetail';
+// import RankingDetail from '../RankingDetail/RankingDetail';
 
 class RankingList extends Component {
 
@@ -24,14 +24,16 @@ class RankingList extends Component {
     //     dislikes: Array of user IDs
     // ```
     state = {
-        rankings: []
+        rankings: [],
+        nextUrl: null,
+        prevUrl: null
     }
 
     componentDidMount() {
         axios.get('/api/rankings/public/')
             .then(response => {
-                this.setState({ rankings: response.data });
-                console.log(response.data)
+                this.setState({ rankings: response.data.results });
+                console.log(response.data.results)
             });
     }
 
