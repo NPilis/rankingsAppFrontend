@@ -11,7 +11,7 @@ export default (props) => {
             <div className={cls.Info}>
                 <p>Autor</p>
                 <p>Created at</p>
-                <p>{props.created_at.slice(0,10)}</p>
+                {/* <p>{props.created_at.slice(0,10)}</p> */}
             </div>
         </div>
     );

@@ -24,9 +24,7 @@ class RankingList extends Component {
     //     dislikes: Array of user IDs
     // ```
     state = {
-        rankings: [],
-        nextUrl: null,
-        prevUrl: null
+        rankings: []
     }
 
     componentDidMount() {
