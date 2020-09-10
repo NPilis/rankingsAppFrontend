@@ -1,33 +1,51 @@
 import * as actionTypes from './actionTypes';
 import axios from 'axios';
 
-export const authStart = () => {
-    return {
-        type: actionTypes.AUTH_START
-    };
+export const loadUser = () => (dispatch, getState) => {
+    dispatch({type: actionTypes.USER_LOADING});
+
+    axios.get('api/auth/user', tokenConfig(getState))
+        .then(res => {
+            dispatch({
+                type: actionTypes.USER_LOADED,
+                payload: res.data
+            });
+        }).catch(err => {
+            console.log(err);
+        });
 };
 
-export const authSuccess = (authData) => {
-    return {
-        type: actionTypes.AUTH_SUCCESS,
-        authData: authData
+export const login = (username, password) => (dispatch) => {
+    const config = {
+        headers: {
+        'Content-Type': 'application/json',
+        },
     };
+    const body = JSON.stringify({ username, password });
+
+    axios.post('/api/auth/login', body, config)
+        .then((res) => {
+            dispatch({
+                type: actionTypes.LOGIN_SUCCESS,
+                payload: res.data,
+            });
+        }).catch((err) => {
+            console.log(err)
+            dispatch({ type: actionTypes.LOGIN_FAIL });
+        });
 };
 
-export const authFail = (error) => {
-    return {
-        type: actionTypes.AUTH_FAIL,
-        error: error
+export const tokenConfig = (getState) => {
+    const token = getState().auth.token;
+    const config = {
+        headers: {
+        'Content-Type': 'application/json',
+        },
     };
-};
 
-export const auth = (username, passowrd) => {
-    return dispatch => { 
-        dispatch(authStart());
-        const authData = {
-            username: username,
-            passowrd: passowrd
-        };
-        axios.post('/api/rest-auth/login/', authData)
-    };
+    if (token) {
+        config.headers['Authorization'] = `Token ${token}`;
+    }
+
+    return config;
 };

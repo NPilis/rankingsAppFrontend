@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import cls from './Auth.module.css';
-import Input from '../../components/UI/Input/Input';
-import Button from '../../components/UI/Button/Button';
-import * as actions from '../../store/actions/auth';
+import Input from '../../../components/UI/Input/Input';
+import Button from '../../../components/UI/Button/Button';
+import * as actions from '../../../store/actions/auth';
 
-class Auth extends Component {
+class Login extends Component {
 
     state = {
         controls: {
@@ -92,7 +92,7 @@ class Auth extends Component {
 
 const mapDispatchToProps = dispatch => {
     return {
-        onAuth: (username, password) => dispatch(actions.auth(username, password))
+        onLogin: (username, password) => dispatch(actions.login(username, password))
     };
 };
 
