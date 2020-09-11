@@ -7,6 +7,7 @@ export default (props) => (
     <ul className={cls.NavigationItems}>
         <NavigationItem link='/rankings' exact>Public rankings</NavigationItem>
         <NavigationItem link='/' exact>Home page</NavigationItem>
-        <NavigationItem link='/auth'>Authentication</NavigationItem>
+        <NavigationItem link='/login'>Login</NavigationItem>
+        <NavigationItem link='/register'>Register</NavigationItem>
     </ul>
 );

@@ -3,8 +3,8 @@ import cls from './Button.module.css';
 
 export default (props) => {
     return (
-        <span className={cls.Button}>
+        <div className={cls.Button} onClick={props.click}>
             {props.children}
-        </span>
+        </div>
     );
 }

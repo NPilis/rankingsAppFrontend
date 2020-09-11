@@ -1,10 +1,15 @@
-import { createStore, combineReducers } from 'redux';
-import rankingsReducer from './reducers/rankingReducer';
+import { createStore, combineReducers, applyMiddleware } from 'redux';
+import authReducer from './reducers/auth';
+import messagesReducer from './reducers/messages';
+import errorsReducer from './reducers/errors';
+import thunk from 'redux-thunk';
 
 const rootReducer = combineReducers({
-    rankings: rankingsReducer
+    auth: authReducer,
+    messages: messagesReducer,
+    errors: errorsReducer,
 });
 
-const store = createStore(rootReducer);
+const store = createStore(rootReducer, applyMiddleware(thunk));
 
 export default store;

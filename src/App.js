@@ -1,27 +1,42 @@
 import React, { Component } from 'react'
 import './App.css';
 import Layout from './components/Layout/Layout';
-import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import { Switch, Route } from 'react-router-dom';
 import RankingList from './containers/RankingList/RankingList';
 import RankingDetail from './containers/RankingDetail/RankingDetail';
-import Auth from './containers/Auth/Auth';
+import Login from './containers/Auth/Login/Login';
+import Register from './containers/Auth/Register/Register';
+import { Provider as AlertProvider } from 'react-alert'
+import AlertTemplate from 'react-alert-template-basic';
+import Alerts from './containers/Alerts/Alerts';
+import { loadUser } from './store/actions/auth';
+import store from './store/store';
 
+const alertOptions = {
+  timeout: 3000,
+  position: 'top center'
+}
 
 class App extends Component {
+  componentDidMount() {
+    store.dispatch(loadUser());
+  }
 
   render() {
     return (
-      <BrowserRouter>
+      <AlertProvider
+        template={AlertTemplate}
+        {...alertOptions}>
+        <Alerts />
         <Layout>
         </Layout>
         <Switch>
           <Route path={'/rankings'} exact component={RankingList} />
           <Route path={'/rankings/:uuid'} exact component={RankingDetail} />
-          {/* ??? should split auth into Login or Register */}
-          <Route path={'/auth'} component={Auth}></Route> 
+          <Route path={'/login'} component={Login}></Route>
+          <Route path={'/register'} component={Register}></Route>
         </Switch>
-      </BrowserRouter>
-
+      </AlertProvider>
     );
   }
 }

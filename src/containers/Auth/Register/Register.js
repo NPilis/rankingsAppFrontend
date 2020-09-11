@@ -1,19 +1,20 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import cls from './Login.module.css';
+import cls from './Register.module.css';
 import Input from '../../../components/UI/Input/Input';
 import Button from '../../../components/UI/Button/Button';
 import * as actions from '../../../store/actions/auth';
+import { returnErrors } from '../../../store/actions/messages';
 
-class Login extends Component {
+class Register extends Component {
 
     state = {
         controls: {
             username: {
                 elementType: 'input',
                 elementConfig: {
-                    type: 'email',
-                    placeholder: 'Login'
+                    type: 'text',
+                    placeholder: 'Username'
                 },
                 value: '',
                 validation: {
@@ -22,11 +23,37 @@ class Login extends Component {
                 valid: false,
                 touched: false
             },
-            password: {
+            email: {
+                elementType: 'input',
+                elementConfig: {
+                    type: 'email',
+                    placeholder: 'Email'
+                },
+                value: '',
+                validation: {
+                    required: true,
+                },
+                valid: false,
+                touched: false
+            },
+            password1: {
                 elementType: 'input',
                 elementConfig: {
                     type: 'password',
                     placeholder: 'Password'
+                },
+                value: '',
+                validation: {
+                    required: true,
+                },
+                valid: false,
+                touched: false
+            },
+            password2: {
+                elementType: 'input',
+                elementConfig: {
+                    type: 'password',
+                    placeholder: 'Repeat password'
                 },
                 value: '',
                 validation: {
@@ -42,7 +69,16 @@ class Login extends Component {
 
     submitHandler = (event) => {
         event.preventDefault();
-        this.props.onLogin(this.state.controls.username.value, this.state.controls.password.value);
+        const newUser = {
+            username: this.state.controls.username.value,
+            email: this.state.controls.email.value,
+            password: this.state.controls.password1.value
+        }
+        if (newUser.password !== this.state.controls.password2.value) {
+            this.props.returnError({passwordNotMatch: 'Password do not match'}, 401)
+        } else {
+            this.props.onRegister(newUser);
+        }
     }
 
     inputChangedHandler = (event, controlName) => {
@@ -80,8 +116,8 @@ class Login extends Component {
             />
         ));
         return (
-            <div className={cls.Login}>
-                <form onSubmit={this.submitHandler}>
+            <div className={cls.Register}>
+                <form>
                     {form}
                     <Button click={this.submitHandler}>SUBMIT</Button>
                 </form>
@@ -92,8 +128,9 @@ class Login extends Component {
 
 const mapDispatchToProps = dispatch => {
     return {
-        onLogin: (username, password) => dispatch(actions.login(username, password))
+        onRegister: (newUser) => dispatch(actions.register(newUser)),
+        returnError: (msg, body, status) => dispatch(returnErrors(msg, body, status))
     };
 };
 
-export default connect(null, mapDispatchToProps)(Login);
+export default connect(null, mapDispatchToProps)(Register);
