@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import cls from './Login.module.css';
 import Input from '../../../components/UI/Input/Input';
 import Button from '../../../components/UI/Button/Button';
-import * as actions from '../../../store/actions/auth';
+import * as authActions from '../../../store/actions/auth';
 
 class Login extends Component {
 
@@ -55,10 +55,10 @@ class Login extends Component {
                 touched: true
             }
         }
-        this.setState({controls: updatedControls});
+        this.setState({ controls: updatedControls });
     }
 
-    render () {
+    render() {
         const formElements = [];
         for (let key in this.state.controls) {
             formElements.push({
@@ -68,7 +68,7 @@ class Login extends Component {
         }
 
         const form = formElements.map(el => (
-            <Input 
+            <Input
                 key={el.id}
                 elementType={el.config.elementType}
                 elementConfig={el.config.elementConfig}
@@ -82,6 +82,7 @@ class Login extends Component {
         return (
             <div className={cls.Login}>
                 <form onSubmit={this.submitHandler}>
+                    {console.log(this.props.showModal)}
                     {form}
                     <Button click={this.submitHandler}>SUBMIT</Button>
                 </form>
@@ -92,7 +93,7 @@ class Login extends Component {
 
 const mapDispatchToProps = dispatch => {
     return {
-        onLogin: (username, password) => dispatch(actions.login(username, password))
+        onLogin: (username, password) => dispatch(authActions.login(username, password))
     };
 };
 

@@ -1,9 +1,8 @@
-import React, { Component } from 'react'
+import React, { Component, Fragment } from 'react'
 import Ranking from '../../components/Ranking/Ranking';
 import axios from 'axios';
 import { Route, Link } from 'react-router-dom';
 import cls from './RankingList.module.css';
-import Aux from '../../hoc/Auxiliary';
 // import RankingDetail from '../RankingDetail/RankingDetail';
 
 class RankingList extends Component {
@@ -53,11 +52,11 @@ class RankingList extends Component {
         </ul>
 
         return (
-            <Aux>
+            <Fragment>
                 <div className={cls.RankingList}>
                     {list}
                 </div>
-            </Aux>
+            </Fragment>
         );
     }
 }
