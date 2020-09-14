@@ -1,4 +1,50 @@
 .RankingInteractions {
+    display: flex;
+    justify-content: space-between;
+    margin-left: 0.4em;
+    height: 30%;
+    margin-top: 4px;
+}
+
+.Interaction {
+    height: 100%;
+    display: flex;
+    flex-flow: column;
+    text-align: center;
+}
+
+.Interaction p {
+    margin-top: -3px;
+    font-size: 12px;
+    font-weight: 500;
+}
+
+.Btn svg {
+    height: 1.4em;
+    width: 1.4em;
+    padding: 8px;
+    border-radius: 30%;
+}
+
+.Btn svg:hover {
+    background-color: #daf0fd;
+    fill: lightskyblue;
+    transition: 0.2s;
+}
+
+/* 
+.Btn svg {
+    margin-top: 6px;
+} */
+
+.Liked svg{
+    background-color: red;
+    fill: green;
+}
+
+.Counter {
+}
+/* .RankingInteractions {
     background-color: rgb(242, 252, 247);
     height: 30%;
     margin: 0 0.8em 0 0.8em;
@@ -32,7 +78,7 @@
 }
 
 /* BUTTONS */
-
+/* 
 .LikeButton {
     background-color: darkgreen;
     border-radius: 50%;
@@ -72,4 +118,4 @@
     z-index: 5;
     box-shadow: 1;
     box-shadow: 0 0 0 1px grey;
-}
+} */
