@@ -10,13 +10,13 @@ export default (state=initialState, action) => {
         case actionTypes.LOGIN_MODAL_TOGGLE:
             const prevLoginState = state.showLogin;
             return {
-                ...state,
+                showRegister: false,
                 showLogin: !prevLoginState
             }
         case actionTypes.REGISTER_MODAL_TOGGLE:
             const prevRegisterState = state.showRegister;
             return {
-                ...state,
+                showLogin: false,
                 showRegister: !prevRegisterState
             }
         default:

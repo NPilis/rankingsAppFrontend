@@ -5,7 +5,7 @@ import cls from './NavigationItem.module.css';
 
 
 export default (props) => (
-    <li className={cls.NavigationItem}>
+    <li className={cls.NavigationItem} onClick={props.clicked}>
         <NavLink
             to={props.link}
             exact={props.exact}

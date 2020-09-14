@@ -1,3 +1,25 @@
 .Login {
-    margin-top: 60px;
+    width: 90%;
+    margin: auto;
+}
+
+.Login h1 {
+    margin: 15px 0px;
+    text-align: center;
+}
+
+.Login p {
+    margin-right: 10px;
+    text-align: right;
+    font-size: 14px;
+}
+
+.Inline {
+    display: flex;
+    justify-content: flex-end;
+    margin-right: 10px;
+}
+
+.Inline p {
+    padding: 4px 0;
 }

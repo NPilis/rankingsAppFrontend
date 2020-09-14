@@ -31,6 +31,13 @@ export default (state=initialState, action) => {
                 isLoading: false
             }
         case actionTypes.LOGIN_SUCCESS:
+            localStorage.setItem('token', action.payload.token);
+            return {
+                ...state,
+                ...action.payload,
+                isAuthenticated: true,
+                isLoading: false,
+            };
         case actionTypes.LOGIN_FAIL:
         case actionTypes.LOGOUT_SUCCESS:
             localStorage.removeItem('token');

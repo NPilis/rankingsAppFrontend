@@ -36,6 +36,7 @@ export const login = (username, password) => (dispatch) => {
                 payload: res.data,
             });
             dispatch(createMessage({ loginSuccess: "You are logged in!" }))
+            dispatch({type: actionTypes.LOGIN_MODAL_TOGGLE})
         }).catch((err) => {
             console.log(err.response.data)
             dispatch(returnErrors(err.response.data, err.response.status));
@@ -86,6 +87,7 @@ export const register = (newUser) => (dispatch) => {
                 type: actionTypes.REGISTER_SUCCESS,
                 payload: res.data,
             });
+            dispatch({type: actionTypes.REGISTER_MODAL_TOGGLE})
             dispatch(createMessage({ registerSuccess: "Registration successful!" }))
         }).catch((err) => {
             console.log(err.response)

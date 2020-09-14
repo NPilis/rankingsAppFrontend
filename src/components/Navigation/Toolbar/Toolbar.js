@@ -12,7 +12,10 @@ export default (props) => (
             <Logo />
         </div>
         <nav className={cls.DesktopOnly}>
-            <NavigationItems />
+            <NavigationItems
+                toggleLogin={props.toggleLogin}
+                toggleRegister={props.toggleRegister}
+                isAuthenticated={props.isAuth} />
         </nav>
     </header>
 );

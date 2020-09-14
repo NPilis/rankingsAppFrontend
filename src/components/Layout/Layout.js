@@ -9,7 +9,7 @@ import { connect } from 'react-redux';
 
 class Layout extends Component {
     state = {
-        showSideDrawer: false
+        showSideDrawer: false,
     }
 
     sideDrawerToggle = () => {
@@ -23,32 +23,25 @@ class Layout extends Component {
     }
 
     render() {
-        let login = null;
-        let register = null;
-        if (this.props.showLogin){
-            login = (
-                <Modal
-                    show={this.props.showLogin}
-                    toggle={this.props.toggleLogin}>
-                    <Login></Login>
-                </Modal>
-            );
-        }
-        if (this.props.showRegister){
-            register = (
-                <Modal
-                    show={this.props.showRegister}
-                    toggle={this.props.toggleRegister}>
-                    <Register></Register>
-                </Modal>
-            );
-        }
 
         return (
             <Fragment>
-                {login}
-                {register}
+                { this.props.showLogin 
+                    ? <Modal
+                        show={this.props.showLogin}
+                        toggle={this.props.toggleLogin}>
+                        <Login></Login>
+                        </Modal>
+                    : null }
+                { this.props.showRegister
+                    ? <Modal
+                        show={this.props.showRegister}
+                        toggle={this.props.toggleRegister}>
+                        <Register></Register>
+                        </Modal>
+                    : null }
                 <Toolbar
+                    isAuth={this.props.isAuthenticated}
                     toggleClicked={this.sideDrawerToggle}
                     toggleLogin={this.props.toggleLogin}
                     toggleRegister={this.props.toggleRegister} />
@@ -62,7 +55,8 @@ class Layout extends Component {
 
 const mapStateToProps = (state) => ({
     showLogin: state.modal.showLogin,
-    showRegister: state.modal.showRegister
+    showRegister: state.modal.showRegister,
+    isAuthenticated: state.auth.isAuthenticated
 });
 
 const mapDispatchToProps = dispatch => {

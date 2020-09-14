@@ -3,7 +3,8 @@ import { connect } from 'react-redux';
 import cls from './Register.module.css';
 import Input from '../../../components/UI/Input/Input';
 import Button from '../../../components/UI/Button/Button';
-import * as actions from '../../../store/actions/auth';
+import * as authActions from '../../../store/actions/auth';
+import * as modalActions from '../../../store/actions/modal';
 import { returnErrors } from '../../../store/actions/messages';
 
 class Register extends Component {
@@ -117,9 +118,14 @@ class Register extends Component {
         ));
         return (
             <div className={cls.Register}>
+                <h1>Sign up</h1>
                 <form>
                     {form}
-                    <Button click={this.submitHandler}>SUBMIT</Button>
+                    <div className={cls.Inline}>
+                        <p>Already have an account? </p>
+                        <Button redirectBtn={true} clicked={this.props.toggleLogin}>Sign in!</Button>
+                    </div>
+                    <Button authBtn={true} click={this.submitHandler}>Register</Button>
                 </form>
             </div>
         );
@@ -128,8 +134,10 @@ class Register extends Component {
 
 const mapDispatchToProps = dispatch => {
     return {
-        onRegister: (newUser) => dispatch(actions.register(newUser)),
-        returnError: (msg, body, status) => dispatch(returnErrors(msg, body, status))
+        onRegister: (newUser) => dispatch(authActions.register(newUser)),
+        returnError: (msg, body, status) => dispatch(returnErrors(msg, body, status)),
+        toggleLogin: () => dispatch(modalActions.toggleLoginModal())
+
     };
 };
 

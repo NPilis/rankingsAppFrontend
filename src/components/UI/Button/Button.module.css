@@ -1,11 +1,29 @@
 .Button {
-    background-color: transparent;
-    border: 2px solid red;
-    color: black;
-    outline: none;
+    background-color: lightskyblue;
+    color: white;
     cursor: pointer;
     font: inherit;
-    padding: 10px;
-    margin: 10px;
     font-weight: bold;
+    text-align: center;
+    vertical-align: middle;
+    border: 1px solid darkgray;
+    border-radius: 5%;
+}
+
+.RedirectBtn {
+    width: 60px;
+    padding: 4px;
+    font-size: 14px;
+    font-weight: 700;
+}
+
+.AuthBtn {
+    width: 80px;
+    padding: 8px 4px;
+    margin: 0 0 20px 10px;
+}
+
+.Button:hover {
+    background-color: #E7F5FE;
+    color: black
 }

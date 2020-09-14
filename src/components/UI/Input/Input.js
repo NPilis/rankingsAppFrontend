@@ -30,7 +30,7 @@ export default (props) => {
 
     return (
         <div className={cls.Input}>
-            <label className={cls.Label}>{props.label}</label>
+            <label className={cls.Label}>{props.elementConfig.placeholder}</label>
             {inputElement}
         </div>
     );

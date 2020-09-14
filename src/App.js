@@ -11,10 +11,13 @@ import AlertTemplate from 'react-alert-template-basic';
 import Alerts from './containers/Alerts/Alerts';
 import { loadUser } from './store/actions/auth';
 import store from './store/store';
+import Logout from './containers/Auth/Logout/Logout';
 
 const alertOptions = {
   timeout: 3000,
-  position: 'top center'
+  containerStyle: {
+    zIndex: 1000
+  }
 }
 
 class App extends Component {
@@ -35,6 +38,7 @@ class App extends Component {
           <Route path={'/rankings/:uuid'} exact component={RankingDetail} />
           <Route path={'/login'} component={Login}></Route>
           <Route path={'/register'} component={Register}></Route>
+          <Route path={'/logout'} component={Logout}></Route>
         </Switch>
       </AlertProvider>
     );

@@ -3,6 +3,7 @@
     display: block;
     height: 100%;
     margin: 1px;
+    font-weight: 500;
 }
 
 .NavigationItem a {
@@ -18,7 +19,8 @@
 .NavigationItem a:active,
 .NavigationItem a:active {
     color: white;
-    background-color: lightseagreen;
+    background-color: lightskyblue;
+
 }
 
 @media (max-width: 700px) {

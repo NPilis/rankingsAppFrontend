@@ -4,6 +4,7 @@ import cls from './Login.module.css';
 import Input from '../../../components/UI/Input/Input';
 import Button from '../../../components/UI/Button/Button';
 import * as authActions from '../../../store/actions/auth';
+import * as modalActions from '../../../store/actions/modal';
 
 class Login extends Component {
 
@@ -13,7 +14,7 @@ class Login extends Component {
                 elementType: 'input',
                 elementConfig: {
                     type: 'email',
-                    placeholder: 'Login'
+                    placeholder: 'Email or username'
                 },
                 value: '',
                 validation: {
@@ -81,10 +82,14 @@ class Login extends Component {
         ));
         return (
             <div className={cls.Login}>
+                <h1>Sing in</h1>
                 <form onSubmit={this.submitHandler}>
-                    {console.log(this.props.showModal)}
                     {form}
-                    <Button click={this.submitHandler}>SUBMIT</Button>
+                    <div className={cls.Inline}>
+                        <p>You don't have an account? </p>
+                        <Button redirectBtn={true} clicked={this.props.toggleRegister}>Sign up!</Button>
+                    </div>
+                    <Button authBtn={true} clicked={this.submitHandler}>Login</Button>
                 </form>
             </div>
         );
@@ -93,7 +98,8 @@ class Login extends Component {
 
 const mapDispatchToProps = dispatch => {
     return {
-        onLogin: (username, password) => dispatch(authActions.login(username, password))
+        onLogin: (username, password) => dispatch(authActions.login(username, password)),
+        toggleRegister: () => dispatch(modalActions.toggleRegisterModal())
     };
 };
 
