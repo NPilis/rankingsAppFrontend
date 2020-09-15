@@ -47,3 +47,19 @@ export const fetchRanking = (uuid) => (dispatch, getState) => {
         dispatch({ type: actionTypes.LOAD_RANKING_FAIL })
     })
 }
+
+export const likeRanking = (uuid) => (dispatch, getState) => {
+    axios.post('/api/rankings/'+uuid+'/like/', null, tokenConfig(getState))
+    .then(res => {
+        dispatch({type: actionTypes.RANKING_LIKE })
+        console.log(res)
+    })
+}
+
+export const dislikeRanking = (uuid) => (dispatch, getState) => {
+    axios.post('/api/rankings/'+uuid+'/dislike/', null, tokenConfig(getState))
+    .then(res => {
+        dispatch({type: actionTypes.RANKING_DISLIKE })
+        console.log(res)
+    })
+}

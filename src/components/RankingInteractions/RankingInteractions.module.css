@@ -32,14 +32,13 @@
     transition: 0.2s;
 }
 
-/* 
-.Btn svg {
-    margin-top: 6px;
-} */
-
+/* For now... */
 .Liked svg{
-    background-color: red;
-    fill: green;
+    background-color: lightskyblue;
+}
+
+.Disliked svg{
+    background-color: lightskyblue;
 }
 
 .Counter {
