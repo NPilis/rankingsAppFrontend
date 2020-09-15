@@ -66,7 +66,6 @@ class Ranking extends Component {
 
 const mapStateToProps = (state) => ({
     isAuthenticated: state.auth.isAuthenticated,
-    token: state.auth.token,
     user: state.auth.user
 });
 

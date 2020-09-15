@@ -13,7 +13,6 @@ export const loadUser = () => (dispatch, getState) => {
             });
             // Just for production
             dispatch(createMessage({ loadedUserSuccess: "User loaded!" }))
-            console.log(getState());
         }).catch(err => {
             dispatch(returnErrors(err.response.data, err.status))
         });

@@ -3,10 +3,11 @@ import cls from './RankingInteractions.module.css';
 
 export default (props) => {
     let clsLike = [cls.Btn];
-    console.log(props.likes, props.user.username);
-    if (props.likes.includes(props.user.username)){
-        clsLike.push(cls.Liked);
-        console.log("Like!")
+    if (props.user){
+        if (props.likes.includes(props.user.username)){
+            clsLike.push(cls.Liked);
+            console.log("Like!")
+        }
     }
 
     return (
