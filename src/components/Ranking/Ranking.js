@@ -3,8 +3,6 @@ import React, {Component} from 'react';
 import RankingContent from '../RankingContent/RankingContent';
 import RankingInteractions from '../RankingInteractions/RankingInteractions';
 import RankingMedia from '../RankingMedia/RankingMedia';
-import axios from 'axios';
-import {connect} from 'react-redux';
 
 import cls from './Ranking.module.css'
 

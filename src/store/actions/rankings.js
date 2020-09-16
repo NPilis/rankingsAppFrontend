@@ -63,3 +63,25 @@ export const dislikeRanking = (uuid) => (dispatch, getState) => {
         console.log(res)
     })
 }
+
+export const shareRanking = (uuid) => (dispatch, getState) => {
+    console.log('[Ranking actions] Sharing...')
+}
+
+export const commentRanking = (uuid) => (dispatch, getState) => {
+    axios.post('/api/rankings/'+uuid+'/like/', null, tokenConfig(getState))
+    .then(res => {
+        dispatch({type: actionTypes.RANKING_LIKE })
+        console.log(res)
+    })
+}
+
+export const fetchRankingComments = (uuid) => (dispatch, getState) => {
+    axios.get('/api/rankings/'+uuid+'/comments/', null, tokenConfig(getState))
+    .then(res => {
+        dispatch({
+            type: actionTypes.LOAD_COMMENTS,
+            payload: res.data.results
+        })
+    })
+}

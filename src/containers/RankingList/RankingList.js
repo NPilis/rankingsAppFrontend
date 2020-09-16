@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import cls from './RankingList.module.css';
 import { connect } from 'react-redux';
 import * as rankingActions from '../../store/actions/rankings';
+import RankingComments from '../../components/RankingComments/RankingComments';
 
 class RankingList extends Component {
     componentDidMount() {
@@ -23,7 +24,6 @@ class RankingList extends Component {
                 </Link>
             ))}
         </ul>
-
         return (
             <Fragment>
                 <div className={cls.RankingList}>

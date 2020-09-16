@@ -3,6 +3,7 @@ import * as actionTypes from '../actions/actionTypes';
 const initialState = {
     publicRankings: [],
     privateRankings: [],
+    comments: [],
     ranking: null,
     loading: false
 }
@@ -51,6 +52,11 @@ export default (state=initialState, action) => {
                 ...state,
                 loading: false,
                 ranking: action.payload
+            }
+        case actionTypes.LOAD_COMMENTS:
+            return {
+                ...state,
+                comments: action.payload
             }
         default:
             return state;
