@@ -5,6 +5,9 @@ import Input from '../../../components/UI/Input/Input';
 import Button from '../../../components/UI/Button/Button';
 import * as authActions from '../../../store/actions/auth';
 import * as modalActions from '../../../store/actions/modal';
+import {Link, Redirect, NavLink} from 'react-router-dom';
+import * as rankingActions from '../../../store/actions/rankings';
+import { withRouter } from "react-router-dom";
 
 class Login extends Component {
 
@@ -44,6 +47,7 @@ class Login extends Component {
     submitHandler = (event) => {
         event.preventDefault();
         this.props.onLogin(this.state.controls.username.value, this.state.controls.password.value);
+        this.props.history.push('/rankings')
     }
 
     inputChangedHandler = (event, controlName) => {
@@ -89,7 +93,7 @@ class Login extends Component {
                         <p>You don't have an account? </p>
                         <Button redirectBtn={true} clicked={this.props.toggleRegister}>Sign up!</Button>
                     </div>
-                    <Button authBtn={true} clicked={this.submitHandler}>Login</Button>
+                        <NavLink to='/loginSuccess'><Button authBtn={true} clicked={this.submitHandler}>Login</Button></NavLink>
                 </form>
             </div>
         );
@@ -99,8 +103,9 @@ class Login extends Component {
 const mapDispatchToProps = dispatch => {
     return {
         onLogin: (username, password) => dispatch(authActions.login(username, password)),
-        toggleRegister: () => dispatch(modalActions.toggleRegisterModal())
+        toggleRegister: () => dispatch(modalActions.toggleRegisterModal()),
+        onFetchRanks: () => dispatch(rankingActions.fetchPublicRankings())
     };
 };
 
-export default connect(null, mapDispatchToProps)(Login);
+export default connect(null, mapDispatchToProps)(withRouter(Login));

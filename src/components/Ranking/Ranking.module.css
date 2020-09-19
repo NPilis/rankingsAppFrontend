@@ -4,7 +4,6 @@
     height: 250px;
     justify-content: space-between;
 
-    width: 96%;
     max-width: 450px;
     margin: 0 auto;
     margin-bottom: 10px;
@@ -13,9 +12,20 @@
     /* -webkit-border-radius: 10px;
     -moz-border-radius: 10px;
     border-radius: 10px; */
-    -webkit-box-shadow: 1px 1px 4px 1px rgba(0,0,0,0.2);
-    -moz-box-shadow: 1px 1px 4px 1px rgba(0,0,0,0.2);
-    box-shadow: 1px 1px 4px 1px rgba(0,0,0,0.2);
+    border: 1px solid lightgrey;
+    -webkit-box-shadow: 1px 1px 4px 1px rgba(204,204,204,0.3);
+    -moz-box-shadow: 1px 1px 4px 1px rgba(204,204,204,0.3);
+    box-shadow: 1px 1px 4px 1px rgba(204,204,204,0.3);
+}
+
+.Ranking:hover {
+    transition: 0.2s;
+    box-shadow: 2px 2px 4px 2px rgba(204,204,204,0.5);
+}
+
+.Ranking:hover div {
+    transition: 0.4s;
+    background-color: rgb(235, 247, 254);
 }
 
 .FlexRow {

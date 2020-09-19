@@ -29,6 +29,7 @@ export default (state=initialState, action) => {
         case actionTypes.LOAD_PUBLIC_RANKINGS_START:
             return {
                 ...state,
+                publicRankings: null,
                 loading: true
             }
         case actionTypes.LOAD_PUBLIC_RANKINGS_SUCCESS:

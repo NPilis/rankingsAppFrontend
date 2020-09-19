@@ -1,6 +1,7 @@
 import * as actionTypes from './actionTypes';
 import axios from 'axios';
 import { returnErrors, createMessage } from './messages';
+import * as rankingActions from './rankings';
 
 export const loadUser = () => (dispatch, getState) => {
     dispatch({ type: actionTypes.USER_LOADING });

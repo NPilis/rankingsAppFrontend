@@ -1,5 +1,5 @@
 .Modal {
-    position: fixed;
+    position: absolute;
     z-index: 200;
     left: 5%;
     top: 15%;

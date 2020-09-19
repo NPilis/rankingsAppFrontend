@@ -2,8 +2,9 @@
     display: flex;
     justify-content: space-between;
     margin-left: 0.4em;
-    height: 30%;
-    margin-top: 10px;
+    margin-right: 2px;
+    height: 20%;
+    margin-top: 15px;
 }
 
 .Interaction {

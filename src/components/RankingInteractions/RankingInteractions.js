@@ -3,7 +3,7 @@ import cls from './RankingInteractions.module.css';
 import * as rankingActions from '../../store/actions/rankings';
 import { connect } from 'react-redux';
 import Modal from '../UI/Modal/Modal';
-import RankingComments from '../RankingComments/RankingComments';
+import Comment from '../RankingComments/Comment/Comment';
 
 class RankingInteractions extends Component {
     state = {
@@ -107,26 +107,14 @@ class RankingInteractions extends Component {
     render() {
         let clsLike = [cls.Btn];
         let clsDislike = [cls.Btn];
-        let comments = null;
         if (this.state.isLiked) {
             clsLike.push(cls.Liked)
         } else if (this.state.isDisliked) {
             clsDislike.push(cls.Disliked)
         }
-        if (this.state.showComments) {
-            comments = (
-            <Modal
-                show={this.state.showComments}
-                toggle={this._onComment}>
-                <RankingComments
-                    comments={this.props.comments}>
-                </RankingComments>
-            </Modal>)
-        }
 
         return (
             <Fragment>
-                {comments}
                 <div className={cls.RankingInteractions}>
                     <div className={cls.Interaction}>
                         <div className={clsLike.join(' ')} onClick={this._onLike}>

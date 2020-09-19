@@ -4,7 +4,6 @@ import { Link } from 'react-router-dom';
 import cls from './RankingList.module.css';
 import { connect } from 'react-redux';
 import * as rankingActions from '../../store/actions/rankings';
-import RankingComments from '../../components/RankingComments/RankingComments';
 
 class RankingList extends Component {
     componentDidMount() {
@@ -12,34 +11,36 @@ class RankingList extends Component {
     }
 
     render() {
-        const list = <ul>
-            {this.props.publicRankings.map(ranking => (
-                <Link
-                    to={'/rankings/' + ranking.uuid}
-                    key={ranking.uuid}
-                    onClick={() => this.props.fetchRanking(ranking.uuid)}
-                    style={{ textDecoration: 'none', color: 'inherit' }}>
+        let list = null;
+        if(this.props.loading || this.props.fetching){
+            list = <h1>Loading...</h1>
+        } else {
+            list = <ul>
+                {this.props.publicRankings.map(ranking => (
                     <Ranking
-                        rank={ranking} />
-                </Link>
-            ))}
-        </ul>
+                        onClick={() => this.props.fetchRanking(ranking.uuid)}
+                        rank={ranking}
+                        />
+                ))
+                }
+            </ul>
+        }
         return (
             <Fragment>
                 <div className={cls.RankingList}>
                     {list}
                 </div>
+                <button onClick={this.props.fetchPublicRankings}>Fetch</button>
             </Fragment>
         );
     }
 }
 
 const mapStateToProps = state => ({
-    error: state.errors,
-    message: state.messages,
     publicRankings: state.rankings.publicRankings,
-    privateRankings: state.rankings.privateRankings,
-    ranking: state.rankings.ranking
+    isAuth: state.auth.isAuthenticated,
+    loading: state.auth.isLoading,
+    fetching: state.rankings.loading
 });
 
 const mapDispatchToProps = dispatch => {

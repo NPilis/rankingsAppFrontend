@@ -30,6 +30,11 @@ export default (state=initialState, action) => {
                 isAuthenticated: false,
                 isLoading: false
             }
+        case actionTypes.LOGIN_START:
+            return {
+                ...state,
+                isLoading: true
+            }
         case actionTypes.LOGIN_SUCCESS:
             localStorage.setItem('token', action.payload.token);
             return {
