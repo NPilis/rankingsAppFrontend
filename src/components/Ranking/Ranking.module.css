@@ -4,7 +4,7 @@
     height: 250px;
     justify-content: space-between;
 
-    max-width: 450px;
+    max-width: 425px;
     margin: 0 auto;
     margin-bottom: 10px;
 
@@ -16,7 +16,23 @@
     -webkit-box-shadow: 1px 1px 4px 1px rgba(204,204,204,0.3);
     -moz-box-shadow: 1px 1px 4px 1px rgba(204,204,204,0.3);
     box-shadow: 1px 1px 4px 1px rgba(204,204,204,0.3);
+    -webkit-column-break-inside: avoid;
+          page-break-inside: avoid;
+               break-inside: avoid;
+
+    animation: show 1s;
+    animation-timing-function: ease;
+    animation-iteration-count: 1
 }
+
+@keyframes show {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
 
 .Ranking:hover {
     transition: 0.2s;
@@ -25,7 +41,7 @@
 
 .Ranking:hover div {
     transition: 0.4s;
-    background-color: rgb(235, 247, 254);
+    background-color: rgb(234, 249, 252);
 }
 
 .FlexRow {

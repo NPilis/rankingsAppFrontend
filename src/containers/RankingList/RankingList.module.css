@@ -1,3 +1,14 @@
 .RankingList {
-    margin: 60px auto;
+    margin-top: 60px;
+    display: flex;
+}
+
+
+@media (min-width:700px){
+    .RankingList ul {
+        margin: 0 auto;
+        columns: 2;
+        -webkit-columns: 2;
+        -moz-columns: 2;
+    }
 }

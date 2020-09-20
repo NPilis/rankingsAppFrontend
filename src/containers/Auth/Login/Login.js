@@ -93,7 +93,7 @@ class Login extends Component {
                         <p>You don't have an account? </p>
                         <Button redirectBtn={true} clicked={this.props.toggleRegister}>Sign up!</Button>
                     </div>
-                        <NavLink to='/loginSuccess'><Button authBtn={true} clicked={this.submitHandler}>Login</Button></NavLink>
+                    <Button authBtn={true} clicked={this.submitHandler}>Login</Button>
                 </form>
             </div>
         );

@@ -4,16 +4,33 @@ import { Link } from 'react-router-dom';
 import cls from './RankingList.module.css';
 import { connect } from 'react-redux';
 import * as rankingActions from '../../store/actions/rankings';
+import Loading from '../../components/UI/Loading/Loading';
 
 class RankingList extends Component {
     componentDidMount() {
         this.props.fetchPublicRankings();
     }
 
+    componentDidUpdate(prevProps) {
+        if (this.props.isAuth !== prevProps.isAuth) {
+          this.props.fetchPublicRankings();
+        }
+    }
+
     render() {
         let list = null;
-        if(this.props.loading || this.props.fetching){
-            list = <h1>Loading...</h1>
+        if(this.props.loading){
+            list = (
+                <ul>
+                    <Loading rankLoading={true} delay={0}></Loading>
+                    <Loading rankLoading={true} delay={0.2}></Loading>
+                    <Loading rankLoading={true} delay={0.4}></Loading>
+                    <Loading rankLoading={true} delay={0.6}></Loading>
+                    <Loading rankLoading={true} delay={0}></Loading>
+                    <Loading rankLoading={true} delay={0.2}></Loading>
+                    <Loading rankLoading={true} delay={0.4}></Loading>
+                    <Loading rankLoading={true} delay={0.6}></Loading>
+                </ul>)
         } else {
             list = <ul>
                 {this.props.publicRankings.map(ranking => (
@@ -30,7 +47,6 @@ class RankingList extends Component {
                 <div className={cls.RankingList}>
                     {list}
                 </div>
-                <button onClick={this.props.fetchPublicRankings}>Fetch</button>
             </Fragment>
         );
     }
@@ -39,8 +55,7 @@ class RankingList extends Component {
 const mapStateToProps = state => ({
     publicRankings: state.rankings.publicRankings,
     isAuth: state.auth.isAuthenticated,
-    loading: state.auth.isLoading,
-    fetching: state.rankings.loading
+    loading: state.rankings.loading
 });
 
 const mapDispatchToProps = dispatch => {

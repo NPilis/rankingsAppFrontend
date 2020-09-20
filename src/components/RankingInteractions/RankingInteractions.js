@@ -9,7 +9,7 @@ class RankingInteractions extends Component {
     state = {
         isLiked: false,
         isDisliked: false,
-        showComments: false,
+        showForm: false,
         // Probably not the best idea
         num_of_likes: this.props.likes.length,
         num_of_dislikes: this.props.dislikes.length
@@ -98,10 +98,10 @@ class RankingInteractions extends Component {
         this.setState(prevState => {
             return {
                 ...prevState,
-                showComments: !prevState.showComments
+                showForm: !prevState.showForm
             }
         })
-        return this.props.fetchComments(this.props.ranking_uuid)
+        return this.props.commentRanking
     }
 
     render() {

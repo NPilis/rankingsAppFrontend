@@ -1,0 +1,33 @@
+.Loading {
+
+}
+
+.RankLoading {
+    display: flex;
+    height: 250px;
+    justify-content: space-between;
+
+    max-width: 425px;
+    margin: 0 auto;
+    margin-bottom: 10px;
+
+    background-color: darkblue;
+    -webkit-box-shadow: 1px 1px 4px 1px rgba(204,204,204,0.3);
+    -moz-box-shadow: 1px 1px 4px 1px rgba(204,204,204,0.3);
+    box-shadow: 1px 1px 4px 1px rgba(204,204,204,0.3);
+    -webkit-column-break-inside: avoid;
+    page-break-inside: avoid;
+    break-inside: avoid;
+    animation: pulse 2s infinite;
+    animation-timing-function: ease-in-out;
+    animation-direction: alternate;
+}
+
+@keyframes pulse {
+    0% {
+      background-color: whitesmoke;
+    }
+    100% {
+      background-color: lightgrey;
+    }
+  }
