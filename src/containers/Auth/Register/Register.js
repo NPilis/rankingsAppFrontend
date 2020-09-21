@@ -125,7 +125,7 @@ class Register extends Component {
                         <p>Already have an account? </p>
                         <Button redirectBtn={true} clicked={this.props.toggleLogin}>Sign in!</Button>
                     </div>
-                    <Button authBtn={true} click={this.submitHandler}>Register</Button>
+                    <Button authBtn={true} clicked={this.submitHandler}>Register</Button>
                 </form>
             </div>
         );
@@ -137,7 +137,6 @@ const mapDispatchToProps = dispatch => {
         onRegister: (newUser) => dispatch(authActions.register(newUser)),
         returnError: (msg, body, status) => dispatch(returnErrors(msg, body, status)),
         toggleLogin: () => dispatch(modalActions.toggleLoginModal())
-
     };
 };
 

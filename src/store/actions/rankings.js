@@ -30,7 +30,7 @@ export const fetchPrivateRankings = () => (dispatch, getState) => {
                 payload: response.data
             });
         }).catch(err => {
-            dispatch(returnErrors(err.response.data, err.status))
+            dispatch(returnErrors(err.response.data, err.response.status))
             dispatch({ type: actionTypes.LOAD_PRIVATE_RANKINGS_FAIL })
         });
 }
@@ -70,11 +70,17 @@ export const shareRanking = (uuid) => (dispatch, getState) => {
     console.log('[Ranking actions] Sharing...')
 }
 
-export const commentRanking = (uuid) => (dispatch, getState) => {
-    axios.post('/api/rankings/' + uuid + '/comment/', null, tokenConfig(getState))
+export const commentRanking = (uuid, comment) => (dispatch, getState) => {
+    const body = JSON.stringify({ text: comment });
+    console.log(body)
+    axios.post('/api/rankings/' + uuid + '/comments/', body, tokenConfig(getState))
         .then(res => {
             dispatch({ type: actionTypes.COMMENT_RANKING })
-            console.log(res)
+            dispatch({ type: actionTypes.TOGGLE_COMMENT_FORM, payload: uuid })
+            dispatch(createMessage({ commentAddedSuccess: "Comment added!" }))
+        }).catch(err => {
+            dispatch(returnErrors(err.response.data, err.response.status));
+            console.log(err.response.data, err.response.status)
         })
 }
 

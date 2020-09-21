@@ -9,9 +9,6 @@
     margin-bottom: 10px;
 
     background-color:#F3FAFE;
-    /* -webkit-border-radius: 10px;
-    -moz-border-radius: 10px;
-    border-radius: 10px; */
     border: 1px solid lightgrey;
     -webkit-box-shadow: 1px 1px 4px 1px rgba(204,204,204,0.3);
     -moz-box-shadow: 1px 1px 4px 1px rgba(204,204,204,0.3);
@@ -20,7 +17,7 @@
           page-break-inside: avoid;
                break-inside: avoid;
 
-    animation: show 1s;
+    animation: show 0.5s;
     animation-timing-function: ease;
     animation-iteration-count: 1
 }
@@ -41,7 +38,7 @@
 
 .Ranking:hover div {
     transition: 0.4s;
-    background-color: rgb(234, 249, 252);
+    background-color:  #F3FEFC;
 }
 
 .FlexRow {

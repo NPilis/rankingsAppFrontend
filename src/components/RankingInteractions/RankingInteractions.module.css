@@ -28,8 +28,8 @@
 }
 
 .Btn svg:hover {
-    background-color: #daf0fd;
-    fill: lightskyblue;
+    background-color: #F3F4FE;
+    fill:  grey;
     transition: 0.2s;
 }
 

@@ -5,7 +5,6 @@ import Input from '../../../components/UI/Input/Input';
 import Button from '../../../components/UI/Button/Button';
 import * as authActions from '../../../store/actions/auth';
 import * as modalActions from '../../../store/actions/modal';
-import {Link, Redirect, NavLink} from 'react-router-dom';
 import * as rankingActions from '../../../store/actions/rankings';
 import { withRouter } from "react-router-dom";
 

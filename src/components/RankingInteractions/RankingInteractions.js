@@ -1,9 +1,11 @@
 import React, { Component, Fragment } from 'react'
 import cls from './RankingInteractions.module.css';
 import * as rankingActions from '../../store/actions/rankings';
+import * as modalActions from '../../store/actions/modal';
 import { connect } from 'react-redux';
 import Modal from '../UI/Modal/Modal';
 import Comment from '../RankingComments/Comment/Comment';
+import modal from '../../store/reducers/modal';
 
 class RankingInteractions extends Component {
     state = {
@@ -101,7 +103,7 @@ class RankingInteractions extends Component {
                 showForm: !prevState.showForm
             }
         })
-        return this.props.commentRanking
+        return this.props.toggleCommentForm(this.props.ranking_uuid);
     }
 
     render() {
@@ -170,8 +172,7 @@ class RankingInteractions extends Component {
 const mapStateToProps = state => ({
     error: state.errors,
     message: state.messages,
-    user: state.auth.user,
-    comments: state.rankings.comments
+    user: state.auth.user
 });
 
 const mapDispatchToProps = dispatch => {
@@ -179,8 +180,7 @@ const mapDispatchToProps = dispatch => {
         likeRanking: (uuid) => dispatch(rankingActions.likeRanking(uuid)),
         dislikeRanking: (uuid) => dispatch(rankingActions.dislikeRanking(uuid)),
         shareRanking: (uuid) => dispatch(rankingActions.shareRanking(uuid)),
-        commentRanking: (uuid) => dispatch(rankingActions.commentRanking(uuid)),
-        fetchComments: (uuid) => dispatch(rankingActions.fetchRankingComments(uuid))
+        toggleCommentForm: (rankingUUID) => dispatch(modalActions.toggleCommentForm(rankingUUID))
     };
 };
 

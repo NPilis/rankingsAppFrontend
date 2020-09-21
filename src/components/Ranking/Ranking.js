@@ -20,17 +20,16 @@ class Ranking extends Component {
                         likes={this.props.rank.likes}
                         dislikes={this.props.rank.dislikes}
                         shares={this.props.rank.shares}
-                        comments={this.props.rank.comments}
-                    >
+                        comments={this.props.rank.comments}>
                         Likes, comments, shares
-                </RankingInteractions>
+                    </RankingInteractions>
                 </div>
                 <div className={cls.FlexCol}>
                     <RankingMedia
                         author={this.props.rank.author}
                         created_at={this.props.rank.created_at}>
                         Images, author, additional information
-                </RankingMedia>
+                    </RankingMedia>
                 </div>
 
             </div>

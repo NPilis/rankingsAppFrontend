@@ -38,7 +38,7 @@ export const login = (username, password) => (dispatch) => {
             dispatch(createMessage({ loginSuccess: "You are logged in!" }))
             dispatch({type: actionTypes.LOGIN_MODAL_TOGGLE})
         }).catch((err) => {
-            console.log(err.response.data)
+            console.log(err.response.data, err.response.status)
             dispatch(returnErrors(err.response.data, err.response.status));
             dispatch({ type: actionTypes.LOGIN_FAIL });
         });
