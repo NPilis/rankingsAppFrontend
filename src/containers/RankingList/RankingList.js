@@ -24,12 +24,12 @@ class RankingList extends Component {
                 <ul>
                     <Loading rankLoading={true} delay={0}></Loading>
                     <Loading rankLoading={true} delay={0.2}></Loading>
-                    <Loading rankLoading={true} delay={0.4}></Loading>
-                    <Loading rankLoading={true} delay={0.6}></Loading>
-                    <Loading rankLoading={true} delay={0}></Loading>
                     <Loading rankLoading={true} delay={0.2}></Loading>
-                    <Loading rankLoading={true} delay={0.4}></Loading>
-                    <Loading rankLoading={true} delay={0.6}></Loading>
+                    <Loading rankLoading={true} delay={0.3}></Loading>
+                    <Loading rankLoading={true} delay={0}></Loading>
+                    <Loading rankLoading={true} delay={0.1}></Loading>
+                    <Loading rankLoading={true} delay={0.2}></Loading>
+                    <Loading rankLoading={true} delay={0.3}></Loading>
                 </ul>)
         } else {
             list = <ul>

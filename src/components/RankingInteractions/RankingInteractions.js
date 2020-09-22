@@ -97,13 +97,22 @@ class RankingInteractions extends Component {
 
     _onComment = (e) => {
         e.preventDefault();
+        if (!this.props.user) {
+            return null
+        }
         this.setState(prevState => {
             return {
                 ...prevState,
                 showForm: !prevState.showForm
             }
         })
-        return this.props.toggleCommentForm(this.props.ranking_uuid);
+        const rankingFormData = {
+            uuid: this.props.ranking_uuid,
+            author: 'Autor',
+            title: 'Ranking title',
+            createdAt: '2020-01-04'
+        }
+        return this.props.toggleCommentForm(rankingFormData);
     }
 
     render() {
@@ -180,7 +189,7 @@ const mapDispatchToProps = dispatch => {
         likeRanking: (uuid) => dispatch(rankingActions.likeRanking(uuid)),
         dislikeRanking: (uuid) => dispatch(rankingActions.dislikeRanking(uuid)),
         shareRanking: (uuid) => dispatch(rankingActions.shareRanking(uuid)),
-        toggleCommentForm: (rankingUUID) => dispatch(modalActions.toggleCommentForm(rankingUUID))
+        toggleCommentForm: (rankingData) => dispatch(modalActions.toggleCommentForm(rankingData))
     };
 };
 

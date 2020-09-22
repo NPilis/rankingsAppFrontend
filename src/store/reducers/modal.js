@@ -4,7 +4,7 @@ const initialState = {
     showLogin: false,
     showRegister: false,
     showCommentForm: false,
-    rankingUUID: null
+    rankingData: null
 }
 
 export default (state=initialState, action) => {
@@ -25,12 +25,12 @@ export default (state=initialState, action) => {
             }
         case actionTypes.TOGGLE_COMMENT_FORM:
             const prevFormState = state.showCommentForm;
-            const prevUUID = state.rankingUUID;
-            console.log(prevUUID)
+            const prevData = state.rankingData;
+            console.log(prevData)
             return {
                 showLogin: false,
                 showRegister: false,
-                rankingUUID: prevUUID ? null : action.payload,
+                rankingData: prevData ? null : action.payload,
                 showCommentForm: !prevFormState
             }
         default:

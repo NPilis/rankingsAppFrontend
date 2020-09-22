@@ -14,6 +14,7 @@ export default (props) => {
                 onChange={props.changed}/>;
             break;
         case ('textarea'):
+            inputCls.push(cls.CommentArea)
             inputElement = <textarea
                 className={inputCls.join(' ')}
                 {...props.elementConfig}
@@ -30,7 +31,7 @@ export default (props) => {
 
     return (
         <div className={cls.Input}>
-            <label className={cls.Label}>{props.elementConfig.placeholder}</label>
+            {/* <label className={cls.Label}>{props.elementConfig.placeholder}</label> */}
             {inputElement}
         </div>
     );

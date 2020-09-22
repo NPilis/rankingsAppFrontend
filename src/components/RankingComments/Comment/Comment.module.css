@@ -1,0 +1,66 @@
+.CommentForm {
+    margin: 10px 30px 30px 30px;
+}
+
+.RankingData {
+    width: 90%;
+    max-width: ;
+    margin: 10px 30px 0 30px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.Line {
+    border-bottom: 1px solid lightgray;
+}
+
+.InlineWrapper {
+    display: flex;
+}
+
+.Bar {
+    height: 40px;
+    border-bottom: 1px solid lightgray;
+}
+
+.RankingImage {
+    float: right;
+    background-color: whitesmoke;
+    border: 2px solid lightgray;
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+}
+
+.Title {
+    padding: 0 0 20px 0;
+    margin-top: 20px;
+    font-weight: 700;
+}
+
+.DateCreated {
+    margin: auto 20px auto 0;
+}
+
+.DateCreated p {
+    color: darkgray;
+    font-size: 16px;
+}
+
+form {
+    margin-top: 20px;
+}
+
+.BlockWrapper {
+    width: 60%;
+}
+
+@media (max-width: 400px) {
+    .BlockWrapper {
+        width: 100%;
+    }
+
+    .RankingImage {
+        display: none;
+    }
+}
