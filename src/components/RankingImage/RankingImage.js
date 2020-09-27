@@ -1,10 +1,18 @@
 import React from 'react'
-
 import cls from './RankingImage.module.css';
+import Image from 'react-bootstrap/Image';
 
 export default (props) => {
+    let rankingImg = <img src="http://127.0.0.1:8000/media/blankRanking.jpg"></img>;
+    let rankingClasses = [cls.BlankRankingImg];
+    if (props.link) {
+        rankingImg = <img src={props.link}></img>
+        rankingClasses.push(cls.RankingImg)
+    }
+
     return (
-        <div className={cls.RankingImage}>
+        <div className={rankingClasses.join(' ')}>
+            {rankingImg}
         </div>
     );
 }

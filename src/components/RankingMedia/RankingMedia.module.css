@@ -1,14 +1,20 @@
 .RankingMedia {
     background-color: #F3FAFE;
-    height: 90%;
+    height: 100%;
     margin: 0.8em 0.8em 0 0;
     text-align: center;
 }
 
 .Img {
-    height: 50%;
+    height: 60%;
 }
 
 .Info {
-    height: 50%;
+    height: 30%;
+}
+
+.Date {
+    color: gray;
+    margin-top: 5px;
+    font-size: 90%;
 }

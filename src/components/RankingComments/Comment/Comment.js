@@ -5,6 +5,7 @@ import Button from '../../UI/Button/Button';
 import { connect } from 'react-redux';
 import * as rankingActions from '../../../store/actions/rankings';
 import Thumbnail from '../../User/Thumbnail/Thumbnail';
+import RankingImage from '../../RankingImage/RankingImage';
 
 class Comment extends Component {
 
@@ -36,7 +37,7 @@ class Comment extends Component {
 
     submitHandler = (event) => {
         event.preventDefault();
-        this.props.commentRanking(this.props.rankingUUID, this.state.comment.value);
+        this.props.commentRanking(this.props.rankingData.uuid, this.state.comment.value);
     }
 
     render() {
@@ -48,23 +49,28 @@ class Comment extends Component {
                     <div className={cls.BlockWrapper}>
                         <div className={cls.InlineWrapper}>
                             <Thumbnail
-                                username={this.props.rankingData.author} />
+                                username={this.props.rankingData.author.username}
+                                userImg={this.props.rankingData.author.image} />
                             <div className={cls.DateCreated}>
-                                <p>{this.props.rankingData.createdAt}</p>
+                                <p>{this.props.rankingData.createdAt.slice(0,10)}</p>
                             </div>
                         </div>
                         <div className={cls.Title}>
-                            <p>The best netflix movies in 2020</p>
+                            <p>{this.props.rankingData.title}</p>
                         </div>
                     </div>
                     <div className={cls.RankingImage}>
+                        <RankingImage
+                            link={this.props.rankingData.rankingImg}>
+                        </RankingImage>
                     </div>
                 </div>
                 <div className={cls.Line}></div>
                 <div className={cls.CommentForm}>
                     <form onSubmit={this.submitHandler}>
                         <Thumbnail
-                            username={'elo'} />
+                            username={this.props.user.username}
+                            userImg={this.props.user.image}/>
                         <Input
                             elementType={this.state.comment.elementType}
                             elementConfig={this.state.comment.elementConfig}

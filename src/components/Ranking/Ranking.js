@@ -14,7 +14,33 @@ class Ranking extends Component {
                 <div className={cls.FlexRow}>
                     <RankingContent
                         title={this.props.rank.title}
-                        ranking_positions={this.props.rank.top_three_rp} />
+                        ranking_positions={this.props.rank.top_three_rp}/>
+                    <RankingMedia
+                        author={this.props.rank.author.username}
+                        createdAt={this.props.rank.created_at}
+                        image={this.props.rank.image}
+                        authorImg={this.props.rank.author.image}>
+                        Images, author, additional information
+                    </RankingMedia>
+                </div>
+                <div className={cls.FlexCol}>
+                    <RankingInteractions
+                        ranking_uuid={this.props.rank.uuid}
+                        likes={this.props.rank.likes}
+                        dislikes={this.props.rank.dislikes}
+                        shares={this.props.rank.shares}
+                        comments={this.props.rank.comments}
+                        img={this.props.rank.image}
+                        author={this.props.rank.author}
+                        createdAt={this.props.rank.created_at}
+                        title={this.props.rank.title}>
+                        Likes, comments, shares
+                    </RankingInteractions>
+                </div>
+                {/* <div className={cls.FlexRow}>
+                    <RankingContent
+                        title={this.props.rank.title}
+                        ranking_positions={this.props.rank.top_three_rp}/>
                     <RankingInteractions
                         ranking_uuid={this.props.rank.uuid}
                         likes={this.props.rank.likes}
@@ -26,11 +52,11 @@ class Ranking extends Component {
                 </div>
                 <div className={cls.FlexCol}>
                     <RankingMedia
-                        author={this.props.rank.author}
-                        created_at={this.props.rank.created_at}>
+                        author={this.props.rank.author.username}
+                        createdAt={this.props.rank.created_at}>
                         Images, author, additional information
                     </RankingMedia>
-                </div>
+                </div> */}
 
             </div>
         );

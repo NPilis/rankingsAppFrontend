@@ -9,6 +9,7 @@ export const fetchPublicRankings = () => dispatch => {
     setTimeout(() => {
         axios.get('/api/rankings/public/')
         .then(response => {
+            console.log(response.data)
             dispatch({
                 type: actionTypes.LOAD_PUBLIC_RANKINGS_SUCCESS,
                 payload: response.data

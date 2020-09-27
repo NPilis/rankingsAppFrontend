@@ -1,10 +1,7 @@
 .RankingInteractions {
     display: flex;
     justify-content: space-between;
-    margin-left: 0.4em;
-    margin-right: 2px;
-    height: 20%;
-    margin-top: 15px;
+    margin: 0 1em 0 1em;
 }
 
 .Interaction {
@@ -15,9 +12,9 @@
 }
 
 .Interaction p {
-    margin-top: -3px;
     font-size: 12px;
     font-weight: 500;
+    margin-top: -3px;
 }
 
 .Btn svg {
@@ -28,8 +25,8 @@
 }
 
 .Btn svg:hover {
-    background-color: #F3F4FE;
-    fill:  grey;
+    background-color: lightskyblue;
+    fill:  #F3F4FE;
     transition: 0.2s;
 }
 

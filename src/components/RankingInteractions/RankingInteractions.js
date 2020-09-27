@@ -14,7 +14,8 @@ class RankingInteractions extends Component {
         showForm: false,
         // Probably not the best idea
         num_of_likes: this.props.likes.length,
-        num_of_dislikes: this.props.dislikes.length
+        num_of_dislikes: this.props.dislikes.length,
+        num_of_comments: this.props.comments.length
     }
 
     componentDidMount() {
@@ -108,9 +109,10 @@ class RankingInteractions extends Component {
         })
         const rankingFormData = {
             uuid: this.props.ranking_uuid,
-            author: 'Autor',
-            title: 'Ranking title',
-            createdAt: '2020-01-04'
+            author: this.props.author,
+            rankingImg: this.props.img,
+            title: this.props.title,
+            createdAt: this.props.createdAt
         }
         return this.props.toggleCommentForm(rankingFormData);
     }
@@ -167,8 +169,7 @@ class RankingInteractions extends Component {
                             </svg>
                         </div>
                         <div className={cls.Counter}>
-                            {/* <p>{this.props.comments.length}</p> */}
-                            <p>111</p>
+                            <p>{this.state.num_of_comments}</p>
                         </div>
                     </div>
                 </div>

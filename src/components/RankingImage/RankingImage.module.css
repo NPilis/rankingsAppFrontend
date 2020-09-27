@@ -1,17 +1,23 @@
-.RankingImage {
-    border: 2px solid gray;
-    justify-items: center;
+.BlankRankingImg {
     border-radius: 50%;
     height: 90px;
     width: 90px;
-    background-color: white;
-    margin: 0 auto;
 }
-/* HARD-CODED */
-.RankingImage img {
-    margin-top: 0.6em;
+
+.BlankRankingImg img {
+    border: 2px solid black;
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+    object-fit: cover;
+    opacity: 0.7;
 }
 
 .Inline {
     display: flex;
+}
+
+.RankingImg img {
+    border: none;
+    opacity: 1;
 }

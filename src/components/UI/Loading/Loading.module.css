@@ -19,7 +19,7 @@
     -webkit-column-break-inside: avoid;
     page-break-inside: avoid;
     break-inside: avoid;
-    animation: pulse 0.5s infinite;
+    animation: pulse 0.7s infinite;
     animation-timing-function: ease-in-out;
     animation-direction: alternate;
 }
