@@ -1,8 +1,9 @@
 .RankingMedia {
     background-color: #F3FAFE;
     height: 100%;
-    margin: 0.8em 0.8em 0 0;
     text-align: center;
+    margin-left: 20px;
+    margin-right: 10px;
 }
 
 .Img {
@@ -16,5 +17,5 @@
 .Date {
     color: gray;
     margin-top: 5px;
-    font-size: 90%;
+    font-size: 13px;
 }

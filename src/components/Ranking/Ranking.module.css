@@ -1,15 +1,14 @@
 .Ranking {
-
     display: flex;
     flex-direction: column;
-    height: 250px;
     justify-content: space-between;
-
+    min-height: 0;
     max-width: 425px;
+    min-width: 0;
     margin: 0 auto;
     margin-bottom: 10px;
-
-    background-color:#F3FAFE;
+    background-color: white;
+    /* background-color:#F3FAFE; */
     border: 1px solid lightgrey;
     -webkit-box-shadow: 1px 1px 4px 1px rgba(204,204,204,0.3);
     -moz-box-shadow: 1px 1px 4px 1px rgba(204,204,204,0.3);
@@ -39,16 +38,22 @@
 
 .Ranking:hover div {
     transition: 0.4s;
-    background-color:  #F3FEFC;
+    background-color:  lightgray;
+}
+
+.Ranking div {
+    background-color: rgb(243, 243, 243);
 }
 
 .FlexRow {
     width: 100%;
-    height: 70%;
+    height: 75%;
     background-color: #F3FAFE;
     display: flex;
     justify-content: space-between;
     margin-bottom: 0.5em;
+    min-width: 0;
+    min-height: 0;
 }
 
 .FlexCol {
@@ -64,4 +69,10 @@ p {
 ul {
     padding: 0;
     margin: 0;
+}
+
+@media (min-width: 700px) {
+    .Ranking {
+        min-height: 250px;
+    }
 }

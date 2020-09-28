@@ -1,61 +1,71 @@
-.RankingContent,
-.DetailRankingContent {
+.RankingContent {
     background-color:#F3FAFE;
     height: 100%;
-    width: 60%;
-    margin: 0.6em 0.6em 0 0.6em;
+    width: 100%;
+    min-width: 0;
 }
 
-.RankingContent p,
-.DetailRankingContent p {
+.RankingTitle {
+    margin: 0.3em 0 0 0.2em;
     font-weight: 700;
     text-shadow: 1px 1px 1px rgb(135, 206, 250, 0.2);
-    margin-bottom: 0.5em;
-    padding: 6px;
-    border-bottom: 2px solid rgb(135, 206, 250);
+    padding: 4px;
+    min-height: 44px;
+    min-width: 0;
+    text-overflow: ellipsis;
+    white-space: normal;
+    overflow: hidden;
+    -webkit-line-clamp: 2;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
 }
 
 .RankingContent ol {
-    margin: 0 0 0 1em;
-    padding: 0;
-}
-
-.RankingContent li {
-    margin-left: 8px;
-    padding: 3px;
-}
-
-.RankingContent ol,
-.DetailRankingContent ol {
-    margin: 0 0 0 0;
+    margin: 0 0 0 0.2em;
     padding: 0;
     list-style: none;
     counter-reset: item;
-    width: 100%;
+    min-width: 0;
+    min-height: 0;
+    width: 60%;
 }
 
-.RankingContent li,
-.DetailRankingContent li {
+.RankingContent li {
     counter-increment: item;
-    margin: 0 0 5px 0;
     font-weight: 500;
+    font-size: 15px;
     box-shadow: 0px 0px 2px -1px black;
-    /* border-radius: 12px 0 0 12px; */
+    padding: 5px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    min-width: 0;
+    min-height: 0;
 }
 
-.RankingContent li:before,
-.DetailRankingContent li:before {
+.RankingContent li:before {
     /* border-radius: 12px 0 0 12px; */
     font-weight: bold;
     margin-right: 10px;
     content: counter(item);
-    background: rgb(135, 206, 250);
+    background: #4c4cff;
     color: white;
-    padding: 2px 8px;
+    padding: 4px 10px;
     text-align: center;
     display: inline-block;
   }
 
+.FlexRow {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.Line {
+    width: 100%;
+    border-top: 2px solid #4c4cff;
+    margin-bottom: 5px;
+}
 /*   
 .DetailRankingContent li:nth-child(1) {
     font-weight: bold;

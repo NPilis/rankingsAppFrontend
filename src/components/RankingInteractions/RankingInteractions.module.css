@@ -2,6 +2,7 @@
     display: flex;
     justify-content: space-between;
     margin: 0 1em 0 1em;
+    min-width: 0;
 }
 
 .Interaction {
@@ -14,7 +15,8 @@
 .Interaction p {
     font-size: 12px;
     font-weight: 500;
-    margin-top: -3px;
+    margin-top: -7px;
+    margin-bottom: 7px;
 }
 
 .Btn svg {

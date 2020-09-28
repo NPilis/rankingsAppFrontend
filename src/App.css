@@ -2,6 +2,10 @@
   text-align: center;
 }
 
+.Container {
+ background-color: #F0FFFF;
+}
+
 .App-logo {
   height: 40vmin;
   pointer-events: none;

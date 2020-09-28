@@ -33,13 +33,15 @@ class App extends Component {
         <Alerts />
         <Layout>
         </Layout>
-        <Switch>
-          <Route path={'/rankings'} exact component={RankingList} />
-          <Route path={'/rankings/:uuid'} exact component={RankingDetail} />
-          <Route path={'/login'} component={Login}></Route>
-          <Route path={'/register'} component={Register}></Route>
-          <Route path={'/logout'} component={Logout}></Route>
-        </Switch>
+        <div className={'Container'}>
+          <Switch>
+            <Route path={'/rankings'} exact component={RankingList} />
+            <Route path={'/rankings/:uuid'} exact component={RankingDetail} />
+            <Route path={'/login'} component={Login}></Route>
+            <Route path={'/register'} component={Register}></Route>
+            <Route path={'/logout'} component={Logout}></Route>
+          </Switch>
+        </div>
       </AlertProvider>
     );
   }

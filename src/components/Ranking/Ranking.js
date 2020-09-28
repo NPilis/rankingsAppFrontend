@@ -13,15 +13,9 @@ class Ranking extends Component {
             <div className={cls.Ranking} onClick={this.props.clicked}>
                 <div className={cls.FlexRow}>
                     <RankingContent
+                        ranking={this.props.rank}
                         title={this.props.rank.title}
                         ranking_positions={this.props.rank.top_three_rp}/>
-                    <RankingMedia
-                        author={this.props.rank.author.username}
-                        createdAt={this.props.rank.created_at}
-                        image={this.props.rank.image}
-                        authorImg={this.props.rank.author.image}>
-                        Images, author, additional information
-                    </RankingMedia>
                 </div>
                 <div className={cls.FlexCol}>
                     <RankingInteractions
