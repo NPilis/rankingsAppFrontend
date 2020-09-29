@@ -49,6 +49,7 @@ export default (state=initialState, action) => {
                 loading: true
             }
         case actionTypes.LOAD_RANKING_SUCCESS:
+            console.log(action.payload)
             return {
                 ...state,
                 loading: false,

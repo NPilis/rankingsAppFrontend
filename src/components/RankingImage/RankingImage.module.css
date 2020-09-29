@@ -1,7 +1,7 @@
 .BlankRankingImg {
     border-radius: 50%;
-    height: 90px;
-    width: 90px;
+    height: 80px;
+    width: 80px;
 }
 
 .BlankRankingImg img {
@@ -20,4 +20,15 @@
 .RankingImg img {
     border: none;
     opacity: 1;
+}
+
+.BiggerImg {
+    width: 140px;
+    height: 140px;
+    margin: 0 auto;
+}
+
+.BiggerImg img {
+    width: 140px;
+    height: 140px;
 }

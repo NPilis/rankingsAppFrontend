@@ -9,6 +9,9 @@ export default (props) => {
         rankingImg = <img src={props.link}></img>
         rankingClasses.push(cls.RankingImg)
     }
+    if (props.bigger) {
+        rankingClasses.push(cls.BiggerImg)
+    }
 
     return (
         <div className={rankingClasses.join(' ')}>

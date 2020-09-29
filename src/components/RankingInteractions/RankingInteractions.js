@@ -29,6 +29,7 @@ class RankingInteractions extends Component {
     }
 
     _onLike = (e) => {
+        e.stopPropagation();
         e.preventDefault();
         if (!this.props.user) {
             return null
@@ -63,6 +64,7 @@ class RankingInteractions extends Component {
     }
 
     _onDislike = (e) => {
+        e.stopPropagation();
         e.preventDefault();
         if (!this.props.user) {
             return null
@@ -97,6 +99,7 @@ class RankingInteractions extends Component {
     }
 
     _onComment = (e) => {
+        e.stopPropagation();
         e.preventDefault();
         if (!this.props.user) {
             return null

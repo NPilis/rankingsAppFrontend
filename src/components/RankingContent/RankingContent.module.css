@@ -21,7 +21,7 @@
 }
 
 .RankingContent ol {
-    margin: 0 0 0 0.2em;
+    margin: 0 0 0 0.3em;
     padding: 0;
     list-style: none;
     counter-reset: item;
@@ -34,7 +34,7 @@
     counter-increment: item;
     font-weight: 500;
     font-size: 15px;
-    box-shadow: 0px 0px 2px -1px black;
+    box-shadow: 0px 0px 1px 0px black;
     padding: 5px;
     text-overflow: ellipsis;
     white-space: nowrap;
@@ -48,8 +48,8 @@
     font-weight: bold;
     margin-right: 10px;
     content: counter(item);
-    background: #4c4cff;
-    color: white;
+    background:  lightskyblue;
+    color:white;
     padding: 4px 10px;
     text-align: center;
     display: inline-block;
@@ -63,7 +63,7 @@
 
 .Line {
     width: 100%;
-    border-top: 2px solid #4c4cff;
+    border-top: 1.5px solid #AAB8C2;
     margin-bottom: 5px;
 }
 /*   

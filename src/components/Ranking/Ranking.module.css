@@ -9,17 +9,14 @@
     margin-bottom: 10px;
     background-color: white;
     /* background-color:#F3FAFE; */
-    border: 1px solid lightgrey;
-    -webkit-box-shadow: 1px 1px 4px 1px rgba(204,204,204,0.3);
-    -moz-box-shadow: 1px 1px 4px 1px rgba(204,204,204,0.3);
-    box-shadow: 1px 1px 4px 1px rgba(204,204,204,0.3);
+    border: 1px solid #AAB8C2;
     -webkit-column-break-inside: avoid;
           page-break-inside: avoid;
                break-inside: avoid;
 
     animation: show 0.2s;
     animation-timing-function: ease;
-    animation-iteration-count: 1
+    animation-iteration-count: 1;
 }
 
 @keyframes show {
@@ -32,17 +29,19 @@
   }
 
 .Ranking:hover {
-    transition: 0.2s;
-    box-shadow: 2px 2px 4px 2px rgba(204,204,204,0.5);
+    transition: 0.5s;
+    -webkit-box-shadow: 0px 2px 5px 1px rgba(0,0,0,0.5);
+    -moz-box-shadow: 0px 2px 5px 1px rgba(0,0,0,0.5);
+    box-shadow: 0px 2px 5px 1px rgba(0,0,0,0.5);
 }
 
 .Ranking:hover div {
     transition: 0.4s;
-    background-color:  lightgray;
+    background-color: #E1E8ED;
 }
 
 .Ranking div {
-    background-color: rgb(243, 243, 243);
+    background-color: #F5F8FA;
 }
 
 .FlexRow {
@@ -51,7 +50,6 @@
     background-color: #F3FAFE;
     display: flex;
     justify-content: space-between;
-    margin-bottom: 0.5em;
     min-width: 0;
     min-height: 0;
 }
@@ -69,6 +67,11 @@ p {
 ul {
     padding: 0;
     margin: 0;
+}
+
+.Ranking a {
+    color: inherit;
+    text-decoration: none;
 }
 
 @media (min-width: 700px) {

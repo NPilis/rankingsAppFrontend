@@ -35,9 +35,7 @@ class RankingList extends Component {
             list = <ul>
                 {this.props.publicRankings.map(ranking => (
                     <Ranking
-                        onClick={() => this.props.fetchRanking(ranking.uuid)}
-                        rank={ranking}
-                        />
+                        rank={ranking}/>
                 ))
                 }
             </ul>
@@ -55,7 +53,6 @@ class RankingList extends Component {
 const mapStateToProps = state => ({
     publicRankings: state.rankings.publicRankings,
     isAuth: state.auth.isAuthenticated,
-    // loading: true,
     loading: state.rankings.loading
 });
 
