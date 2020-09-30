@@ -53,7 +53,7 @@ class RankingList extends Component {
 const mapStateToProps = state => ({
     publicRankings: state.rankings.publicRankings,
     isAuth: state.auth.isAuthenticated,
-    loading: state.rankings.loading
+    loading: state.rankings.rankingLoading
 });
 
 const mapDispatchToProps = dispatch => {

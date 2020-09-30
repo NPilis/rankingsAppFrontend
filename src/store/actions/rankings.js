@@ -86,10 +86,11 @@ export const commentRanking = (uuid, comment) => (dispatch, getState) => {
 }
 
 export const fetchRankingComments = (uuid) => (dispatch, getState) => {
+    dispatch({ type: actionTypes.LOAD_COMMENTS_START })
     axios.get('/api/rankings/' + uuid + '/comments/', null, tokenConfig(getState))
         .then(res => {
             dispatch({
-                type: actionTypes.LOAD_COMMENTS,
+                type: actionTypes.LOAD_COMMENTS_SUCCESS,
                 payload: res.data.results
             })
         })

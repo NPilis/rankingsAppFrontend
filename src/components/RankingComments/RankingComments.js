@@ -10,7 +10,8 @@ export default (props) => {
     let comments = (
         <ul>
             {props.comments.map(comment => {
-                return <Comment com={comment}/>
+                return <Comment
+                            comment={comment}/>
             })}
         </ul>
     )

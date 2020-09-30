@@ -3,9 +3,10 @@ import * as actionTypes from '../actions/actionTypes';
 const initialState = {
     publicRankings: [],
     privateRankings: [],
-    comments: [],
+    comments: null,
     ranking: null,
-    loading: false
+    rankingLoading: false,
+    commenstLoading: false
 }
 
 export default (state=initialState, action) => {
@@ -13,51 +14,57 @@ export default (state=initialState, action) => {
         case actionTypes.LOAD_PRIVATE_RANKINGS_START:
             return {
                 ...state,
-                loading: true
+                rankingLoading: true
             }
         case actionTypes.LOAD_PRIVATE_RANKINGS_SUCCESS:
             return {
                 ...state,
-                loading: false,
+                rankingLoading: false,
                 privateRankings: action.payload.results
             }
         case actionTypes.LOAD_PRIVATE_RANKINGS_FAIL:
             return {
                 ...state,
-                loading: false,
+                rankingLoading: false,
             }
         case actionTypes.LOAD_PUBLIC_RANKINGS_START:
             return {
                 ...state,
                 publicRankings: null,
-                loading: true
+                rankingLoading: true
             }
         case actionTypes.LOAD_PUBLIC_RANKINGS_SUCCESS:
             return {
                 ...state,
-                loading: false,
+                rankingLoading: false,
                 publicRankings: action.payload.results
             }
         case actionTypes.LOAD_PUBLIC_RANKINGS_FAIL:
             return {
                 ...state,
-                loading: false,
+                rankingLoading: false,
             }
         case actionTypes.LOAD_RANKING_START:
             return {
                 ...state,
-                loading: true
+                rankingLoading: true
             }
         case actionTypes.LOAD_RANKING_SUCCESS:
             console.log(action.payload)
             return {
                 ...state,
-                loading: false,
+                rankingLoading: false,
                 ranking: action.payload
             }
-        case actionTypes.LOAD_COMMENTS:
+        case actionTypes.LOAD_COMMENTS_START:
             return {
                 ...state,
+                commenstLoading: true
+            }
+        case actionTypes.LOAD_COMMENTS_SUCCESS:
+            return {
+                ...state,
+                commenstLoading: false,
                 comments: action.payload
             }
         default:

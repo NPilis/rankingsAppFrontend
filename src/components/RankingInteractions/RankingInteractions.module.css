@@ -3,6 +3,14 @@
     justify-content: space-between;
     margin: 0 1em 0 1em;
     min-width: 0;
+    height: 100%;
+    align-items: center;
+}
+
+.DetailInteractions {
+    height: 100%;
+    flex-flow: column;
+    margin: 0;
 }
 
 .Interaction {
@@ -12,11 +20,18 @@
     text-align: center;
 }
 
+/* .DetailInteraction {
+    flex-flow: row;
+} */
+
 .Interaction p {
     font-size: 12px;
     font-weight: 500;
     margin-top: -6px;
     margin-bottom: 6px;
+}
+
+.DetailInteraction p {
 }
 
 .Btn svg {

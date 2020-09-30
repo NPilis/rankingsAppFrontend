@@ -5,7 +5,7 @@ import Modal from '../UI/Modal/Modal';
 import * as modalActions from '../../store/actions/modal';
 import Login from '../../containers/Auth/Login/Login';
 import Register from '../../containers/Auth/Register/Register';
-import Comment from '../RankingComments/Comment/Comment';
+import CommentForm from '../RankingComments/CommentForm/CommentForm';
 import { connect } from 'react-redux';
 import modal from '../../store/reducers/modal';
 
@@ -32,8 +32,8 @@ class Layout extends Component {
                     ? <Modal
                         show={this.props.showCommentForm}
                         toggle={this.props.toggleCommentForm}>
-                        <Comment>
-                        </Comment>
+                        <CommentForm>
+                        </CommentForm>
                     </Modal>
                     : null}
                 { this.props.showLogin

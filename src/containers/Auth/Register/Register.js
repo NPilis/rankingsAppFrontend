@@ -62,6 +62,14 @@ class Register extends Component {
                 },
                 valid: false,
                 touched: false
+            },
+            image: {
+                elementType: this.inputChangedHandler,
+                elementConfig: {
+                    type: 'file',
+                    placeholder: 'Choose file'
+                },
+                value: ''
             }
         }
     }

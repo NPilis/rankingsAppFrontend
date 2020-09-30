@@ -1,8 +1,8 @@
 .RankingDetail {
-
+    margin: 52px auto 0 auto;
     min-height: 500px;
-    width: 96%;
-    margin: 60px 0 0 0.4em;
+    max-width: 700px;
+    width: 100%;
 
     background-color: #F5F8FA;
     -webkit-box-shadow: 1px 1px 10px 1px rgba(0,0,0,0.25);
@@ -13,7 +13,9 @@
 .RankingTitle {
     width: 100%;
     height: 50px;
-    border-bottom: 1.5px solid #AAB8C2;
+    border-bottom: 2px solid #AAB8C2;
+    background: rgb(255,255,255);
+    background: linear-gradient(0deg, rgba(255,255,255,1) 0%, rgba(225,232,237,1) 100%);
 }
 
 .RankingTitle p {
@@ -28,24 +30,44 @@
     font-size: 13px;
 }
 
+.Wrapper {
+   display: flex;
+   border-bottom: 2px solid #AAB8C2;
+}
+
+.FloatLeft {
+    width: 80%;
+    padding-bottom: 1em;
+}
+
+.FloatRight {
+    width: 20%;
+    border-left: 2px solid #AAB8C2;
+}
+
 .RankingImg {
     margin-top: 0.5em;
 }
 
 .RankingAuthor {
-    margin-top: 0.5em;
+    margin: 0.3em 0 0.3em 0.2em;
 }
 
-.Description {
+.RankingInteractions {
+    height: 100%;
     margin-top: 0.5em;
-    border-top: 1.5px solid #AAB8C2;
 }
 
 .Description p {
     font-weight: 700;
-    margin: 0.5em 0 0.2em 0.2em;
+    margin: 0.2em 0.2em 0.2em 0.2em;
 }
 
 .Content {
-    margin: 0.2em 0 0.2em 0.2em;
+    margin: 0.2em 0.2em 0.2em 0.2em;
+}
+
+.RankingPositions {
+    margin-top: 1em;
+    border-top: 2px solid #AAB8C2;
 }
