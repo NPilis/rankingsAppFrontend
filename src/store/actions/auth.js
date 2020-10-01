@@ -73,15 +73,14 @@ export const tokenConfig = (getState) => {
     return config;
 };
 
-export const register = (newUser) => (dispatch) => {
+export const register = (formData) => (dispatch) => {
     const config = {
         headers: {
             'Content-Type': 'application/json'
         }
     };
-    const body = JSON.stringify(newUser);
-
-    axios.post('/api/auth/register/', body, config)
+    console.log(formData)
+    axios.post('/api/auth/register/', formData, config)
         .then((res) => {
             dispatch({
                 type: actionTypes.REGISTER_SUCCESS,

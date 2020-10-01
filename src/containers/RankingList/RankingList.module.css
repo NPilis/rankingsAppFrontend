@@ -1,24 +1,35 @@
 .RankingList {
-    margin-top: 60px;
     margin-bottom: 40px;
     display: flex;
     justify-content: center;
 }
 
 .RankingList ul {
+    margin-top: 5px;
     min-width: 0px;
+}
+
+.Wrapper {
+    max-width: 425px;
+    width: 100%;
 }
 
 @media (min-width:700px){
     .RankingList ul {
-        margin: 0 auto;
+        margin: 4px auto;
         columns: 2;
         -webkit-columns: 2;
         -moz-columns: 2;
     }
-}
 
+    .Wrapper {
+        max-width: 750px;
+        width: 100%;
+    }
+
+}
 
 .InfScroll {
     display: none;
 }
+

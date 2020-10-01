@@ -3,16 +3,18 @@
     width: 100%;
     background-color: white;
     border-bottom: 2px lightseagreen;
-    position: fixed;
+    position: sticky;
     z-index: 100;
     top: 0;
     left: 0;
     display: flex;
-    box-shadow: 1px 1px 4px 1px rgba(0,0,0,0.1);
+    box-shadow: 1px 0px 4px 0px rgba(0,0,0,0.1);
     justify-content: space-between;
     align-items: center;
     padding: 0 20px;
     box-sizing: border-box;
+    max-width: 750px;
+    margin: 0 auto;
 }
 
 .Toolbar nav {

@@ -7,6 +7,7 @@ import * as rankingActions from '../../store/actions/rankings';
 import Loading from '../../components/UI/Loading/Loading';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import Spinner from '../../components/UI/Loading/Spinner';
+import SearchBar from '../../components/UI/SearchBar/SearchBar';
 
 class RankingList extends Component {
     componentDidMount() {
@@ -45,7 +46,11 @@ class RankingList extends Component {
         return (
             <Fragment>
                 <div className={cls.RankingList}>
-                    {list}
+                    <div className={cls.Wrapper}>
+                        <SearchBar>
+                        </SearchBar>
+                        {list}
+                    </div>
                     <div className={cls.InfScroll}>
                         <InfiniteScroll
                             dataLength={this.props.publicRankings.length}

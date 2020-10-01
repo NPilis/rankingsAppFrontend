@@ -48,3 +48,14 @@
     border-radius: 35%;
     background-color: #AAB8C2;
 }
+
+.FlexCol {
+}
+
+.FlexRow {
+
+}
+
+.Content {
+    word-break: break-word; 
+}

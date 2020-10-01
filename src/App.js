@@ -35,7 +35,7 @@ class App extends Component {
         </Layout>
         <div className={'Container'}>
           <Switch>
-            <Route path={'/rankings'} exact component={RankingList} />
+            <Route path={'/'} exact component={RankingList} />
             <Route path={'/rankings/:uuid'} exact component={RankingDetail} />
             <Route path={'/login'} component={Login}></Route>
             <Route path={'/register'} component={Register}></Route>

@@ -6,7 +6,7 @@ import Button from '../../../components/UI/Button/Button';
 import * as authActions from '../../../store/actions/auth';
 import * as modalActions from '../../../store/actions/modal';
 import { returnErrors } from '../../../store/actions/messages';
-import Spinner from 'react-bootstrap/Spinner';
+import ImageUploader from 'react-images-upload';
 
 class Register extends Component {
 
@@ -63,31 +63,26 @@ class Register extends Component {
                 },
                 valid: false,
                 touched: false
-            },
-            image: {
-                elementType: this.inputChangedHandler,
-                elementConfig: {
-                    type: 'file',
-                    placeholder: 'Choose file'
-                },
-                value: ''
             }
-        }
+        },
+        selectedImage: null
     }
 
     checkValidity = () => true;
 
     submitHandler = (event) => {
         event.preventDefault();
-        const newUser = {
-            username: this.state.controls.username.value,
-            email: this.state.controls.email.value,
-            password: this.state.controls.password1.value
+        let formData = new FormData();
+        formData.append('username', this.state.controls.username.value);
+        formData.append('email', this.state.controls.email.value);
+        formData.append('password', this.state.controls.password1.value);
+        if (this.state.selectedImage) {
+            formData.append('image', this.state.selectedImage, this.state.selectedImage.name);
         }
-        if (newUser.password !== this.state.controls.password2.value) {
+        if (formData.get('password') !== this.state.controls.password2.value) {
             this.props.returnError({passwordNotMatch: 'Password do not match'}, 401)
         } else {
-            this.props.onRegister(newUser);
+            this.props.onRegister(formData);
         }
     }
 
@@ -102,6 +97,14 @@ class Register extends Component {
             }
         }
         this.setState({controls: updatedControls});
+    }
+
+    imageSelectedHandler = event => {
+        this.setState({
+            ...this.state,
+            selectedImage: event.target.files[0]
+        });
+        console.log(this.state)
     }
 
     render () {
@@ -128,9 +131,9 @@ class Register extends Component {
         return (
             <div className={cls.Register}>
                 <h1>Sign up</h1>
-                <Spinner animation="border" variant="secondary" />
                 <form>
                     {form}
+                    <input type="file" accept="image/png, image/jpeg" onChange={this.imageSelectedHandler}/>
                     <div className={cls.Inline}>
                         <p>Already have an account? </p>
                         <Button redirectBtn={true} clicked={this.props.toggleLogin}>Sign in!</Button>
