@@ -1,5 +1,6 @@
 .RankingList {
     margin-top: 60px;
+    margin-bottom: 40px;
     display: flex;
     justify-content: center;
 }
@@ -15,4 +16,9 @@
         -webkit-columns: 2;
         -moz-columns: 2;
     }
+}
+
+
+.InfScroll {
+    display: none;
 }

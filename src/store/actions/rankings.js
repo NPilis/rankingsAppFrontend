@@ -18,7 +18,25 @@ export const fetchPublicRankings = () => dispatch => {
             dispatch({ type: actionTypes.LOAD_PUBLIC_RANKINGS_FAIL })
             dispatch(returnErrors(err.response.data, err.status))
         })
-    }, 1000);
+    }, 500);
+}
+
+export const fetchMorePublicRankings = () => (dispatch, getState) => {
+    dispatch({ type: actionTypes.LOAD_MORE_PUBLIC_RANKINGS_START })
+
+    setTimeout(() => {
+        axios.get(getState().rankings.nextPublic)
+        .then(response => {
+            console.log(response.data)
+            dispatch({
+                type: actionTypes.LOAD_MORE_PUBLIC_RANKINGS_SUCCESS,
+                payload: response.data
+            });
+        }).catch(err => {
+            dispatch({ type: actionTypes.LOAD_PUBLIC_RANKINGS_FAIL })
+            dispatch(returnErrors(err.response.data, err.status))
+        })
+    }, 300);
 }
 
 export const fetchPrivateRankings = () => (dispatch, getState) => {
@@ -71,13 +89,18 @@ export const shareRanking = (uuid) => (dispatch, getState) => {
     console.log('[Ranking actions] Sharing...')
 }
 
-export const commentRanking = (uuid, comment) => (dispatch, getState) => {
+export const commentRanking = (uuid, comment, user) => (dispatch, getState) => {
     const body = JSON.stringify({ text: comment });
     console.log(body)
     axios.post('/api/rankings/' + uuid + '/comments/', body, tokenConfig(getState))
         .then(res => {
-            dispatch({ type: actionTypes.COMMENT_RANKING })
-            dispatch({ type: actionTypes.TOGGLE_COMMENT_FORM, payload: uuid })
+            let newComm = {
+                comment: comment,
+                user: user
+            }
+            console.log(newComm)
+            dispatch({ type: actionTypes.COMMENT_RANKING_SUCCESS, payload: newComm })
+            dispatch({ type: actionTypes.SUBMIT_COMMENT_FORM })
             dispatch(createMessage({ commentAddedSuccess: "Comment added!" }))
         }).catch(err => {
             dispatch(returnErrors(err.response.data, err.response.status));
@@ -89,9 +112,24 @@ export const fetchRankingComments = (uuid) => (dispatch, getState) => {
     dispatch({ type: actionTypes.LOAD_COMMENTS_START })
     axios.get('/api/rankings/' + uuid + '/comments/', null, tokenConfig(getState))
         .then(res => {
+            console.log(res)
             dispatch({
                 type: actionTypes.LOAD_COMMENTS_SUCCESS,
-                payload: res.data.results
+                payload: res.data
             })
         })
+}
+
+export const fetchMoreComments = () => (dispatch, getState) => {
+    dispatch({ type: actionTypes.LOAD_MORE_COMMENTS_START })
+
+    setTimeout(() => {
+        axios.get(getState().rankings.nextComments, null, tokenConfig(getState))
+        .then(res => {
+            dispatch({
+                type: actionTypes.LOAD_MORE_COMMENTS_SUCCESS,
+                payload: res.data
+            })
+        })
+    }, 300)
 }

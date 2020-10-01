@@ -6,6 +6,7 @@ import Button from '../../../components/UI/Button/Button';
 import * as authActions from '../../../store/actions/auth';
 import * as modalActions from '../../../store/actions/modal';
 import { returnErrors } from '../../../store/actions/messages';
+import Spinner from 'react-bootstrap/Spinner';
 
 class Register extends Component {
 
@@ -127,6 +128,7 @@ class Register extends Component {
         return (
             <div className={cls.Register}>
                 <h1>Sign up</h1>
+                <Spinner animation="border" variant="secondary" />
                 <form>
                     {form}
                     <div className={cls.Inline}>

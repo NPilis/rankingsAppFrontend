@@ -11,6 +11,7 @@ import RankingImage from '../../components/RankingImage/RankingImage';
 import Thumbnail from '../../components/User/Thumbnail/Thumbnail';
 import RankingPositions from './RankingPositions/RankingPositions';
 import RankingComments from '../../components/RankingComments/RankingComments';
+import CommentForm from '../../components/RankingComments/CommentForm/CommentForm';
 
 class RankingDetail extends Component {
     state = {
@@ -19,7 +20,6 @@ class RankingDetail extends Component {
 
     componentDidMount () {
         this.props.fetchRanking(this.props.match.params.uuid)
-        this.props.fetchRankingComments(this.props.match.params.uuid)
         this.setState({isLoaded: true})
     }
 
@@ -75,8 +75,10 @@ class RankingDetail extends Component {
                             rankingPositions={this.props.ranking.ranking_positions}/>
                     </div>
                     <div className={cls.CommentSection}>
+                        <CommentForm
+                            detail/>
                         <RankingComments
-                            comments={this.props.comments}/>
+                            rankingUUID={this.props.ranking.uuid}/>
                     </div>
                 </div>
             );
@@ -90,19 +92,15 @@ const mapStateToProps = state => ({
     message: state.messages,
     user: state.auth.user,
     ranking: state.rankings.ranking,
-    comments: state.rankings.comments,
-    rankingLoading: state.rankings.rankingLoading,
-    commentsLoading: state.rankings.commentsLoading
+    rankingLoading: state.rankings.rankingLoading
 });
 
 const mapDispatchToProps = dispatch => {
     return {
         fetchRanking: (uuid) => dispatch(rankingActions.fetchRanking(uuid)),
-        fetchRankingComments: (uuid) => dispatch(rankingActions.fetchRankingComments(uuid)),
         likeRanking: (uuid) => dispatch(rankingActions.likeRanking(uuid)),
         dislikeRanking: (uuid) => dispatch(rankingActions.dislikeRanking(uuid)),
-        shareRanking: (uuid) => dispatch(rankingActions.shareRanking(uuid)),
-        commentRanking: (uuid, comment) => dispatch(rankingActions.commentRanking(uuid, comment))
+        shareRanking: (uuid) => dispatch(rankingActions.shareRanking(uuid))
     };
 };
 

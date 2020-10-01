@@ -14,7 +14,7 @@
           page-break-inside: avoid;
                break-inside: avoid;
 
-    animation: show 0.2s;
+    animation: show 0.3s;
     animation-timing-function: ease;
     animation-iteration-count: 1;
 }

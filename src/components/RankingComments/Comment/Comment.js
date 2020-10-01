@@ -23,7 +23,7 @@ export default (props) => {
                         <p>{props.comment.user.username} &#8226;</p>
                     </div>
                     <div className={cls.Timestamp}>
-                        <p>{dDiff > 0 ? dDiff.toString() + 'd' : null} {hDiff > 0 ? hDiff.toString() + 'h' : null} {minDiff}m</p>
+                        <p>{dDiff > 0 ? dDiff.toString() + 'd' : null} {hDiff > 0 ? hDiff.toString() + 'h' : null} {minDiff > 1 ? minDiff.toString() + 'm' : 'Just now...'}</p>
                     </div>
                 </div>
                 <div className={cls.Content}>

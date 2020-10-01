@@ -15,7 +15,7 @@ class RankingInteractions extends Component {
         // Probably not the best idea
         num_of_likes: this.props.likes.length,
         num_of_dislikes: this.props.dislikes.length,
-        num_of_comments: this.props.comments.length
+        num_of_comments: this.props.comments ? this.props.comments.length : 0
     }
 
     componentDidMount() {
@@ -113,9 +113,9 @@ class RankingInteractions extends Component {
         const rankingFormData = {
             uuid: this.props.ranking_uuid,
             author: this.props.author,
-            rankingImg: this.props.img,
+            image: this.props.img,
             title: this.props.title,
-            createdAt: this.props.createdAt
+            created_at: this.props.createdAt
         }
         return this.props.toggleCommentForm(rankingFormData);
     }

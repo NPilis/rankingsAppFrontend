@@ -5,6 +5,8 @@ import cls from './RankingList.module.css';
 import { connect } from 'react-redux';
 import * as rankingActions from '../../store/actions/rankings';
 import Loading from '../../components/UI/Loading/Loading';
+import InfiniteScroll from 'react-infinite-scroll-component';
+import Spinner from '../../components/UI/Loading/Spinner';
 
 class RankingList extends Component {
     componentDidMount() {
@@ -44,6 +46,14 @@ class RankingList extends Component {
             <Fragment>
                 <div className={cls.RankingList}>
                     {list}
+                    <div className={cls.InfScroll}>
+                        <InfiniteScroll
+                            dataLength={this.props.publicRankings.length}
+                            next={this.props.fetchMorePublicRankings}
+                            hasMore={this.props.hasMore}
+                            loader={<Spinner/>}>
+                        </InfiniteScroll>
+                    </div>
                 </div>
             </Fragment>
         );
@@ -52,6 +62,7 @@ class RankingList extends Component {
 
 const mapStateToProps = state => ({
     publicRankings: state.rankings.publicRankings,
+    hasMore: state.rankings.hasMore,
     isAuth: state.auth.isAuthenticated,
     loading: state.rankings.rankingLoading
 });
@@ -59,7 +70,8 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => {
     return {
         fetchRanking: (uuid) => dispatch(rankingActions.fetchRanking(uuid)),
-        fetchPublicRankings: () => dispatch(rankingActions.fetchPublicRankings())
+        fetchPublicRankings: () => dispatch(rankingActions.fetchPublicRankings()),
+        fetchMorePublicRankings: () => dispatch(rankingActions.fetchMorePublicRankings())
     };
 };
 

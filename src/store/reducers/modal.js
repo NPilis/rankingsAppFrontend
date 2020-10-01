@@ -33,6 +33,13 @@ export default (state=initialState, action) => {
                 rankingData: prevData ? null : action.payload,
                 showCommentForm: !prevFormState
             }
+        case actionTypes.SUBMIT_COMMENT_FORM:
+            return {
+                showLogin: false,
+                showRegister: false,
+                rankingData: null,
+                showCommentForm: false
+            }
         default:
             return state;
     }
