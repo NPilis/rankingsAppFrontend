@@ -1,7 +1,8 @@
 .RankingList {
     margin-bottom: 40px;
+    width: 80%;
     display: flex;
-    justify-content: center;
+    float: right;
 }
 
 .RankingList ul {
@@ -14,7 +15,8 @@
     width: 100%;
 }
 
-@media (min-width:700px){
+@media (min-width:801px){
+
     .RankingList ul {
         margin: 4px auto;
         columns: 2;
@@ -29,7 +31,38 @@
 
 }
 
-.InfScroll {
-    display: none;
+@media(min-width: 1024px) {
+    .RankingList {
+        float: left;
+        margin-left: 252px;
+    }
 }
 
+@media(min-width: 1256px) {
+    .RankingList {
+        margin-left: calc(10% + 252px);
+    }
+}
+
+.InfScroll {
+    display: none;
+    width: 100%;
+}
+
+@media(max-width: 800px) {
+    .RankingList {
+        width: 75%;
+    }
+}
+
+@media(max-width: 530px) {
+    .RankingList {
+        width: 84%;
+    }
+}
+
+@media(max-width: 380px) {
+    .RankingList {
+        width: 100%;
+    }
+}

@@ -11,11 +11,11 @@ export default (props) => (
         <div className={cls.Logo}>
             <Logo />
         </div>
-        <nav className={cls.DesktopOnly}>
+        {/* <nav className={cls.DesktopOnly}>
             <NavigationItems
                 toggleLogin={props.toggleLogin}
                 toggleRegister={props.toggleRegister}
                 isAuthenticated={props.isAuth} />
-        </nav>
+        </nav> */}
     </header>
 );

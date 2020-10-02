@@ -1,7 +1,10 @@
 import React from 'react';
-
 import classes from './Backdrop.module.css';
 
-export default (props) => (
-    props.show ? <div className={classes.Backdrop} onClick={props.clicked}></div> : null
-);
+export default (props) => {
+    let bdClasses = [classes.Backdrop]
+    if (props.sideDrawer) {
+        bdClasses.push(classes.SideDrawerHelper)
+    }
+    return (props.show ? <div className={bdClasses.join(' ')} onClick={props.clicked}></div> : null);
+};

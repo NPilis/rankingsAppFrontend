@@ -6,7 +6,6 @@ import Button from '../../../components/UI/Button/Button';
 import * as authActions from '../../../store/actions/auth';
 import * as modalActions from '../../../store/actions/modal';
 import { returnErrors } from '../../../store/actions/messages';
-import ImageUploader from 'react-images-upload';
 
 class Register extends Component {
 

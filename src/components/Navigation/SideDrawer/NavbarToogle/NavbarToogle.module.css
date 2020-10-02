@@ -2,7 +2,7 @@
     margin: auto 0;
 }
 
-@media (min-width: 700px) {
+@media (min-width: 530px) {
     .NavbarToogle {
         display: none;
     }

@@ -11,13 +11,11 @@ const sideDrawer = (props) => {
     }
     return (
         <Fragment>
-            <Backdrop show={props.open} clicked={props.closed} />
+            <Backdrop show={props.open} clicked={props.closed} sideDrawer/>
             <div className={attachedClasses.join(' ')} onClick={props.closed}>
-                {/* <div className={classes.Logo}>
-                    <Logo />
-                </div> */}
                 <nav>
-                    <NavigationItems />
+                    <NavigationItems 
+                        open={props.open}/>
                 </nav>
             </div>
         </Fragment>
