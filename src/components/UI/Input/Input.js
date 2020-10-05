@@ -14,7 +14,10 @@ export default (props) => {
                 onChange={props.changed} />;
             break;
         case ('textarea'):
-            inputCls.push(cls.CommentArea)
+            inputCls.push(cls.TextArea)
+            if (props.positionInput) {
+                inputCls.push(cls.PosTextArea)
+            }
             inputElement = <textarea
                 className={inputCls.join(' ')}
                 {...props.elementConfig}

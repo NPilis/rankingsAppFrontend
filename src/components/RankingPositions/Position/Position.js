@@ -1,30 +1,36 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
+import cls from './Position.module.css';
 
 class Position extends Component {
 
     state = {
-        // For now
-        style: {
-            height: 30,
-            width: 300,
-            border: "3px solid red",
-            borderStyle: 'hidden'
-        }
+        classes: [
+            cls.Position
+        ]
     }
 
     handleMouseOver = () => {
-        this.setState({style: {...this.state.style, borderStyle: "inset"}})
+        this.setState({
+            classes: [...this.state.classes, cls.MouseOver]
+        })
     }
 
     handleMouseOut = () => {
-        this.setState({style: {...this.state.style, borderStyle: "hidden"}})
+        this.setState({
+            classes: [cls.Position]
+        })
     }
 
     render() {
         return (
-            <div>
-                <div onMouseOver={this.handleMouseOver} onMouseOut={this.handleMouseOut} style={this.state.style}>
-                    <p>{this.props.position.title}</p>
+            <div className={this.state.classes.join(' ')} onMouseOver={this.handleMouseOver} onMouseOut={this.handleMouseOut}>
+                <div className={cls.Inline}>
+                    <div className={cls.Counter}>
+                        <p>{this.props.pos+1}</p>
+                    </div>
+                    <div className={cls.PositionName}>
+                        <p>{this.props.position.title}</p>
+                    </div>
                 </div>
             </div>
         )

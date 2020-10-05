@@ -59,6 +59,22 @@ class CreatePosition extends Component {
         console.log(this.state)
     }
 
+    clearForm = () => {
+        const initialControls =  {
+            ...this.state.controls,
+            name: {
+                ...this.state.controls.name,
+                value: ''
+            },
+            content: {
+                ...this.state.controls.content,
+                value: ''
+            }
+        }
+        console.log(initialControls)
+        this.setState({controls: initialControls, selectedImage:null})
+    }
+
     submitHandler = (event) => {
         event.preventDefault();
         let newPosition = {
@@ -69,6 +85,7 @@ class CreatePosition extends Component {
             newPosition.image = this.state.selectedImage
         }
         this.props.addPosition(newPosition);
+        this.clearForm();
     }
 
     render() {
@@ -90,17 +107,21 @@ class CreatePosition extends Component {
                 shouldValidate={true}
                 touched={el.config.touched}
                 invalid={!el.config.valid}
+                positionInput
             />
         ));
 
         return (
-            <div className={cls.RankingForm}>
-                <h1>Create Position</h1>
-                <form>
-                    {form}
-                    <input type="file" accept="image/png, image/jpeg" onChange={this.imageSelectedHandler} />
+            <div className={cls.CreatePosition}>
+                <div className={cls.PositionForm}>
+                    <form>
+                        {form}
+                        <input type="file" accept="image/png, image/jpeg" onChange={this.imageSelectedHandler} />
+                    </form>
+                </div>
+                <div className={cls.SubmitBtn}>
                     <Button authBtn={true} clicked={this.submitHandler}>Add</Button>
-                </form>
+                </div>
             </div>
         );
     }

@@ -33,7 +33,11 @@
     background-color: #FDA49A;
 }
 
-.CommentArea {
-    height: 150px;
+.TextArea {
+    height: 100px;
     resize: none;
+}
+
+.PosTextArea {
+    height: 75px;
 }

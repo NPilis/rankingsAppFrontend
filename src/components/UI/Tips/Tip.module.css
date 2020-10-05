@@ -1,0 +1,9 @@
+.Tip {
+    width: 100px;
+    height: 100px;
+    background-color: lightgreen;
+}
+
+.Tip text {
+    margin: 6px;
+}

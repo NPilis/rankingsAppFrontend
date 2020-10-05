@@ -1,0 +1,13 @@
+.CreatePosition {
+    display: flex;
+    justify-content: space-between;
+    margin: 0 10px 10px 10px;
+}
+
+.PositionForm {
+    width: 65%;
+}
+
+.SubmitBtn {
+    margin-top: 10px;
+}
