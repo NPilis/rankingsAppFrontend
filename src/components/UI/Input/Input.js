@@ -11,7 +11,7 @@ export default (props) => {
                 className={inputCls.join(' ')}
                 {...props.elementConfig}
                 value={props.value}
-                onChange={props.changed}/>;
+                onChange={props.changed} />;
             break;
         case ('textarea'):
             inputCls.push(cls.CommentArea)
@@ -19,14 +19,29 @@ export default (props) => {
                 className={inputCls.join(' ')}
                 {...props.elementConfig}
                 value={props.value}
-                onChange={props.changed}/>;
+                onChange={props.changed} />;
+            break;
+        case ('select'):
+            inputElement = (
+                <select
+                    className={inputCls.join(' ')}
+                    {...props.elementConfig}
+                    value={props.value}
+                    onChange={props.changed}>
+                    {props.elementConfig.options.map(option => (
+                        <option value={option.value}>
+                            {option.displayVal}
+                        </option>
+                    ))}
+                </select>
+            )
             break;
         default:
             inputElement = <input
                 className={inputCls.join(' ')}
                 {...props.elementConfig}
                 value={props.value}
-                onChange={props.changed}/>;
+                onChange={props.changed} />;
     }
 
     return (

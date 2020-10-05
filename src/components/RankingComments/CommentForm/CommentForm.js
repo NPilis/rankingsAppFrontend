@@ -75,7 +75,7 @@ class CommentForm extends Component {
                     </div>
                     <div className={cls.RankingImage}>
                         <RankingImage
-                            link={rank.rankingImg}>
+                            link={rank.image}>
                         </RankingImage>
                     </div>
                 </div>
@@ -109,21 +109,21 @@ class CommentForm extends Component {
                 {commentForm}
             </Fragment>
         );
-        }
     }
+}
 
-    const mapStateToProps = state => ({
-        error: state.errors,
-        message: state.messages,
-        user: state.auth.user,
-        rankingData: state.modal.rankingData,
-        ranking: state.rankings.ranking
-    });
+const mapStateToProps = state => ({
+    error: state.errors,
+    message: state.messages,
+    user: state.auth.user,
+    rankingData: state.modal.rankingData,
+    ranking: state.rankings.ranking
+});
 
-    const mapDispatchToProps = dispatch => {
-        return {
-            commentRanking: (uuid, comment, user) => dispatch(rankingActions.commentRanking(uuid, comment, user))
-        };
+const mapDispatchToProps = dispatch => {
+    return {
+        commentRanking: (uuid, comment, user) => dispatch(rankingActions.commentRanking(uuid, comment, user))
     };
+};
 
-    export default connect(mapStateToProps, mapDispatchToProps)(CommentForm);
+export default connect(mapStateToProps, mapDispatchToProps)(CommentForm);

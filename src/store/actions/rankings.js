@@ -8,16 +8,16 @@ export const fetchPublicRankings = () => dispatch => {
 
     setTimeout(() => {
         axios.get('/api/rankings/public/')
-        .then(response => {
-            console.log(response.data)
-            dispatch({
-                type: actionTypes.LOAD_PUBLIC_RANKINGS_SUCCESS,
-                payload: response.data
-            });
-        }).catch(err => {
-            dispatch({ type: actionTypes.LOAD_PUBLIC_RANKINGS_FAIL })
-            dispatch(returnErrors(err.response.data, err.status))
-        })
+            .then(response => {
+                console.log(response.data)
+                dispatch({
+                    type: actionTypes.LOAD_PUBLIC_RANKINGS_SUCCESS,
+                    payload: response.data
+                });
+            }).catch(err => {
+                dispatch({ type: actionTypes.LOAD_PUBLIC_RANKINGS_FAIL })
+                dispatch(returnErrors(err.response.data, err.status))
+            })
     }, 500);
 }
 
@@ -26,16 +26,16 @@ export const fetchMorePublicRankings = () => (dispatch, getState) => {
 
     setTimeout(() => {
         axios.get(getState().rankings.nextPublic)
-        .then(response => {
-            console.log(response.data)
-            dispatch({
-                type: actionTypes.LOAD_MORE_PUBLIC_RANKINGS_SUCCESS,
-                payload: response.data
-            });
-        }).catch(err => {
-            dispatch({ type: actionTypes.LOAD_PUBLIC_RANKINGS_FAIL })
-            dispatch(returnErrors(err.response.data, err.status))
-        })
+            .then(response => {
+                console.log(response.data)
+                dispatch({
+                    type: actionTypes.LOAD_MORE_PUBLIC_RANKINGS_SUCCESS,
+                    payload: response.data
+                });
+            }).catch(err => {
+                dispatch({ type: actionTypes.LOAD_PUBLIC_RANKINGS_FAIL })
+                dispatch(returnErrors(err.response.data, err.status))
+            })
     }, 300);
 }
 
@@ -125,11 +125,54 @@ export const fetchMoreComments = () => (dispatch, getState) => {
 
     setTimeout(() => {
         axios.get(getState().rankings.nextComments, null, tokenConfig(getState))
+            .then(res => {
+                dispatch({
+                    type: actionTypes.LOAD_MORE_COMMENTS_SUCCESS,
+                    payload: res.data
+                })
+            })
+    }, 300)
+}
+
+export const createRanking = (newRanking, newPositions) => (dispatch, getState) => {
+    dispatch({ type: actionTypes.CREATE_RANKING_START })
+    console.log(newRanking)
+    axios.post('/api/rankings/create/', newRanking, tokenConfig(getState))
         .then(res => {
             dispatch({
-                type: actionTypes.LOAD_MORE_COMMENTS_SUCCESS,
+                type: actionTypes.CREATE_RANKING_SUCCESS,
                 payload: res.data
             })
+            if (newPositions.length > 0) {
+                for (const pos of newPositions.values()) {
+                    dispatch(addPosition(pos, res.data.uuid))
+                }
+            }
+        }).catch(err => {
+            dispatch({ type: actionTypes.CREATE_RANKING_FAIL })
+            dispatch(returnErrors(err.response.data, err.response.status));
+            console.log(err.response.data, err.response.status)
         })
-    }, 300)
+}
+
+export const addPosition = (newPosition, rankingUUID) => (dispatch, getState) => {
+    dispatch({ type: actionTypes.ADD_POSITION_START })
+    console.log(newPosition)
+    let newPos = new FormData()
+    for (const [k, v] of Object.entries(newPosition)) {
+        newPos.append(k, v);
+    }
+    
+    axios.post('/api/rankings/' + rankingUUID + '/create-rp/', newPos, tokenConfig(getState))
+    .then(res => {
+        dispatch({
+            type: actionTypes.ADD_POSITION_SUCCESS,
+            payload: res.data
+        })
+
+    }).catch(err => {
+        dispatch({ type: actionTypes.ADD_POSITION_FAIL })
+        dispatch(returnErrors(err.response.data, err.response.status));
+        console.log(err.response.data, err.response.status)
+    })
 }

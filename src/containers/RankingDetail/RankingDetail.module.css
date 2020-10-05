@@ -1,8 +1,9 @@
 .RankingDetail {
-    margin: 52px auto 0 auto;
+    margin: 5px auto 0 auto;
     min-height: 500px;
     max-width: 700px;
-    width: 100%;
+    width: 75%;
+    float: right;
 
     background-color: #F5F8FA;
     -webkit-box-shadow: 1px 1px 10px 1px rgba(0,0,0,0.25);
@@ -70,4 +71,46 @@
 .RankingPositions {
     margin-top: 1em;
     border-top: 2px solid #AAB8C2;
+}
+
+@media(min-width: 1024px) {
+    .RankingDetail {
+        float: left;
+        margin-left: 252px;
+    }
+}
+
+@media(min-width: 1256px) {
+    .RankingDetail {
+        margin-left: calc(10% + 252px);
+    }
+}
+
+@media(min-width: 1560px) {
+    .RankingDetail {
+        margin-left: calc(15% + 252px);
+    }
+}
+
+.InfScroll {
+    display: none;
+    width: 100%;
+}
+
+@media(max-width: 800px) {
+    .RankingDetail {
+        width: 75%;
+    }
+}
+
+@media(max-width: 530px) {
+    .RankingDetail {
+        width: 84%;
+    }
+}
+
+@media(max-width: 380px) {
+    .RankingDetail {
+        width: 100%;
+    }
 }

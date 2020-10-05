@@ -14,8 +14,10 @@ const sideDrawer = (props) => {
             <Backdrop show={props.open} clicked={props.closed} sideDrawer/>
             <div className={attachedClasses.join(' ')} onClick={props.closed}>
                 <nav>
-                    <NavigationItems 
-                        open={props.open}/>
+                    <NavigationItems
+                        toggleLogin={props.toggleLogin}
+                        toggleRegister={props.toggleRegister}
+                        isAuthenticated={props.isAuth} />
                 </nav>
             </div>
         </Fragment>

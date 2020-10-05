@@ -12,6 +12,7 @@ import Alerts from './containers/Alerts/Alerts';
 import { loadUser } from './store/actions/auth';
 import store from './store/store';
 import Logout from './containers/Auth/Logout/Logout';
+import CreateRanking from './containers/CreateRanking/CreateRanking';
 
 const alertOptions = {
   timeout: 3000,
@@ -35,6 +36,7 @@ class App extends Component {
         </Layout>
         <div className={'Container'}>
           <Switch>
+            <Route path={'/create-ranking'} exact component={CreateRanking}/>
             <Route path={'/'} exact component={RankingList} />
             <Route path={'/rankings/:uuid'} exact component={RankingDetail} />
             <Route path={'/login'} component={Login}></Route>

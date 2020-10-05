@@ -1,6 +1,6 @@
 .RankingList {
     margin-bottom: 40px;
-    width: 80%;
+    width: 75%;
     display: flex;
     float: right;
 }
@@ -41,6 +41,12 @@
 @media(min-width: 1256px) {
     .RankingList {
         margin-left: calc(10% + 252px);
+    }
+}
+
+@media(min-width: 1560px) {
+    .RankingList {
+        margin-left: calc(15% + 252px);
     }
 }
 

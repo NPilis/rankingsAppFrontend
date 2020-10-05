@@ -57,7 +57,11 @@ class Layout extends Component {
                     toggleRegister={this.props.toggleRegister} />
                 <SideDrawer
                     open={this.state.showSideDrawer}
-                    closed={this.sideDrawerClosed} />
+                    closed={this.sideDrawerClosed}
+                    toggleClicked={this.sideDrawerToggle}
+                    toggleLogin={this.props.toggleLogin}
+                    toggleRegister={this.props.toggleRegister}
+                    isAuth={this.props.isAuthenticated} />
             </Fragment>
         );
     }

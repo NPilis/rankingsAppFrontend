@@ -1,6 +1,5 @@
 .SearchBar {
     background-color: #E1E8ED;
-    height: 42px;
     max-width: 800px;
     display: flex;
     justify-content: center;
@@ -20,8 +19,9 @@
     width: 100%;
 }
 
-.SearchBar input {
-    margin-top: 8px;
+.SearchBar input,
+.SearchBar input:active {
+    margin-top: 12px;
     padding-left: 10px;
     padding: 5px 0 5px 10px;
     width: 100%;
@@ -35,5 +35,5 @@
 }
 
 .Glass svg {
-    margin-top: 10px;
+    margin-top: 13px;
 }
