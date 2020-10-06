@@ -1,0 +1,59 @@
+.ShareForm {
+    text-align: center;
+}
+
+.Buttons {
+    display: flex;
+    justify-content: center;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.Btn {
+    padding: 5px;
+}
+
+.RankingData {
+    width: 90%;
+    margin: 10px 30px 0 30px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.Line {
+    border-bottom: 1px solid lightgray;
+}
+
+.InlineWrapper {
+    display: flex;
+}
+
+.RankingImage {
+    float: right;
+    background-color: whitesmoke;
+    border: 2px solid lightgray;
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+}
+
+.Title {
+    padding: 0 0 20px 0;
+    margin-top: 20px;
+    font-weight: 700;
+}
+
+.DateCreated {
+    margin: auto 20px auto 0;
+}
+
+.DateCreated p {
+    color: darkgray;
+    font-size: 16px;
+}
+
+.ShareForm h3 {
+    border-bottom: 2px solid #E1E8ED;
+    margin: 0;
+    padding: 8px;
+}

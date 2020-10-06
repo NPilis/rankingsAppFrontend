@@ -8,6 +8,7 @@ import Register from '../../containers/Auth/Register/Register';
 import CommentForm from '../RankingComments/CommentForm/CommentForm';
 import { connect } from 'react-redux';
 import modal from '../../store/reducers/modal';
+import Share from '../Share/Share';
 
 class Layout extends Component {
     state = {
@@ -28,6 +29,14 @@ class Layout extends Component {
 
         return (
             <Fragment>
+                { this.props.showShareModal
+                    ? <Modal
+                        show={this.props.showShareModal}
+                        toggle={this.props.toggleShareModal}>
+                        <Share>
+                        </Share>
+                    </Modal>
+                    : null}
                 { this.props.showCommentForm
                     ? <Modal
                         show={this.props.showCommentForm}
@@ -71,6 +80,7 @@ const mapStateToProps = (state) => ({
     showLogin: state.modal.showLogin,
     showRegister: state.modal.showRegister,
     showCommentForm: state.modal.showCommentForm,
+    showShareModal: state.modal.showShareModal,
     isAuthenticated: state.auth.isAuthenticated
 });
 
@@ -78,7 +88,8 @@ const mapDispatchToProps = dispatch => {
     return {
         toggleRegister: () => dispatch(modalActions.toggleRegisterModal()),
         toggleLogin: () => dispatch(modalActions.toggleLoginModal()),
-        toggleCommentForm: () => dispatch(modalActions.toggleCommentForm())
+        toggleCommentForm: () => dispatch(modalActions.toggleCommentForm()),
+        toggleShareModal: () => dispatch(modalActions.toggleShareModal())
     };
 };
 

@@ -14,7 +14,7 @@ export default (props) => {
     if (props.isAuthenticated) {
         authNavItems =
             <Fragment>
-                <NavigationItem link='/' clicked={props.toggleRegister}>
+                <NavigationItem link='/private'>
                     <p>My own</p>
                     <svg width="1.5em" height="1.5em" viewBox="-1 0 16 16" class="bi bi-lock-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                         <path d="M2.5 9a2 2 0 0 1 2-2h7a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-7a2 2 0 0 1-2-2V9z" />
