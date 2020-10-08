@@ -1,14 +1,15 @@
 import React, { Component } from 'react';
-import cls from './CreateRanking.module.css';
+import cls from './EditRanking.module.css';
 import Button from '../../components/UI/Button/Button';
 import Input from '../../components/UI/Input/Input';
 import * as rankingActions from '../../store/actions/rankings';
 import { connect } from 'react-redux';
-import CreatePosition from './CreatePosition/CreatePosition';
+import CreatePosition from '../CreateRanking/CreatePosition/CreatePosition';
 import { arrayMove } from 'react-sortable-hoc';
 import SortablePositions from '../../components/RankingPositions/SortablePositions';
+import RankingImage from '../../components/RankingImage/RankingImage';
 
-class CreateRanking extends Component {
+class EditRanking extends Component {
     state = {
         controls: {
             title: {
@@ -54,7 +55,36 @@ class CreateRanking extends Component {
             }
         },
         selectedImage: null,
+        imagePreviewUrl: null,
         positions: []
+    }
+
+    componentDidMount() {
+        const updatedTitle = {
+            ...this.state.controls.title,
+            value: this.props.ranking.title
+        }
+        const updatedContent = {
+            ...this.state.controls.content,
+            value: this.props.ranking.content
+        }
+        const updatedStatus = {
+            ...this.state.controls.status,
+            value: this.props.ranking.status
+        }
+        const updatedControls = {
+            ...this.state.controls,
+            title: updatedTitle,
+            content: updatedContent,
+            status: updatedStatus
+        }
+        console.log(this.props.ranking.image)
+        this.setState({
+            controls: updatedControls,
+            selectedImage: null,
+            imagePreviewUrl: this.props.ranking.image,
+            positions: this.props.ranking.ranking_positions
+        })
     }
 
     checkValidity = () => true;
@@ -73,11 +103,17 @@ class CreateRanking extends Component {
     }
 
     imageSelectedHandler = event => {
-        this.setState({
-            ...this.state,
-            selectedImage: event.target.files[0]
-        });
-        console.log(this.state)
+        let reader = new FileReader();
+        let img = event.target.files[0];
+
+        reader.onloadend = () => {
+            this.setState({
+                ...this.state,
+                selectedImage: img,
+                imagePreviewUrl: reader.result
+            });
+        }
+        reader.readAsDataURL(img)
     }
 
     addPosition = (positionData) => {
@@ -103,7 +139,7 @@ class CreateRanking extends Component {
         if (this.state.selectedImage) {
             newRanking.append('image', this.state.selectedImage, this.state.selectedImage.name);
         }
-        this.props.createRanking(newRanking, this.state.positions);
+        this.props.editRanking(newRanking, this.state.positions);
     }
 
     render() {
@@ -129,7 +165,7 @@ class CreateRanking extends Component {
         ));
 
         return (
-            <div className={cls.CreateRanking}>
+            <div className={cls.EditRanking}>
                 <h2>Create Ranking</h2>
                 <div className={cls.Wrapper}>
                     <div style={{ display: "flex", justifyContent: "space-between" }}>
@@ -141,9 +177,14 @@ class CreateRanking extends Component {
                                 </div>
                             </form>
                         </div>
-                        <div className={cls.SubmitBtn}>
-                            <Button authBtn={true} clicked={this.submitHandler}>Create</Button>
+                        <div>
+                            <div className={cls.SubmitBtn}>
+                                <Button authBtn={true} clicked={this.submitHandler}>Edit</Button>
+                            </div>
+                            <RankingImage
+                                link={this.state.imagePreviewUrl} />
                         </div>
+
                     </div>
                     <div style={{ display: "flex", justifyContent: "center", width: "100%", borderBottom: "2px solid lightgrey" }}>
                         <h3>Positions</h3>
@@ -157,8 +198,7 @@ class CreateRanking extends Component {
                     <div className={cls.Positions}>
                         <SortablePositions
                             positions={this.state.positions}
-                            onSortEnd={this.onSortEnd}
-                            onDelete={this.onDelete} />
+                            onSortEnd={this.onSortEnd} />
                     </div>
                     <div className={cls.PositionForm}>
                         <CreatePosition
@@ -171,10 +211,14 @@ class CreateRanking extends Component {
     }
 }
 
+const mapStateToProps = state => ({
+    ranking: state.rankings.ranking
+});
+
 const mapDispatchToProps = dispatch => {
     return {
-        createRanking: (newRanking, newPositions) => dispatch(rankingActions.createRanking(newRanking, newPositions))
+        editRanking: (newRanking, newPositions) => dispatch(rankingActions.editRanking(newRanking, newPositions))
     };
 };
 
-export default connect(null, mapDispatchToProps)(CreateRanking);
+export default connect(mapStateToProps, mapDispatchToProps)(EditRanking);

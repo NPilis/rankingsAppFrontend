@@ -18,7 +18,7 @@ export const fetchPublicRankings = () => dispatch => {
                 dispatch({ type: actionTypes.LOAD_PUBLIC_RANKINGS_FAIL })
                 dispatch(returnErrors(err.response.data, err.status))
             })
-    }, 500);
+    }, 100);
 }
 
 export const fetchMorePublicRankings = () => (dispatch, getState) => {
@@ -44,20 +44,43 @@ export const fetchPrivateRankings = () => (dispatch, getState) => {
 
     axios.get('/api/rankings/private/', tokenConfig(getState))
         .then(response => {
+            console.log(response)
             dispatch({
                 type: actionTypes.LOAD_PRIVATE_RANKINGS_SUCCESS,
                 payload: response.data
             });
         }).catch(err => {
-            dispatch(returnErrors(err.response.data, err.response.status))
+            console.log(err)
             dispatch({ type: actionTypes.LOAD_PRIVATE_RANKINGS_FAIL })
         });
+}
+
+export const fetchMorePrivateRankings = () => (dispatch, getState) => {
+    dispatch({ type: actionTypes.LOAD_MORE_PRIVATE_RANKINGS_START })
+
+    const nextRankings = getState().rankings.nextPrivate
+    if (nextRankings) {
+        setTimeout(() => {
+            axios.get(getState().rankings.nextPrivate, tokenConfig(getState))
+                .then(response => {
+                    console.log(response.data)
+                    dispatch({
+                        type: actionTypes.LOAD_MORE_PRIVATE_RANKINGS_SUCCESS,
+                        payload: response.data
+                    });
+                }).catch(err => {
+                    dispatch({ type: actionTypes.LOAD_MORE_PRIVATE_RANKINGS_FAIL })
+                    dispatch(returnErrors(err.response.data, err.status))
+                })
+        }, 300);
+    }
+
 }
 
 export const fetchRanking = (uuid) => (dispatch, getState) => {
     dispatch({ type: actionTypes.LOAD_RANKING_START })
 
-    axios.get('/api/rankings/' + uuid)
+    axios.get('/api/rankings/' + uuid, tokenConfig(getState))
         .then(res => {
             dispatch({
                 type: actionTypes.LOAD_RANKING_SUCCESS,
@@ -162,17 +185,20 @@ export const addPosition = (newPosition, rankingUUID) => (dispatch, getState) =>
     for (const [k, v] of Object.entries(newPosition)) {
         newPos.append(k, v);
     }
-    
-    axios.post('/api/rankings/' + rankingUUID + '/create-rp/', newPos, tokenConfig(getState))
-    .then(res => {
-        dispatch({
-            type: actionTypes.ADD_POSITION_SUCCESS,
-            payload: res.data
-        })
 
-    }).catch(err => {
-        dispatch({ type: actionTypes.ADD_POSITION_FAIL })
-        dispatch(returnErrors(err.response.data, err.response.status));
-        console.log(err.response.data, err.response.status)
-    })
+    axios.post('/api/rankings/' + rankingUUID + '/create-rp/', newPos, tokenConfig(getState))
+        .then(res => {
+            dispatch({
+                type: actionTypes.ADD_POSITION_SUCCESS,
+                payload: res.data
+            })
+
+        }).catch(err => {
+            dispatch({ type: actionTypes.ADD_POSITION_FAIL })
+            dispatch(returnErrors(err.response.data, err.response.status));
+            console.log(err.response.data, err.response.status)
+        })
+}
+
+export const editRanking = (updatedRanking, rankingUUID) => (dispatch, getState) => {
 }

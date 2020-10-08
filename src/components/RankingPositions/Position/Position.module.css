@@ -16,6 +16,7 @@
 
 .Inline {
     display: flex;
+    width: 100%;
 }
 
 .Counter p {
@@ -35,4 +36,37 @@
 .MouseOver {
     padding: 4px;
     border: 3px solid lightskyblue;
+}
+
+.Buttons {
+    display: flex;
+    margin-right: 10px;
+    margin-left: auto;
+}
+
+.EditButton {
+    margin-right: 15px;
+}
+
+.EditButton svg {
+    padding: 2px;
+    border-radius: 4px;
+}
+
+.EditButton:hover svg {
+    fill: white;
+    background-color: 	lightskyblue;
+}
+
+.DeleteBtn {
+}
+
+.DeleteBtn svg {
+    padding: 2px;
+    border-radius: 4px;
+}
+
+.DeleteBtn:hover svg {
+    fill: white;
+    background-color: 	#DC143C;
 }

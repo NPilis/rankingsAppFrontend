@@ -33,7 +33,7 @@ class RankingComments extends Component {
             <div className={cls.RankingComments}>
                 <InfiniteScroll
                     style={{overflow: 'none'}}
-                    dataLength={this.props.comments.length}
+                    dataLength={this.props.comments ? this.props.comments.length : 0}
                     hasMore={this.props.hasMoreComments}
                     next={this.props.fetchMoreComments}
                     loader={<Spinner />}>

@@ -1,0 +1,78 @@
+.PrivateList {
+    margin-bottom: 40px;
+    width: 75%;
+    display: flex;
+    float: right;
+}
+
+.PrivateList ul {
+    margin-top: 5px;
+    min-width: 0px;
+}
+
+.Wrapper {
+    max-width: 425px;
+    width: 100%;
+}
+
+@media (min-width:801px){
+
+    .PrivateList ul {
+        margin: 4px auto;
+        columns: 2;
+        -webkit-columns: 2;
+        -moz-columns: 2;
+    }
+
+    .Wrapper {
+        max-width: 750px;
+        width: 100%;
+    }
+
+}
+
+@media(min-width: 1024px) {
+    .PrivateList {
+        float: left;
+        margin-left: 252px;
+    }
+}
+
+@media(min-width: 1256px) {
+    .PrivateList {
+        margin-left: calc(10% + 252px);
+    }
+}
+
+@media(min-width: 1560px) {
+    .PrivateList {
+        margin-left: calc(15% + 252px);
+    }
+}
+
+.InfScroll {
+    display: none;
+    width: 100%;
+}
+
+@media(max-width: 800px) {
+    .PrivateList {
+        width: 75%;
+    }
+}
+
+@media(max-width: 530px) {
+    .PrivateList {
+        width: 84%;
+    }
+}
+
+@media(max-width: 380px) {
+    .PrivateList {
+        width: 100%;
+    }
+}
+
+.NoRankings {
+    text-align: center;
+}

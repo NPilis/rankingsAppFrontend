@@ -72,7 +72,7 @@ class CreatePosition extends Component {
             }
         }
         console.log(initialControls)
-        this.setState({controls: initialControls, selectedImage:null})
+        this.setState({controls: initialControls, selectedImage: null})
     }
 
     submitHandler = (event) => {

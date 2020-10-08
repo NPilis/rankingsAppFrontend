@@ -4,11 +4,14 @@ const initialState = {
     publicRankings: [],
     nextPublic: null,
     privateRankings: [],
-    comments: [],
+    nextPrivate: null,
+    hasMore: true,
+
     ranking: null,
     rankingLoading: false,
+
+    comments: [],
     commentsLoading: false,
-    hasMore: true,
     hasMoreComments: true,
     nextComments: null
 }
@@ -24,12 +27,22 @@ export default (state=initialState, action) => {
             return {
                 ...state,
                 rankingLoading: false,
-                privateRankings: action.payload.results
+                privateRankings: action.payload.results,
+                nextPrivate: action.payload.next ? action.payload.next.slice(21) : null,
+                hasMore: action.payload.next ? true : false
             }
         case actionTypes.LOAD_PRIVATE_RANKINGS_FAIL:
             return {
                 ...state,
                 rankingLoading: false,
+            }
+        case actionTypes.LOAD_MORE_PRIVATE_RANKINGS_SUCCESS:
+            return {
+                ...state,
+                rankingLoading: false,
+                privateRankings: state.privateRankings.concat(action.payload.results),
+                nextPrivate: action.payload.next ? action.payload.next.slice(21) : null,
+                hasMore: action.payload.next ? true : false
             }
         case actionTypes.LOAD_PUBLIC_RANKINGS_START:
             return {
@@ -39,7 +52,6 @@ export default (state=initialState, action) => {
                 hasMore: true
             }
         case actionTypes.LOAD_PUBLIC_RANKINGS_SUCCESS:
-            console.log(action.payload)
             return {
                 ...state,
                 rankingLoading: false,

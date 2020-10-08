@@ -28,3 +28,12 @@
     background-color: #E7F5FE;
     color: black
 }
+
+.EditBtn {
+    padding: 8px 4px;
+    border-radius: 0;
+}
+
+.Center {
+    margin: 5px auto;
+}

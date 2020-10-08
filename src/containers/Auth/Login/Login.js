@@ -46,7 +46,7 @@ class Login extends Component {
     submitHandler = (event) => {
         event.preventDefault();
         this.props.onLogin(this.state.controls.username.value, this.state.controls.password.value);
-        this.props.history.push('/rankings')
+        this.props.history.push('/')
     }
 
     inputChangedHandler = (event, controlName) => {

@@ -12,39 +12,54 @@ import Thumbnail from '../../components/User/Thumbnail/Thumbnail';
 import RankingPositions from './RankingPositions/RankingPositions';
 import RankingComments from '../../components/RankingComments/RankingComments';
 import CommentForm from '../../components/RankingComments/CommentForm/CommentForm';
+import Button from '../../components/UI/Button/Button';
 
 class RankingDetail extends Component {
     state = {
         isLoaded: false
     }
 
-    componentDidMount () {
+    componentDidMount() {
         this.props.fetchRanking(this.props.match.params.uuid)
-        this.setState({isLoaded: true})
+        this.setState({ isLoaded: true })
+    }
+
+    editRedirect = () => {
+        this.props.history.push('edit/')
     }
 
     render() {
+        let editButton = null;
         let ranking = <p>Loading ...</p>
-        if ( !this.props.rankingLoading && this.state.isLoaded ){
+        if (!this.props.rankingLoading && this.state.isLoaded) {
+            console.log(this.props)
+            if (this.props.user) {
+                if (this.props.ranking.author.email === this.props.user.email) {
+                    editButton = <Button editBtn clicked={this.editRedirect}>
+                        Edit ranking
+                    </Button>
+                }
+            }
             ranking = (
                 <div className={cls.RankingDetail}>
+                    {editButton}
                     <div className={cls.RankingTitle}>
                         <p>{this.props.ranking.title}</p>
                     </div>
                     <div className={cls.Wrapper}>
                         <div className={cls.FloatLeft}>
                             <div className={cls.Date}>
-                                <p>{this.props.ranking.created_at.slice(0,19).replace('T', ' at ')}</p>
+                                <p>{this.props.ranking.created_at.slice(0, 19).replace('T', ' at ')}</p>
                             </div>
                             <div className={cls.RankingAuthor}>
                                 <Thumbnail
                                     username={this.props.ranking.author.username}
-                                    userImg={this.props.ranking.author.image}/>
+                                    userImg={this.props.ranking.author.image} />
                             </div>
                             <div className={cls.RankingImg}>
-                                <RankingImage 
+                                <RankingImage
                                     link={this.props.ranking.image}
-                                    bigger/>
+                                    bigger />
                             </div>
                         </div>
                         <div className={cls.FloatRight}>
@@ -59,7 +74,7 @@ class RankingDetail extends Component {
                                     img={this.props.ranking.image}
                                     author={this.props.ranking.author}
                                     createdAt={this.props.ranking.created_at}
-                                    title={this.props.ranking.title}/>
+                                    title={this.props.ranking.title} />
                             </div>
                         </div>
                     </div>
@@ -72,13 +87,13 @@ class RankingDetail extends Component {
                     <div className={cls.RankingPositions}>
                         <RankingPositions
                             detail
-                            rankingPositions={this.props.ranking.ranking_positions}/>
+                            rankingPositions={this.props.ranking.ranking_positions} />
                     </div>
                     <div className={cls.CommentSection}>
                         <CommentForm
-                            detail/>
+                            detail />
                         <RankingComments
-                            rankingUUID={this.props.ranking.uuid}/>
+                            rankingUUID={this.props.ranking.uuid} />
                     </div>
                 </div>
             );
