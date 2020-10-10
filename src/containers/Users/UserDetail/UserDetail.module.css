@@ -1,0 +1,12 @@
+.UserDetail {
+    width: 100%;
+}
+
+.User {
+    margin: 0 auto;
+    width: 100%
+}
+
+.User p {
+    display: inline-block;
+}

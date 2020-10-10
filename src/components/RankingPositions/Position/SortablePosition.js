@@ -4,7 +4,7 @@ import Position from './Position';
 
 const SortablePosition = SortableElement((props) => {
     return (
-        <Position position={props.position} pos={props.pos}/>
+        <Position position={props.position} pos={props.pos} deleted={props.deletePosHandler}/>
     )
 })
 

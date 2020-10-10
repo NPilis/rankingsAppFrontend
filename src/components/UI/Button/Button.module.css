@@ -37,3 +37,9 @@
 .Center {
     margin: 5px auto;
 }
+
+.FollowBtn {
+    margin: 5px auto;
+    padding: 5px;
+    max-width: 100px;
+}

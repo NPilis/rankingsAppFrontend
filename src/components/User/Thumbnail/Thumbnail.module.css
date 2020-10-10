@@ -1,10 +1,20 @@
 .Thumbnail {
     display: flex;
+    margin: 4px 0;
+}
+
+.Wrapper {
+    display: flex;
+    margin: 0 auto;
+}
+
+.Wrapper:hover p {
+    text-decoration: underline;
 }
 
 .BlankUserImg {
-    width: 30px;
-    height: 30px;
+    width: 27px;
+    height: 27px;
     border-radius: 50%;
 }
 

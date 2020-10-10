@@ -4,6 +4,7 @@ import messagesReducer from './reducers/messages';
 import errorsReducer from './reducers/errors';
 import modalReducer from './reducers/modal';
 import rankingsReducer from './reducers/rankings';
+import usersReducer from './reducers/users';
 import thunk from 'redux-thunk';
 
 const rootReducer = combineReducers({
@@ -11,7 +12,8 @@ const rootReducer = combineReducers({
     messages: messagesReducer,
     errors: errorsReducer,
     modal: modalReducer,
-    rankings: rankingsReducer
+    rankings: rankingsReducer,
+    users: usersReducer
 });
 
 const store = createStore(rootReducer, applyMiddleware(thunk));

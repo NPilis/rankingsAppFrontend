@@ -200,5 +200,45 @@ export const addPosition = (newPosition, rankingUUID) => (dispatch, getState) =>
         })
 }
 
-export const editRanking = (updatedRanking, rankingUUID) => (dispatch, getState) => {
+export const editPosition = (newPosition, rankingUUID) => (dispatch, getState) => {
+    dispatch({ type: actionTypes.ADD_POSITION_START })
+    console.log(newPosition)
+    let newPos = new FormData()
+    for (const [k, v] of Object.entries(newPosition)) {
+        newPos.append(k, v);
+    }
+
+    axios.post('/api/rankings/' + rankingUUID + '/create-rp/', newPos, tokenConfig(getState))
+        .then(res => {
+            dispatch({
+                type: actionTypes.ADD_POSITION_SUCCESS,
+                payload: res.data
+            })
+
+        }).catch(err => {
+            dispatch({ type: actionTypes.ADD_POSITION_FAIL })
+            dispatch(returnErrors(err.response.data, err.response.status));
+            console.log(err.response.data, err.response.status)
+        })
+}
+
+export const editRanking = (newRanking, rankingUUID, newPositions) => (dispatch, getState) => {
+    dispatch({ type: actionTypes.EDIT_RANKING_START })
+    console.log(newRanking)
+    axios.post('/api/rankings/' + rankingUUID + '/edit/', newRanking, tokenConfig(getState))
+        .then(res => {
+            dispatch({
+                type: actionTypes.EDIT_RANKING_SUCCESS,
+                payload: res.data
+            })
+            if (newPositions.length > 0) {
+                for (const pos of newPositions.values()) {
+                    dispatch(addPosition(pos, res.data.uuid))
+                }
+            }
+        }).catch(err => {
+            dispatch({ type: actionTypes.EDIT_RANKING_FAIL })
+            dispatch(returnErrors(err.response.data, err.response.status));
+            console.log(err.response.data, err.response.status)
+        })
 }

@@ -1,0 +1,10 @@
+.ProfileStats {
+    background-color: #F5F8FA;
+    margin: 5px;
+    border: 1px solid #AAB8C2;
+}
+
+.Stat {
+    margin: 4px 4px;
+    width: 100%;
+}

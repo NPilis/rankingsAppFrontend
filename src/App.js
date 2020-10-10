@@ -15,6 +15,7 @@ import PrivateList from './containers/RankingList/PrivateList/PrivateList';
 import PrivateRoute from './components/Utils/PrivateRoute';
 import { connect } from 'react-redux';
 import EditRanking from './containers/EditRanking/EditRanking';
+import UserDetail from './containers/Users/UserDetail/UserDetail';
 
 const alertOptions = {
   timeout: 3000,
@@ -41,6 +42,8 @@ class App extends Component {
             <PrivateRoute isAuth={this.props.isAuth} path={'/create-ranking'} exact component={CreateRanking}/>
             <Route path={'/'} exact component={RankingList} />
             <Route path={'/rankings/:uuid'} exact component={RankingDetail} />
+            <Route path={'/user/:username'} exact component={UserDetail} />
+            {/* <PrivateRoute path={'/user/my-profile'} exact component={OwnProfille} /> */}
             <PrivateRoute isAuth={this.props.isAuth} path={'/private'} exact component={PrivateList} />
             <PrivateRoute isAuth={this.props.isAuth} path={'/rankings/:uuid/edit'} exact component={EditRanking} />
             <Route path={'/logout'} component={Logout}></Route>

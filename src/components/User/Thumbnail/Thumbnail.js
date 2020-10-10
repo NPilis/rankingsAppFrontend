@@ -18,11 +18,13 @@ export default (props) => {
 
     return (
         <div className={thumbnailClasses.join(' ')}>
-            <div className={userClasses.join(' ')}>
-                {userImg}
-            </div>
-            <div className={cls.Username}>
-                <p>{props.username}</p>
+            <div className={cls.Wrapper}>
+                <div className={userClasses.join(' ')}>
+                    {userImg}
+                </div>
+                <div className={cls.Username}>
+                    <p>{props.username}</p>
+                </div>
             </div>
         </div>
     );

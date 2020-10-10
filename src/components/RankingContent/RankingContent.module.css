@@ -27,7 +27,7 @@
     counter-reset: item;
     min-width: 0;
     min-height: 0;
-    width: 60%;
+    width: 70%;
 }
 
 .RankingContent li {
@@ -59,6 +59,7 @@
     width: 100%;
     display: flex;
     justify-content: space-between;
+    height: 140px;
 }
 
 .Line {

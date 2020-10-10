@@ -2,6 +2,7 @@ import React from 'react'
 import cls from './RankingMedia.module.css';
 import RankingImage from '../RankingImage/RankingImage';
 import Thumbnail from '../User/Thumbnail/Thumbnail';
+import { Link } from 'react-router-dom';
 
 export default (props) => {
     return (
@@ -11,10 +12,13 @@ export default (props) => {
                     link={props.image}/>
             </div>
             <div className={cls.Info}>
-                <Thumbnail
-                    username={props.author}
-                    userImg={props.authorImg}
-                    smaller/>
+                <Link
+                    to={`/user/${props.author}`}>
+                    <Thumbnail
+                        username={props.author}
+                        userImg={props.authorImg}
+                        smaller/>
+                </Link>
                 <p className={cls.Date}>{props.createdAt.slice(0,10)}</p>
             </div>
         </div>

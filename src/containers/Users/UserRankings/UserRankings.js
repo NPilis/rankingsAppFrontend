@@ -1,29 +1,20 @@
 import React, { Component, Fragment } from 'react';
 import Ranking from '../../../components/Ranking/Ranking';
-import cls from './PrivateList.module.css';
+import cls from './UserRankings.module.css';
 import { connect } from 'react-redux';
-import * as rankingActions from '../../../store/actions/rankings';
+import * as userActions from '../../../store/actions/users';
 import Loading from '../../../components/UI/Loading/Loading';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import Spinner from '../../../components/UI/Loading/Spinner';
 import SearchBar from '../../../components/UI/SearchBar/SearchBar';
 import Button from '../../../components/UI/Button/Button';
 
-class PrivateList extends Component {
+class UserRankings extends Component {
     componentDidMount() {
-        if (this.props.privateRankings.length < 1) {
-            this.props.fetchPrivateRankings();
+        if (this.props.shouldFetch) {
+            this.props.fetchUserRankings(this.props.userUUID);
+            this.props.disableFetch();
         }
-    }
-
-    componentDidUpdate(prevProps) {
-        if (this.props.isAuth !== prevProps.isAuth) {
-            this.props.fetchPrivateRankings();
-        }
-    }
-
-    createRedirect = () => {
-        this.props.history.push('create-ranking/')
     }
 
     render() {
@@ -41,21 +32,16 @@ class PrivateList extends Component {
                     <Loading rankLoading={true} delay={0.3}></Loading>
                 </ul>)
         } else {
-            if (this.props.privateRankings.length > 0) {
-                console.log("LIST")
+            if (this.props.selectedUserRankings.length > 0) {
                 list = <ul>
-                {this.props.privateRankings.map(ranking => (
+                {this.props.selectedUserRankings.map(ranking => (
                     <Ranking
-                        withStatus
                         rank={ranking}/>
                 ))}
             </ul>
             } else {
                 list = <div className={cls.NoRankings}>
-                    <p>You don't have any rankings yet. Click button below to create!</p>
-                    <div>
-                        <Button redirectBtn center clicked={this.createRedirect}>Create</Button>
-                    </div>
+                    <p>This user has no public rankings yet!</p>
                 </div>
             }
         }
@@ -69,9 +55,9 @@ class PrivateList extends Component {
                     </div>
                     <div className={cls.InfScroll}>
                         <InfiniteScroll
-                            dataLength={this.props.privateRankings.length}
-                            next={this.props.fetchMorePrivateRankings}
-                            hasMore={this.props.hasMore}
+                            dataLength={this.props.selectedUserRankings.length}
+                            next={this.props.fetchMoreUserRankings}
+                            hasMore={this.props.hasMoreRankings}
                             loader={<Spinner />}>
                         </InfiniteScroll>
                     </div>
@@ -82,17 +68,17 @@ class PrivateList extends Component {
 }
 
 const mapStateToProps = state => ({
-    privateRankings: state.rankings.privateRankings,
-    hasMore: state.rankings.hasMore,
-    isAuth: state.auth.isAuthenticated,
-    loading: state.rankings.rankingLoading
+    selectedUserRankings: state.users.selectedUserRankings,
+    hasMoreRankings: state.users.hasMoreRankings,
+    userRankingsLoading: state.users.userRankingsLoading,
+    isAuth: state.auth.isAuthenticated
 });
 
 const mapDispatchToProps = dispatch => {
     return {
-        fetchPrivateRankings: () => dispatch(rankingActions.fetchPrivateRankings()),
-        fetchMorePrivateRankings: () => dispatch(rankingActions.fetchMorePrivateRankings())
+        fetchUserRankings: (userUUID) => dispatch(userActions.fetchUserRankings(userUUID)),
+        fetchMoreUserRankings: () => dispatch(userActions.fetchMoreUserRankings())
     };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(PrivateList);
+export default connect(mapStateToProps, mapDispatchToProps)(UserRankings);

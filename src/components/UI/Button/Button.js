@@ -7,6 +7,7 @@ export default (props) => {
     if (props.redirectBtn) clsNames.push(cls.RedirectBtn)
     if (props.editBtn) clsNames.push(cls.EditBtn)
     if (props.center) clsNames.push(cls.Center)
+    if (props.followBtn) clsNames.push(cls.FollowBtn)
 
     return (
         <div className={clsNames.join(' ')} onClick={props.clicked}>
