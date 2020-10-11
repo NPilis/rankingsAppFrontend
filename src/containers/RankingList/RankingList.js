@@ -34,8 +34,6 @@ class RankingList extends Component {
             <Fragment>
                 <div className={cls.RankingList}>
                     <div className={cls.Wrapper}>
-                        <SearchBar>
-                        </SearchBar>
                         {list}
                     </div>
                     <div className={cls.InfScroll}>

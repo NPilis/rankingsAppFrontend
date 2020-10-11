@@ -15,10 +15,16 @@ export default (props) => {
         authNavItems =
             <Fragment>
                 <NavigationItem link='/private'>
-                    <p>My own</p>
+                    <p>Owned</p>
                     <svg width="1.5em" height="1.5em" viewBox="-1 0 16 16" class="bi bi-lock-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                         <path d="M2.5 9a2 2 0 0 1 2-2h7a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-7a2 2 0 0 1-2-2V9z" />
                         <path fill-rule="evenodd" d="M4.5 4a3.5 3.5 0 1 1 7 0v3h-1V4a2.5 2.5 0 0 0-5 0v3h-1V4z" />
+                    </svg>
+                </NavigationItem>
+                <NavigationItem link='/followed' exact>
+                    <p>Followed</p>
+                    <svg width="1.5em" height="1.5em" viewBox="0 0 16 16" class="bi bi-bell-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M8 16a2 2 0 0 0 2-2H6a2 2 0 0 0 2 2zm.995-14.901a1 1 0 1 0-1.99 0A5.002 5.002 0 0 0 3 6c0 1.098-.5 6-2 7h14c-1.5-1-2-5.902-2-7 0-2.42-1.72-4.44-4.005-4.901z" />
                     </svg>
                 </NavigationItem>
                 <NavigationItem link='/create-ranking' exact>

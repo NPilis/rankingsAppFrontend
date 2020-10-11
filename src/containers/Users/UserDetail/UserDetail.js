@@ -4,14 +4,20 @@ import { Redirect } from 'react-router';
 import * as userActions from '../../../store/actions/users';
 import cls from './UserDetail.module.css';
 import ProfileHeader from '../../../components/User/Profile/ProfileHeader/ProfileHeader';
+import ProfileImage from '../../../components/User/ProfileImage/ProfileImage';
 import ProfileNav from '../../../components/User/Profile/ProfileNav/ProfileNav';
 import ProfileStats from '../../../components/User/Profile/ProfileStats/ProfileStats';
 import UserRankings from '../UserRankings/UserRankings';
+import Button from '../../../components/UI/Button/Button';
 
 class UserDetail extends Component {
     state = {
         onStats: true,
-        shouldFetchRankings: true
+        shouldFetchRankings: true,
+        isFollowed: false,
+        num_of_followers: 0,
+        num_of_following: 0,
+        isSet: false
     }
 
     componentDidMount() {
@@ -30,21 +36,62 @@ class UserDetail extends Component {
         this.setState({ ...this.state, shouldFetchRankings: false })
     }
 
+    setNumbers = () => {
+        if (this.props.user) {
+            if(this.props.selectedUser.followers.includes(this.props.user.username)){
+                this.setState({ isFollowed: true })
+            } else {
+                this.setState({ isFollowed: false })
+            }
+        }
+        this.setState({
+            num_of_followers: this.props.selectedUser.followers.length,
+            num_of_following: this.props.selectedUser.following.length,
+            isSet: true
+        })
+    }
+
+    _onFollow = (e) => {
+        console.log(this.state)
+        e.stopPropagation();
+        e.preventDefault();
+        if (!this.props.user) {
+            return null
+        }
+        this.setState(prevState => {
+            let nF = prevState.num_of_followers;
+            let iF = prevState.isFollowed
+            return {
+                isFollowed: !iF,
+                num_of_followers: iF === false ? nF + 1 : nF - 1
+            }
+        })
+        return this.props.followUser(this.props.selectedUser.username);
+    }
+
     render() {
         let userDetail = null;
         if (!this.props.selectedUserLoading && this.props.selectedUser) {
+            if(!this.state.isSet) {
+                this.setNumbers()
+            }
             userDetail = <div className={cls.User}>
-                <ProfileHeader
-                    image={this.props.selectedUser.image}
-                    username={this.props.selectedUser.username}
-                    joinDate={this.props.selectedUser.date_joined}></ProfileHeader>
+                <div className={cls.ProfileHeader}>
+                    <ProfileImage link={this.props.selectedUser.image}></ProfileImage>
+                    <h1>{this.props.selectedUser.username}</h1>
+                    <p>Joined {this.props.selectedUser.date_joined.slice(0, 10)}</p>
+                    <Button followBtn clicked={this._onFollow}>
+                        {this.state.isFollowed ? 'Unfollow' : 'Follow'}
+                    </Button>
+                </div>
                 <ProfileNav
                     showStats={this.toggleStats}
                     showRankings={this.toggleRankings}
                     onStats={this.state.onStats}></ProfileNav>
                 {this.state.onStats
                     ? <ProfileStats
-                        user={this.props.selectedUser} />
+                        nFollowers={this.state.num_of_followers}
+                        nFollowing={this.state.num_of_following} />
                     : <UserRankings
                         userUUID={this.props.selectedUser.uuid}
                         shouldFetch={this.state.shouldFetchRankings}
@@ -56,7 +103,7 @@ class UserDetail extends Component {
         if (this.props.user && this.props.selectedUser) {
             if (this.props.user.uuid === this.props.selectedUser.uuid) {
                 this.props.clearSelectedUser()
-                userDetail = <Redirect to='/'></Redirect>
+                userDetail = <Redirect to='/profile'></Redirect>
             }
         }
         return (
@@ -79,6 +126,7 @@ const mapDispatchToProps = dispatch => {
     return {
         clearSelectedUser: () => dispatch(userActions.clearSelectedUser()),
         fetchSelectedUser: (username) => dispatch(userActions.fetchSelectedUser(username)),
+        followUser: (username) => dispatch(userActions.followUser(username))
     }
 };
 

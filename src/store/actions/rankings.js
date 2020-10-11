@@ -77,10 +77,48 @@ export const fetchMorePrivateRankings = () => (dispatch, getState) => {
 
 }
 
+export const fetchFollowingRankings = () => (dispatch, getState) => {
+    dispatch({ type: actionTypes.LOAD_FOLLOWING_RANKINGS_START })
+
+    axios.get('/api/rankings/followed/', tokenConfig(getState))
+        .then(response => {
+            console.log(response)
+            dispatch({
+                type: actionTypes.LOAD_FOLLOWING_RANKINGS_SUCCESS,
+                payload: response.data
+            });
+        }).catch(err => {
+            console.log(err)
+            dispatch({ type: actionTypes.LOAD_FOLLOWING_RANKINGS_FAIL })
+        });
+}
+
+export const fetchMoreFollowingRankings = () => (dispatch, getState) => {
+    dispatch({ type: actionTypes.LOAD_MORE_FOLLOWING_RANKINGS_START })
+
+    const nextRankings = getState().rankings.nextFollowed
+    if (nextRankings) {
+        setTimeout(() => {
+            axios.get(getState().rankings.nextFollowed, tokenConfig(getState))
+                .then(response => {
+                    console.log(response.data)
+                    dispatch({
+                        type: actionTypes.LOAD_MORE_FOLLOWING_RANKINGS_SUCCESS,
+                        payload: response.data
+                    });
+                }).catch(err => {
+                    dispatch({ type: actionTypes.LOAD_FOLLOWING_RANKINGS_FAIL })
+                    dispatch(returnErrors(err.response.data, err.status))
+                })
+        }, 300);
+    }
+
+}
+
 export const fetchRanking = (uuid) => (dispatch, getState) => {
     dispatch({ type: actionTypes.LOAD_RANKING_START })
 
-    axios.get('/api/rankings/' + uuid, tokenConfig(getState))
+    axios.get('/api/rankings/' + uuid, null, tokenConfig(getState))
         .then(res => {
             dispatch({
                 type: actionTypes.LOAD_RANKING_SUCCESS,

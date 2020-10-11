@@ -16,6 +16,7 @@ import PrivateRoute from './components/Utils/PrivateRoute';
 import { connect } from 'react-redux';
 import EditRanking from './containers/EditRanking/EditRanking';
 import UserDetail from './containers/Users/UserDetail/UserDetail';
+import FollowingList from './containers/RankingList/FollowingList/FollowingList';
 
 const alertOptions = {
   timeout: 3000,
@@ -46,6 +47,7 @@ class App extends Component {
             {/* <PrivateRoute path={'/user/my-profile'} exact component={OwnProfille} /> */}
             <PrivateRoute isAuth={this.props.isAuth} path={'/private'} exact component={PrivateList} />
             <PrivateRoute isAuth={this.props.isAuth} path={'/rankings/:uuid/edit'} exact component={EditRanking} />
+            <PrivateRoute isAuth={this.props.isAuth} path={'/followed'} exact component={FollowingList} />
             <Route path={'/logout'} component={Logout}></Route>
           </Switch>
         </div>

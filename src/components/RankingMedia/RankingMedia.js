@@ -12,13 +12,10 @@ export default (props) => {
                     link={props.image}/>
             </div>
             <div className={cls.Info}>
-                <Link
-                    to={`/user/${props.author}`}>
-                    <Thumbnail
-                        username={props.author}
-                        userImg={props.authorImg}
-                        smaller/>
-                </Link>
+                <Thumbnail
+                    username={props.author}
+                    userImg={props.authorImg}
+                    smaller/>
                 <p className={cls.Date}>{props.createdAt.slice(0,10)}</p>
             </div>
         </div>

@@ -1,0 +1,11 @@
+.StyledLink {
+    text-decoration: none;
+}
+
+.StyledLink:hover,
+.StyledLink:visited,
+.StyledLink:active,
+.StyledLink.link {
+    text-decoration: none;
+    color: inherit;
+}

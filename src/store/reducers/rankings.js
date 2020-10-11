@@ -5,6 +5,8 @@ const initialState = {
     nextPublic: null,
     privateRankings: [],
     nextPrivate: null,
+    followingRankings: [],
+    nextFollowing: null,
     hasMore: true,
 
     ranking: null,
@@ -19,23 +21,20 @@ const initialState = {
 export default (state=initialState, action) => {
     switch (action.type){
         case actionTypes.LOAD_PRIVATE_RANKINGS_START:
+        case actionTypes.LOAD_PUBLIC_RANKINGS_START:
+        case actionTypes.LOAD_FOLLOWING_RANKINGS_START:
+        case actionTypes.LOAD_RANKING_START:
             return {
                 ...state,
                 rankingLoading: true
             }
-        case actionTypes.LOAD_PRIVATE_RANKINGS_SUCCESS:
-            return {
-                ...state,
-                rankingLoading: false,
-                privateRankings: action.payload.results,
-                nextPrivate: action.payload.next ? action.payload.next.slice(21) : null,
-                hasMore: action.payload.next ? true : false
-            }
         case actionTypes.LOAD_PRIVATE_RANKINGS_FAIL:
-            return {
-                ...state,
-                rankingLoading: false,
-            }
+        case actionTypes.LOAD_PUBLIC_RANKINGS_FAIL:
+                return {
+                    ...state,
+                    rankingLoading: false,
+                }
+        case actionTypes.LOAD_PRIVATE_RANKINGS_SUCCESS:
         case actionTypes.LOAD_MORE_PRIVATE_RANKINGS_SUCCESS:
             return {
                 ...state,
@@ -44,20 +43,7 @@ export default (state=initialState, action) => {
                 nextPrivate: action.payload.next ? action.payload.next.slice(21) : null,
                 hasMore: action.payload.next ? true : false
             }
-        case actionTypes.LOAD_PUBLIC_RANKINGS_START:
-            return {
-                ...state,
-                publicRankings: [],
-                rankingLoading: true,
-                hasMore: true
-            }
         case actionTypes.LOAD_PUBLIC_RANKINGS_SUCCESS:
-            return {
-                ...state,
-                rankingLoading: false,
-                publicRankings: action.payload.results,
-                nextPublic: action.payload.next.slice(21)
-            }
         case actionTypes.LOAD_MORE_PUBLIC_RANKINGS_SUCCESS:
             return {
                 ...state,
@@ -66,18 +52,16 @@ export default (state=initialState, action) => {
                 nextPublic: action.payload.next ? action.payload.next.slice(21) : null,
                 hasMore: action.payload.next ? true : false
             }
-        case actionTypes.LOAD_PUBLIC_RANKINGS_FAIL:
+        case actionTypes.LOAD_FOLLOWING_RANKINGS_SUCCESS:
+        case actionTypes.LOAD_MORE_FOLLOWING_RANKINGS_SUCCESS:
             return {
                 ...state,
                 rankingLoading: false,
-            }
-        case actionTypes.LOAD_RANKING_START:
-            return {
-                ...state,
-                rankingLoading: true
+                followingRankings: state.followingRankings.concat(action.payload.results),
+                nextFollowed: action.payload.next ? action.payload.next.slice(21) : null,
+                hasMore: action.payload.next ? true : false
             }
         case actionTypes.LOAD_RANKING_SUCCESS:
-            console.log(action.payload)
             return {
                 ...state,
                 rankingLoading: false,
@@ -91,15 +75,7 @@ export default (state=initialState, action) => {
                 hasMoreComments: true
             }
         case actionTypes.LOAD_COMMENTS_SUCCESS:
-            return {
-                ...state,
-                commentsLoading: false,
-                comments: action.payload.results,
-                nextComments: action.payload.next ? action.payload.next.slice(21) : null,
-                hasMoreComments: action.payload.next ? true : false
-            }
         case actionTypes.LOAD_MORE_COMMENTS_SUCCESS:
-            console.log(action.payload.results)
             return {
                 ...state,
                 commentsLoading: false,

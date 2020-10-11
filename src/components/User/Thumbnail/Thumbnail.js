@@ -1,5 +1,6 @@
 import React from 'react';
 import cls from './Thumbnail.module.css';
+import StyledLink from '../../Utils/StyledLink';
 
 export default (props) => {
     let userImg = <img src="http://127.0.0.1:8000/media/user.png"></img>;
@@ -17,15 +18,19 @@ export default (props) => {
     }
 
     return (
-        <div className={thumbnailClasses.join(' ')}>
-            <div className={cls.Wrapper}>
-                <div className={userClasses.join(' ')}>
-                    {userImg}
-                </div>
-                <div className={cls.Username}>
-                    <p>{props.username}</p>
-                </div>
+            <div className={thumbnailClasses.join(' ')}>
+                <StyledLink
+                    to={`/user/${props.username}`}>
+                    <div className={cls.Wrapper}>
+                        <div className={userClasses.join(' ')}>
+                            {userImg}
+                        </div>
+                        <div className={cls.Username}>
+                            <p>{props.username}</p>
+                        </div>
+                    </div>
+                </StyledLink>
             </div>
-        </div>
+
     );
 }

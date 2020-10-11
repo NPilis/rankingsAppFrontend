@@ -8,6 +8,12 @@ export default (props) => {
         profileImg = <img src={props.link}></img>
         profileClasses.push(cls.ProfileImg)
     }
+    if (props.headerAvatar) {
+        profileClasses.push(cls.Avatar)
+    }
+    if (props.isOpen) {
+        profileClasses.push(cls.AddBorder)
+    }
 
     return (
         <div className={profileClasses.join(' ')}>

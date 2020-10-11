@@ -11,3 +11,19 @@
     height: 100%;
     object-fit: cover;
 }
+
+.Avatar {
+    width: 46px;
+    height: 46px;
+}
+
+.Avatar img {
+    width: 46px;
+    height: 46px;
+    object-fit: cover;
+}
+
+.AddBorder {
+    border: 3px solid lightskyblue;
+    right: -3px;
+}

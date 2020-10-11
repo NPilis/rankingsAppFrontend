@@ -63,7 +63,8 @@ class Layout extends Component {
                     isAuth={this.props.isAuthenticated}
                     toggleClicked={this.sideDrawerToggle}
                     toggleLogin={this.props.toggleLogin}
-                    toggleRegister={this.props.toggleRegister} />
+                    toggleRegister={this.props.toggleRegister}
+                    user={this.props.user} />
                 <SideDrawer
                     open={this.state.showSideDrawer}
                     closed={this.sideDrawerClosed}
@@ -77,6 +78,7 @@ class Layout extends Component {
 }
 
 const mapStateToProps = (state) => ({
+    user: state.auth.user,
     showLogin: state.modal.showLogin,
     showRegister: state.modal.showRegister,
     showCommentForm: state.modal.showCommentForm,

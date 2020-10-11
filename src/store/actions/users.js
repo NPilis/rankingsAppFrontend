@@ -52,3 +52,14 @@ export const fetchMoreUserRankings = () => (dispatch, getState) => {
             })
     }, 300)
 }
+
+export const followUser = (username) => (dispatch, getState) => {
+    // dispatch({ type: actionTypes.FOLLOW_USER_START })
+
+    axios.post('/api/users/' + username + '/', null, tokenConfig(getState))
+        .then(res => {
+            dispatch({
+                type: actionTypes.FOLLOW_USER_SUCCESS
+            })
+        })
+}
