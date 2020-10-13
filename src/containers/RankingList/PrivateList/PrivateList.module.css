@@ -15,6 +15,10 @@
     width: 100%;
 }
 
+.NoRankings {
+    margin-top: 60px;
+}
+
 @media (min-width:801px){
 
     .PrivateList ul {

@@ -21,15 +21,31 @@ const initialState = {
 export default (state=initialState, action) => {
     switch (action.type){
         case actionTypes.LOAD_PRIVATE_RANKINGS_START:
+            return {
+                ...state,
+                privateRankings: [],
+                rankingLoading: true
+            }
         case actionTypes.LOAD_PUBLIC_RANKINGS_START:
-        case actionTypes.LOAD_FOLLOWING_RANKINGS_START:
+            return {
+                ...state,
+                publicRankings: [],
+                rankingLoading: true
+            }
         case actionTypes.LOAD_RANKING_START:
             return {
                 ...state,
                 rankingLoading: true
             }
+        case actionTypes.LOAD_FOLLOWING_RANKINGS_START:
+            return {
+                ...state,
+                followingRankings: [],
+                rankingLoading: true
+            }
         case actionTypes.LOAD_PRIVATE_RANKINGS_FAIL:
         case actionTypes.LOAD_PUBLIC_RANKINGS_FAIL:
+        case actionTypes.LOAD_FOLLOWING_RANKINGS_FAIL:
                 return {
                     ...state,
                     rankingLoading: false,
@@ -39,7 +55,7 @@ export default (state=initialState, action) => {
             return {
                 ...state,
                 rankingLoading: false,
-                privateRankings: state.privateRankings.concat(action.payload.results),
+                privateRankings: action.payload.results ? state.privateRankings.concat(action.payload.results) : state.privateRankings,
                 nextPrivate: action.payload.next ? action.payload.next.slice(21) : null,
                 hasMore: action.payload.next ? true : false
             }
@@ -48,7 +64,7 @@ export default (state=initialState, action) => {
             return {
                 ...state,
                 rankingLoading: false,
-                publicRankings: state.publicRankings.concat(action.payload.results),
+                publicRankings: action.payload.results ? state.publicRankings.concat(action.payload.results) : state.publicRankings,
                 nextPublic: action.payload.next ? action.payload.next.slice(21) : null,
                 hasMore: action.payload.next ? true : false
             }
@@ -57,7 +73,7 @@ export default (state=initialState, action) => {
             return {
                 ...state,
                 rankingLoading: false,
-                followingRankings: state.followingRankings.concat(action.payload.results),
+                followingRankings: action.payload.results ? state.followingRankings.concat(action.payload.results) : state.followingRankings,
                 nextFollowed: action.payload.next ? action.payload.next.slice(21) : null,
                 hasMore: action.payload.next ? true : false
             }

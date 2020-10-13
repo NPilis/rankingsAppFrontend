@@ -22,6 +22,7 @@ class UserDetail extends Component {
 
     componentDidMount() {
         this.props.fetchSelectedUser(this.props.match.params.username)
+        this.setState({...this.state, isSet: false})
     }
 
     toggleRankings = () => {

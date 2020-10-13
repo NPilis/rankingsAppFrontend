@@ -11,9 +11,7 @@ import Button from '../../../components/UI/Button/Button';
 
 class FollowingList extends Component {
     componentDidMount() {
-        if (this.props.followingRankings.length < 1) {
-            this.props.fetchFollowingRankings();
-        }
+        this.props.fetchFollowingRankings();
     }
 
     componentDidUpdate(prevProps) {
@@ -51,10 +49,8 @@ class FollowingList extends Component {
             </ul>
             } else {
                 list = <div className={cls.NoRankings}>
-                    <p>You don't have any rankings yet. Click button below to create!</p>
-                    <div>
-                        <Button redirectBtn center clicked={this.createRedirect}>Create</Button>
-                    </div>
+                    <p>You don't have any followed users yet..</p>
+
                 </div>
             }
         }

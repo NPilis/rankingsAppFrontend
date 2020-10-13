@@ -3,6 +3,7 @@ import React, {Fragment} from 'react';
 import NavigationItems from '../NavigationItems/NavigationItems';
 import cls from './SideDrawer.module.css';
 import Backdrop from '../../UI/Backdrop/Backdrop';
+import SearchBar from '../../UI/SearchBar/SearchBar';
 
 const sideDrawer = (props) => {
     let attachedClasses = [cls.SideDrawer, cls.Close];

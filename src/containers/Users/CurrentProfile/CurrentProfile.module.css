@@ -1,0 +1,32 @@
+.CurrentProfile {
+    width: 100%;
+    margin-top: 50px;
+}
+
+.User {
+    margin: 0 auto;
+    width: 100%
+}
+
+.User p {
+    display: inline-block;
+}
+
+.ProfileHeader {
+    background-color: #14171A;
+    color: #F5F8FA;
+    text-align: center;
+    padding: 10px;
+}
+
+.ProfileHeader h1 {
+    margin: 5px 0;
+}
+
+.ProfileHeader p {
+    font-size: 14px;
+}
+
+/* .ProfileHeader input {
+    display: none;
+} */

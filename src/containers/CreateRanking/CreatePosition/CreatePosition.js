@@ -56,7 +56,6 @@ class CreatePosition extends Component {
             ...this.state,
             selectedImage: event.target.files[0]
         });
-        console.log(this.state)
     }
 
     clearForm = () => {
@@ -71,15 +70,14 @@ class CreatePosition extends Component {
                 value: ''
             }
         }
-        console.log(initialControls)
-        this.setState({controls: initialControls, selectedImage: null})
+        this.setState({controls: initialControls, selectedImage: null, position: this.state.position + 1})
     }
 
     submitHandler = (event) => {
         event.preventDefault();
         let newPosition = {
             title: this.state.controls.name.value,
-            description: this.state.controls.content.value,
+            description: this.state.controls.content.value
         }
         if (this.state.selectedImage) {
             newPosition.image = this.state.selectedImage

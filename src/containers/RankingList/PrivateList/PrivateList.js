@@ -42,7 +42,7 @@ class PrivateList extends Component {
                 </ul>)
         } else {
             if (this.props.privateRankings.length > 0) {
-                console.log("LIST")
+                console.log(this.props.privateRankings)
                 list = <ul>
                 {this.props.privateRankings.map(ranking => (
                     <Ranking

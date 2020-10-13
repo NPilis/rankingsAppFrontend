@@ -81,6 +81,7 @@ class CreateRanking extends Component {
     }
 
     addPosition = (positionData) => {
+        console.log(positionData)
         this.setState({
             ...this.state,
             positions: this.state.positions.concat(positionData)
@@ -162,6 +163,7 @@ class CreateRanking extends Component {
                     </div>
                     <div className={cls.PositionForm}>
                         <CreatePosition
+                            posNumber={this.state.positions.length}
                             addPosition={this.addPosition}>
                         </CreatePosition>
                     </div>

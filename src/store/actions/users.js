@@ -2,6 +2,7 @@ import * as actionTypes from './actionTypes';
 import axios from 'axios';
 import { returnErrors, createMessage } from './messages';
 import { tokenConfig } from './auth';
+import { loadUser } from './auth';
 
 export const fetchSelectedUser = (username) => (dispatch, getState) => {
     dispatch({ type: actionTypes.FETCH_USER_START })
@@ -61,5 +62,17 @@ export const followUser = (username) => (dispatch, getState) => {
             dispatch({
                 type: actionTypes.FOLLOW_USER_SUCCESS
             })
+        })
+}
+
+export const editProfile = (updatedProfile) => (dispatch, getState) => {
+    dispatch({type: actionTypes.EDIT_PROFILE_START})
+    
+    axios.put('/api/users/currentuser/edit', updatedProfile, tokenConfig(getState))
+        .then(res => {
+            dispatch({
+                type: actionTypes.EDIT_PROFILE_SUCCESS
+            })
+            dispatch(loadUser())
         })
 }
