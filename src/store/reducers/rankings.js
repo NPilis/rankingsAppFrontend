@@ -10,6 +10,7 @@ const initialState = {
     hasMore: true,
 
     ranking: null,
+    posAdded: null,
     rankingLoading: false,
 
     comments: [],
@@ -81,7 +82,20 @@ export default (state=initialState, action) => {
             return {
                 ...state,
                 rankingLoading: false,
-                ranking: action.payload
+                ranking: action.payload,
+                positions: action.payload.positions
+            }
+        case actionTypes.ADD_POSITION_START:
+            return {
+                ...state,
+                rankingLoading: true,
+                posAdded: null
+            }
+        case actionTypes.ADD_POSITION_SUCCESS:
+            return {
+                ...state,
+                rankingLoading: false,
+                posAdded: action.payload
             }
         case actionTypes.LOAD_COMMENTS_START:
             return {

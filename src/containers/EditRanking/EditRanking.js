@@ -59,7 +59,8 @@ class EditRanking extends Component {
         imagePreviewUrl: null,
         positions: [],
         oldListLen: 0,
-        shouldRedirect: false
+        shouldRedirect: false,
+        isAdded: false
     }
 
     componentDidMount() {
@@ -121,22 +122,24 @@ class EditRanking extends Component {
     }
 
     addPosition = (positionData) => {
+        this.props.addPosition(positionData, this.props.ranking.uuid, this.state.positions.length + 1)
         this.setState({
             ...this.state,
-            positions: this.state.positions.concat(positionData)
+            isAdded: false
         })
     }
 
-    onSortEnd = ({ oldIndex, newIndex }) => {
+    refreshPositions = () => {
         this.setState({
             ...this.state,
-            positions: arrayMove(this.state.positions, oldIndex, newIndex)
+            positions: this.props.ranking.ranking_positions
         })
     }
-
+    
     deletePosHandler = (event, posIndex) => {
         event.preventDefault();
         event.stopPropagation();
+        let posID = this.state.positions[posIndex].id
         const updatedPositions = this.state.positions.filter((pos, idx) => {
             return idx !== posIndex
         })
@@ -144,6 +147,14 @@ class EditRanking extends Component {
         this.setState({
             ...this.state,
             positions: updatedPositions
+        })
+        this.props.deletePosition(posID, this.props.ranking.uuid)
+    }
+
+    onSortEnd = ({ oldIndex, newIndex }) => {
+        this.setState({
+            ...this.state,
+            positions: arrayMove(this.state.positions, oldIndex, newIndex)
         })
     }
 
@@ -182,6 +193,14 @@ class EditRanking extends Component {
             />
         ));
 
+        if (!this.state.isAdded && this.props.posAdded !== null) {
+            this.setState({
+                ...this.state,
+                isAdded: true,
+                positions: this.state.positions.concat(this.props.posAdded)
+            })
+        }
+
         return (
             <Fragment>
                 {this.state.shouldRedirect ? <Redirect to={`/rankings/${this.props.ranking.uuid}/`}></Redirect> : null}
@@ -200,6 +219,7 @@ class EditRanking extends Component {
                             <div>
                                 <div className={cls.SubmitBtn}>
                                     <Button authBtn={true} clicked={this.submitHandler}>Save</Button>
+                                    <Button authBtn={true} clicked={this.refreshPositions}>Refresh</Button>
                                 </div>
                                 <RankingImage
                                     link={this.state.imagePreviewUrl} />
@@ -237,12 +257,17 @@ class EditRanking extends Component {
 }
 
 const mapStateToProps = state => ({
-    ranking: state.rankings.ranking
+    ranking: state.rankings.ranking,
+    isLoading: state.rankings.rankingLoading,
+    posAdded: state.rankings.posAdded
 });
 
 const mapDispatchToProps = dispatch => {
     return {
-        editRanking: (newRanking, rankingUUID, newPositions, oldListLen) => dispatch(rankingActions.editRanking(newRanking, rankingUUID, newPositions, oldListLen))
+        fetchRanking: (rankingUUID) => dispatch(rankingActions.fetchRanking(rankingUUID)),
+        editRanking: (newRanking, rankingUUID, newPositions, oldListLen) => dispatch(rankingActions.editRanking(newRanking, rankingUUID, newPositions, oldListLen)),
+        addPosition: (newPosition, rankingUUID, place) => dispatch(rankingActions.addPosition(newPosition, rankingUUID, place)),
+        deletePosition: (posID, rankingUUID) => dispatch(rankingActions.deletePosition(posID, rankingUUID))
     };
 };
 

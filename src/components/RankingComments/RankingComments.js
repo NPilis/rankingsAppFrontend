@@ -22,7 +22,6 @@ class RankingComments extends Component {
             comments = (
                 <ul>
                     {this.props.comments.map(comment => {
-                        console.log(comment)
                         return <Comment
                             comment={comment} />
                     })}

@@ -120,7 +120,6 @@ export const fetchRanking = (uuid) => (dispatch, getState) => {
 
     axios.get('/api/rankings/' + uuid, null, tokenConfig(getState))
         .then(res => {
-            console.log(res.data)
             dispatch({
                 type: actionTypes.LOAD_RANKING_SUCCESS,
                 payload: res.data
@@ -206,7 +205,7 @@ export const createRanking = (newRanking, newPositions) => (dispatch, getState) 
             })
             if (newPositions.length > 0) {
                 for (const [place, pos] of newPositions.entries()) {
-                    dispatch(addPosition(pos, res.data.uuid, place+1))
+                    dispatch(addPosition(pos, res.data.uuid, place + 1))
                 }
             }
         }).catch(err => {
@@ -218,74 +217,53 @@ export const createRanking = (newRanking, newPositions) => (dispatch, getState) 
 
 export const addPosition = (newPosition, rankingUUID, place) => (dispatch, getState) => {
     dispatch({ type: actionTypes.ADD_POSITION_START })
-    console.log(newPosition, place)
     let newPos = new FormData()
     for (const [k, v] of Object.entries(newPosition)) {
         newPos.append(k, v);
     }
     newPos.append("position", place)
 
-    setTimeout(() => {
-        axios.post('/api/rankings/' + rankingUUID + '/create-rp/', newPos, tokenConfig(getState))
-            .then(res => {
-                dispatch({
-                    type: actionTypes.ADD_POSITION_SUCCESS,
-                    payload: res.data
-                })
-
-            }).catch(err => {
-                dispatch({ type: actionTypes.ADD_POSITION_FAIL })
-                dispatch(returnErrors(err.response.data, err.response.status));
-                console.log(err.response.data, err.response.status)
-            })
-    }, 1000)
-}
-
-export const editPosition = (newPosition, rankingUUID, place) => (dispatch, getState) => {
-    console.log(newPosition)
-    let newPos = new FormData()
-    for (const [k, v] of Object.entries(newPosition)) {
-        newPos.append(k, v);
-    }
-    newPos.append("position", place)
-
-    axios.put('/api/rankings/' + rankingUUID + '/update-rp/' + place + '/', newPos, tokenConfig(getState))
+    axios.post('/api/rankings/' + rankingUUID + '/create-rp/', newPos, tokenConfig(getState))
         .then(res => {
-            console.log(res)
-            // dispatch({
-            //     type: actionTypes.ADD_POSITION_SUCCESS,
-            //     payload: res.data
-            // })
-
+            dispatch({
+                type: actionTypes.ADD_POSITION_SUCCESS,
+                payload: res.data
+            })
+            console.log("Response at add:", res)
         }).catch(err => {
-            console.log(err.response)
-            // dispatch({ type: actionTypes.ADD_POSITION_FAIL })
-            // dispatch(returnErrors(err.response.data, err.response.status));
-            // console.log(err.response.data, err.response.status)
+            dispatch({ type: actionTypes.ADD_POSITION_FAIL })
+            dispatch(returnErrors(err.response.data, err.response.status));
+            console.log(err.response.data, err.response.status)
         })
 }
 
-export const deletePosition = (position, rankingUUID) => (dispatch, getState) => {
+export const editPosition = (newPosition, rankingUUID, place) => (dispatch, getState) => {
+    let newPos = new FormData()
+    newPos.append("position", place)
+    if (newPosition.id) {
+        let posID = newPosition.id
+        axios.put('/api/rankings/' + rankingUUID + '/update-rp/' + posID + '/', newPos, tokenConfig(getState))
+            .then(res => {
+                console.log("Response at edit:", res)
+            }).catch(err => {
+                console.log("Error at edit:", err.response)
+            })
+    }
+}
 
-    axios.delete('/api/rankings/' + rankingUUID + '/delete-rp/' + position, tokenConfig(getState))
+export const deletePosition = (posID, rankingUUID) => (dispatch, getState) => {
+
+    axios.delete('/api/rankings/' + rankingUUID + '/delete-rp/' + posID, tokenConfig(getState))
         .then(res => {
-            // dispatch({
-            //     type: actionTypes.ADD_POSITION_SUCCESS,
-            //     payload: res.data
-            // })
-            console.log("delete at pos", position)
+            console.log("delete at pos", posID)
         }).catch(err => {
             console.log("error")
-            // dispatch({ type: actionTypes.ADD_POSITION_FAIL })
-            // dispatch(returnErrors(err.response.data, err.response.status));
-            // console.log(err.response.data, err.response.status)
         })
 }
 
 
 export const editRanking = (newRanking, rankingUUID, newPositions, oldPosLen) => (dispatch, getState) => {
     dispatch({ type: actionTypes.EDIT_RANKING_START })
-    console.log(newRanking)
     axios.put('/api/rankings/' + rankingUUID + '/edit/', newRanking, tokenConfig(getState))
         .then(res => {
             dispatch({
@@ -293,19 +271,9 @@ export const editRanking = (newRanking, rankingUUID, newPositions, oldPosLen) =>
                 payload: res.data
             })
             const posLen = newPositions.length
-            if (posLen < oldPosLen) {
-                for (const pos = oldPosLen; pos >= posLen; pos-- ){
-                    dispatch(deletePosition(pos, rankingUUID))
-                }
-            }
-            console.log("XD")
             if (posLen > 0) {
                 for (const [place, pos] of newPositions.entries()) {
-                    if (place < oldPosLen) {
-                        dispatch(editPosition(pos, rankingUUID, place+1))
-                    } else {
-                        dispatch(addPosition(pos, rankingUUID, place+1))
-                    }
+                    dispatch(editPosition(pos, rankingUUID, place + 1))
                 }
             }
 
