@@ -2,7 +2,7 @@
     box-sizing: border-box;
     height: 100%;
     font-weight: 500;
-    margin-top: 15px;
+    margin-top: 20px;
     width: 100%;
     font-size: 16px;
 }
@@ -22,8 +22,8 @@
 .NavigationItem a:hover,
 .NavigationItem a:active,
 .NavigationItem a:active {
-    color: white;
-    background-color: lightskyblue;
+    background-color: #E1E8ED;
+    border-radius: 20px;
 }
 
 .NavigationItem:first-child {
@@ -40,9 +40,20 @@
     }
 }
 
+@media(max-width: 530px) {
+    .NavigationItem a svg {
+        margin: 0 auto;
+    }
+}
+
+
 @media(max-width: 400px) {
     .NavigationItem p {
         display: inherit;
+    }
+
+    .NavigationItem a svg {
+        margin: 0 auto;
     }
 
     .NavigationItem a {

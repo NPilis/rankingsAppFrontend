@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
 import cls from './Register.module.css';
 import Input from '../../../components/UI/Input/Input';
@@ -6,16 +6,19 @@ import Button from '../../../components/UI/Button/Button';
 import * as authActions from '../../../store/actions/auth';
 import * as modalActions from '../../../store/actions/modal';
 import { returnErrors } from '../../../store/actions/messages';
+import CloseBar from '../../../components/UI/Modal/CloseBar/CloseBar';
+import ProfileImage from '../../../components/User/ProfileImage/ProfileImage';
 
 class Register extends Component {
 
     state = {
         controls: {
-            username: {
+            email: {
                 elementType: 'input',
                 elementConfig: {
-                    type: 'text',
-                    placeholder: 'Username'
+                    type: 'email',
+                    placeholder: '',
+                    label: 'Email'
                 },
                 value: '',
                 validation: {
@@ -24,11 +27,12 @@ class Register extends Component {
                 valid: false,
                 touched: false
             },
-            email: {
+            username: {
                 elementType: 'input',
                 elementConfig: {
-                    type: 'email',
-                    placeholder: 'Email'
+                    type: 'text',
+                    placeholder: '',
+                    label: 'Username'
                 },
                 value: '',
                 validation: {
@@ -41,7 +45,8 @@ class Register extends Component {
                 elementType: 'input',
                 elementConfig: {
                     type: 'password',
-                    placeholder: 'Password'
+                    placeholder: '',
+                    label: 'Password'
                 },
                 value: '',
                 validation: {
@@ -54,7 +59,8 @@ class Register extends Component {
                 elementType: 'input',
                 elementConfig: {
                     type: 'password',
-                    placeholder: 'Repeat password'
+                    placeholder: '',
+                    label: 'Repeat password'
                 },
                 value: '',
                 validation: {
@@ -64,7 +70,8 @@ class Register extends Component {
                 touched: false
             }
         },
-        selectedImage: null
+        selectedImage: null,
+        imagePreviewUrl: null
     }
 
     checkValidity = () => true;
@@ -79,7 +86,7 @@ class Register extends Component {
             formData.append('image', this.state.selectedImage, this.state.selectedImage.name);
         }
         if (formData.get('password') !== this.state.controls.password2.value) {
-            this.props.returnError({passwordNotMatch: 'Password do not match'}, 401)
+            this.props.returnError({ passwordNotMatch: 'Password do not match' }, 401)
         } else {
             this.props.onRegister(formData);
         }
@@ -95,18 +102,24 @@ class Register extends Component {
                 touched: true
             }
         }
-        this.setState({controls: updatedControls});
+        this.setState({ controls: updatedControls });
     }
 
     imageSelectedHandler = event => {
-        this.setState({
-            ...this.state,
-            selectedImage: event.target.files[0]
-        });
-        console.log(this.state)
+        let reader = new FileReader();
+        let img = event.target.files[0];
+
+        reader.onloadend = () => {
+            this.setState({
+                ...this.state,
+                selectedImage: img,
+                imagePreviewUrl: reader.result
+            });
+        }
+        reader.readAsDataURL(img)
     }
 
-    render () {
+    render() {
         const formElements = [];
         for (let key in this.state.controls) {
             formElements.push({
@@ -116,29 +129,45 @@ class Register extends Component {
         }
 
         const form = formElements.map(el => (
-            <Input 
-                key={el.id}
-                elementType={el.config.elementType}
-                elementConfig={el.config.elementConfig}
-                value={el.config.value}
-                changed={(event) => (this.inputChangedHandler(event, el.id))}
-                shouldValidate={true}
-                touched={el.config.touched}
-                invalid={!el.config.valid}
-            />
+            <Fragment
+                key={el.id}>
+                <div>
+                    <label>{el.config.elementConfig.label}</label>
+                </div>
+                <Input
+                    elementType={el.config.elementType}
+                    elementConfig={el.config.elementConfig}
+                    value={el.config.value}
+                    changed={(event) => (this.inputChangedHandler(event, el.id))}
+                    shouldValidate={true}
+                    touched={el.config.touched}
+                    invalid={!el.config.valid}
+                />
+            </Fragment>
         ));
         return (
             <div className={cls.Register}>
-                <h1>Sign up</h1>
-                <form>
-                    {form}
-                    <input type="file" accept="image/png, image/jpeg" onChange={this.imageSelectedHandler}/>
-                    <div className={cls.Inline}>
-                        <p>Already have an account? </p>
-                        <Button redirectBtn={true} clicked={this.props.toggleLogin}>Sign in!</Button>
-                    </div>
-                    <Button authBtn={true} clicked={this.submitHandler}>Register</Button>
-                </form>
+                <CloseBar/>
+                <h1>Create account</h1>
+                <div className={cls.Wrapper}>
+                    <form>
+                        {form}
+                        <label>Profile picture<br /></label>
+                        <input style={{ marginTop: "8px" }} type="file" accept="image/png, image/jpeg" onChange={this.imageSelectedHandler} />
+                        <div style={{ margin: "10px 0" }}>
+                            <ProfileImage
+                                link={this.state.imagePreviewUrl} />
+                        </div>
+
+                        <div className={cls.Inline}>
+                            <p>Already have an account? </p>
+                            <Button redirectBtn={true} clicked={this.props.toggleLogin}>Sign in!</Button>
+                        </div>
+                        <div>
+                            <Button authBtn={true} clicked={this.submitHandler}>Register</Button>
+                        </div>
+                    </form>
+                </div>
             </div>
         );
     }

@@ -2,6 +2,10 @@
     margin: auto 0;
 }
 
+.NavbarToogle svg {
+    color: white;
+}
+
 @media (min-width: 530px) {
     .NavbarToogle {
         display: none;

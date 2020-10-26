@@ -1,7 +1,7 @@
 .Modal {
-    position: fixed;
+    position: absolute;
     z-index: 200;
-    top: 10%;
+    top: 7%;
     width: 95%;
     border: 2px solid grey;
     border-radius: 5px 5px 5px 5px;
@@ -9,6 +9,7 @@
     background-color: white;
     margin: 0;
     min-width: 280px;
+    left: 2.5%;
 }
 
 @media (min-width: 701px){

@@ -59,22 +59,36 @@ export default (props) => {
 
     return (
         <ul className={clsNavItems.join(' ')}>
-            <NavigationItem link='/' exact>
+            <NavigationItem link='/hottest/days=30' exact>
                 <p>Home</p>
                 <svg width="1.5em" height="1.5em" viewBox="0 0 16 16" class="bi bi-house-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                     <path fill-rule="evenodd" d="M8 3.293l6 6V13.5a1.5 1.5 0 0 1-1.5 1.5h-9A1.5 1.5 0 0 1 2 13.5V9.293l6-6zm5-.793V6l-2-2V2.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5z" />
                     <path fill-rule="evenodd" d="M7.293 1.5a1 1 0 0 1 1.414 0l6.647 6.646a.5.5 0 0 1-.708.708L8 2.207 1.354 8.854a.5.5 0 1 1-.708-.708L7.293 1.5z" />
                 </svg>
             </NavigationItem>
-            <NavigationItem link='/rankings' exact>
-                <p>Public</p>
+            <NavigationItem link='/hottest' exact>
+                <p>Hottest</p>
+                <svg xmlns="http://www.w3.org/2000/svg" version="1.0" width="24px" height="24px" viewBox="0 0 910.000000 1280.000000" preserveAspectRatio="xMidYMid meet">
+                    <g transform="translate(0.000000,1280.000000) scale(0.100000,-0.100000)" fill="#000000" stroke="none">
+                        <path d="M3360 12790 c0 -5 -21 -145 -46 -312 -263 -1749 -693 -2985 -1437 -4138 -132 -204 -293 -431 -601 -850 -531 -718 -654 -907 -840 -1280 -226 -454 -346 -864 -412 -1410 -22 -180 -25 -646 -5 -820 110 -972 534 -1831 1312 -2660 512 -546 1321 -1127 1795 -1289 l91 -31 392 0 c215 0 391 3 391 6 0 3 -118 146 -263 317 -318 377 -424 512 -566 722 -361 532 -582 1003 -676 1440 -47 219 -56 398 -29 600 56 433 171 683 560 1210 77 105 223 303 325 440 309 418 464 648 666 990 300 507 562 1065 773 1645 29 80 57 149 61 154 9 10 190 -155 462 -424 752 -740 1092 -1299 1307 -2144 94 -371 114 -517 114 -826 -1 -471 -76 -951 -255 -1624 -177 -668 -401 -1300 -759 -2139 -82 -194 -150 -356 -150 -360 0 -4 116 -7 257 -7 l257 0 201 152 c858 651 1419 1222 1882 1918 531 798 828 1631 915 2565 19 203 16 736 -6 945 -117 1154 -533 2233 -1297 3371 -873 1300 -2145 2535 -3834 3722 l-180 127 -202 0 c-124 0 -203 -4 -203 -10z" />
+                    </g>
+                </svg>
+            </NavigationItem>
+            <NavigationItem link='/newest/days=30' exact>
+                <p>Newest</p>
                 <svg width="1.5em" height="1.5em" viewBox="0 0 16 16" class="bi bi-bar-chart-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                     <rect width="4" height="5" x="1" y="10" rx="1" />
                     <rect width="4" height="9" x="6" y="6" rx="1" />
                     <rect width="4" height="14" x="11" y="1" rx="1" />
                 </svg>
             </NavigationItem>
-            {authNavItems}
-        </ul>
+            <NavigationItem link='/newest' exact>
+                <p>Disscused</p>
+                <svg width="1.5em" height="1.5em" viewBox="0 0 16 16" class="bi bi-chat-text-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd" d="M16 8c0 3.866-3.582 7-8 7a9.06 9.06 0 0 1-2.347-.306c-.584.296-1.925.864-4.181 1.234-.2.032-.352-.176-.273-.362.354-.836.674-1.95.77-2.966C.744 11.37 0 9.76 0 8c0-3.866 3.582-7 8-7s8 3.134 8 7zM4.5 5a.5.5 0 0 0 0 1h7a.5.5 0 0 0 0-1h-7zm0 2.5a.5.5 0 0 0 0 1h7a.5.5 0 0 0 0-1h-7zm0 2.5a.5.5 0 0 0 0 1h4a.5.5 0 0 0 0-1h-4z"/>
+                </svg>
+            </NavigationItem>
+            { authNavItems}
+        </ul >
     );
 }

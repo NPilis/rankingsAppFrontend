@@ -37,6 +37,7 @@ export default (state=initialState, action) => {
                 showCommentForm: !prevFormState
             }
         case actionTypes.SUBMIT_COMMENT_FORM:
+        case actionTypes.CLOSE_MODAL:
             return {
                 showLogin: false,
                 showRegister: false,

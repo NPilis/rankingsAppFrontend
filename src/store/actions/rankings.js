@@ -3,11 +3,16 @@ import axios from 'axios';
 import { returnErrors, createMessage } from './messages';
 import { tokenConfig } from './auth';
 
-export const fetchPublicRankings = () => dispatch => {
+export const fetchPublicRankings = (type, days) => dispatch => {
     dispatch({ type: actionTypes.LOAD_PUBLIC_RANKINGS_START })
-
+    let timestamp = '/31';
+    console.log(typeof type);
+    if (type == "hottest") {
+        timestamp = '/' + days;
+        console.log(timestamp)
+    }
     setTimeout(() => {
-        axios.get('/api/rankings/public/')
+        axios.get('/api/rankings/' + type + timestamp)
             .then(response => {
                 console.log(response.data)
                 dispatch({

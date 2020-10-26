@@ -1,0 +1,17 @@
+.CloseBar {
+    border-bottom: 1px solid #AAB8C2;
+    display: block;
+    height: 30px;
+}
+
+.CloseButton {
+    display: block;
+    height: 24px;
+    float: right;
+    margin: 3px 5px 0 0;
+}
+
+.CloseButton:hover {
+    background-color: #E1E8ED;
+    border-radius: 5px;
+}

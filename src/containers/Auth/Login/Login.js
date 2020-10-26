@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
 import cls from './Login.module.css';
 import Input from '../../../components/UI/Input/Input';
@@ -6,6 +6,7 @@ import Button from '../../../components/UI/Button/Button';
 import * as authActions from '../../../store/actions/auth';
 import * as modalActions from '../../../store/actions/modal';
 import * as rankingActions from '../../../store/actions/rankings';
+import CloseBar from '../../../components/UI/Modal/CloseBar/CloseBar';
 import { withRouter } from "react-router-dom";
 
 class Login extends Component {
@@ -16,7 +17,8 @@ class Login extends Component {
                 elementType: 'input',
                 elementConfig: {
                     type: 'email',
-                    placeholder: 'Email or username'
+                    placeholder: '',
+                    label: 'Email or username'
                 },
                 value: '',
                 validation: {
@@ -29,7 +31,8 @@ class Login extends Component {
                 elementType: 'input',
                 elementConfig: {
                     type: 'password',
-                    placeholder: 'Password'
+                    placeholder: '',
+                    label: 'Password'
                 },
                 value: '',
                 validation: {
@@ -72,28 +75,36 @@ class Login extends Component {
         }
 
         const form = formElements.map(el => (
-            <Input
-                key={el.id}
-                elementType={el.config.elementType}
-                elementConfig={el.config.elementConfig}
-                value={el.config.value}
-                changed={(event) => (this.inputChangedHandler(event, el.id))}
-                shouldValidate={true}
-                touched={el.config.touched}
-                invalid={!el.config.valid}
-            />
+            <Fragment
+                key={el.id}>
+                <div>
+                    <label>{el.config.elementConfig.label}</label>
+                </div>
+                <Input
+                    elementType={el.config.elementType}
+                    elementConfig={el.config.elementConfig}
+                    value={el.config.value}
+                    changed={(event) => (this.inputChangedHandler(event, el.id))}
+                    shouldValidate={true}
+                    touched={el.config.touched}
+                    invalid={!el.config.valid}
+                />
+            </Fragment>
         ));
         return (
             <div className={cls.Login}>
+                <CloseBar />
                 <h1>Sing in</h1>
-                <form onSubmit={this.submitHandler}>
-                    {form}
-                    <div className={cls.Inline}>
-                        <p>You don't have an account? </p>
-                        <Button redirectBtn={true} clicked={this.props.toggleRegister}>Sign up!</Button>
-                    </div>
-                    <Button authBtn={true} clicked={this.submitHandler}>Login</Button>
-                </form>
+                <div className={cls.Wrapper}>
+                    <form onSubmit={this.submitHandler}>
+                        {form}
+                        <div className={cls.Inline}>
+                            <p>You don't have an account? </p>
+                            <Button redirectBtn={true} clicked={this.props.toggleRegister}>Sign up!</Button>
+                        </div>
+                        <Button authBtn={true} clicked={this.submitHandler}>Login</Button>
+                    </form>
+                </div>
             </div>
         );
     }

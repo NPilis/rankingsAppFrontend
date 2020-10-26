@@ -3,28 +3,37 @@
     display: flex;
     flex-flow: column;
     width: 150px;
-    height: 100%;
+    height: 70%;
     left: 0;
-    top: 50px;
+    top: 56px;
     z-index: 101;
     background-color: white;
     box-sizing: border-box;
     transition: 0.3s ease-out;
     border-right: 2px solid lightgrey;
+    /* -webkit-box-shadow: inset 0px 0px 4px 0px rgba(0,0,0,0.75);
+    -moz-box-shadow: inset 0px 0px 4px 0px rgba(0,0,0,0.75);
+    box-shadow: inset 0px 0px 4px 0px rgba(0,0,0,0.75); */
 }
 
 .SideDrawer nav {
     width: 90%;
-    margin: 0 auto;
+    margin: 10px auto;
 }
 
 .Open {
+    height: 100%;
     transform: translateX(0);
     width: 180px;
+    box-shadow: none;
 }
 
 .Open a {
     max-width: 200px;
+}
+
+.Open a svg {
+    margin: 0;
 }
 
 .Open p {

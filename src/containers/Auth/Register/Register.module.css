@@ -1,17 +1,29 @@
 .Register {
-    width: 90%;
-    margin: auto;
+    width: 100%;
+    background-color: #F5F8FA;
+    overflow: hidden;
 }
 
 .Register h1 {
-    margin: 15px 0px;
+    padding: 6px 0;
+    margin: 0;
     text-align: center;
+
 }
 
 .Register p {
     margin-right: 10px;
     text-align: right;
     font-size: 14px;
+}
+
+.Register label {
+    font-weight: 700;
+}
+
+.Wrapper {
+    width: 90%;
+    margin: 0 auto;
 }
 
 .Inline {
@@ -21,3 +33,4 @@
 .Inline p {
     padding: 4px 0;
 }
+
