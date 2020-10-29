@@ -76,3 +76,14 @@ export const editProfile = (updatedProfile) => (dispatch, getState) => {
             dispatch(loadUser())
         })
 }
+
+export const searchUsers = (query) => (dispatch, getState) => {
+    // dispatch({type: actionTypes.SEARCH_USERS_START})
+
+    axios.get('/api/users/search/' + query)
+        .then(res => {
+            // dispatch({
+            //     type: actionTypes.SEARCH_USERS_SUCCESS
+            // })
+        })
+}

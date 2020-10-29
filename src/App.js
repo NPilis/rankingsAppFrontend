@@ -18,6 +18,7 @@ import EditRanking from './containers/EditRanking/EditRanking';
 import UserDetail from './containers/Users/UserDetail/UserDetail';
 import FollowingList from './containers/RankingList/FollowingList/FollowingList';
 import CurrentProfile from './containers/Users/CurrentProfile/CurrentProfile';
+import SearchPage from './containers/Search/SearchPage';
 
 const alertOptions = {
   timeout: 3000,
@@ -42,9 +43,10 @@ class App extends Component {
         <div className={'Container'}>
           <Switch>
             <PrivateRoute isAuth={this.props.isAuth} path={'/create-ranking'} exact component={CreateRanking}/>
-            <Route path={'/:type/days=:days'} exact component={RankingList} />
+            <Route path={'/rankings/:type/days=:days'} exact component={RankingList} />
             <Route path={'/rankings/:uuid'} exact component={RankingDetail} />
             <Route path={'/user/:username'} exact component={UserDetail} />
+            <Route path={'/search/:query'} exact component={SearchPage} />
             {/* <Route path={'/hottest'} exact component={RankingList} /> */}
             {/* <PrivateRoute path={'/user/my-profile'} exact component={OwnProfille} /> */}
             <PrivateRoute isAuth={this.props.isAuth} path={'/private'} exact component={PrivateList} />

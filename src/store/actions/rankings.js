@@ -5,12 +5,7 @@ import { tokenConfig } from './auth';
 
 export const fetchPublicRankings = (type, days) => dispatch => {
     dispatch({ type: actionTypes.LOAD_PUBLIC_RANKINGS_START })
-    let timestamp = '/31';
-    console.log(typeof type);
-    if (type == "hottest") {
-        timestamp = '/' + days;
-        console.log(timestamp)
-    }
+    let timestamp = '/' + days;
     setTimeout(() => {
         axios.get('/api/rankings/' + type + timestamp)
             .then(response => {
@@ -286,5 +281,16 @@ export const editRanking = (newRanking, rankingUUID, newPositions, oldPosLen) =>
             dispatch({ type: actionTypes.EDIT_RANKING_FAIL })
             // dispatch(returnErrors(err.response, err.response.status));
             // console.log(err.response.data, err.response.status)
+        })
+}
+
+export const searchRankings = (query) => (dispatch) => {
+    // dispatch({type: actionTypes.SEARCH_RANKINGS_START})
+
+    axios.get('/api/rankings/search/' + query + '/')
+        .then(res => {
+            // dispatch({
+            //     type: actionTypes.SEARCH_RANKINGS_SUCCESS
+            // })
         })
 }
