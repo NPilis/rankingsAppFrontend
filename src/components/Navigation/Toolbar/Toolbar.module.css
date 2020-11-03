@@ -19,6 +19,12 @@
     height: 100%;
 }
 
+@media (min-width: 530px) {
+    .Toolbar {
+        justify-content: baseline;
+    }
+}
+
 .ProfileMenu {
     width: 150px;
     font-size: 14px;

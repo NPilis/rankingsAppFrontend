@@ -63,8 +63,6 @@ class PrivateList extends Component {
             <Fragment>
                 <div className={cls.PrivateList}>
                     <div className={cls.Wrapper}>
-                        <SearchBar>
-                        </SearchBar>
                         {list}
                     </div>
                     <div className={cls.InfScroll}>

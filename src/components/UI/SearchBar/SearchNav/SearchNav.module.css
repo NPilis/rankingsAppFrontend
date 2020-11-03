@@ -1,0 +1,29 @@
+.SearchNav {
+    display: flex;
+    background-color: #14171A;
+    text-align: center;
+    border-top: 2px solid lightskyblue;
+}
+
+.NavBtn {
+    width: 50%;
+    padding: 10px;
+    border-bottom: 1px solid #AAB8C2;
+}
+
+.NavBtn p {
+    font-weight: 700;
+    color: #F5F8FA;
+}
+
+.NavBtn:hover {
+    padding-bottom: 7px;
+    border-bottom: 4px solid lightskyblue;
+    background-color: #353d45;
+}
+
+
+.Active {
+    padding-bottom: 7px;
+    border-bottom: 4px solid lightskyblue;
+}

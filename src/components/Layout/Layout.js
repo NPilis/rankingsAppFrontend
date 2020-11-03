@@ -9,6 +9,7 @@ import CommentForm from '../RankingComments/CommentForm/CommentForm';
 import { connect } from 'react-redux';
 import modal from '../../store/reducers/modal';
 import Share from '../Share/Share';
+import SearchBar from '../UI/SearchBar/SearchBar';
 
 class Layout extends Component {
     state = {

@@ -17,6 +17,7 @@ class SearchBar extends Component {
     searchHandler = (e) => {
         e.preventDefault();
         this.props.history.push(`/search/${this.state.searchQuery}`);
+        this.setState({searchQuery: ''})
     }
 
     render() {

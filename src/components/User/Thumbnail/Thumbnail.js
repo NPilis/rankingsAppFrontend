@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import cls from './Thumbnail.module.css';
 import StyledLink from '../../Utils/StyledLink';
 
@@ -17,20 +17,27 @@ export default (props) => {
         thumbnailClasses.push(cls.Center)
     }
 
-    return (
-            <div className={thumbnailClasses.join(' ')}>
-                <StyledLink
-                    to={`/user/${props.username}`}>
-                    <div className={cls.Wrapper}>
-                        <div className={userClasses.join(' ')}>
-                            {userImg}
-                        </div>
-                        <div className={cls.Username}>
-                            <p>{props.username}</p>
-                        </div>
+    let thumbnail = null;
+    if (props.username !== null) {
+        thumbnail = <div className={thumbnailClasses.join(' ')}>
+            <StyledLink
+                to={`/user/${props.username}`}>
+                <div className={cls.Wrapper}>
+                    <div className={userClasses.join(' ')}>
+                        {userImg}
                     </div>
-                </StyledLink>
-            </div>
+                    <div className={cls.Username}>
+                        <p>{props.username}</p>
+                    </div>
+                </div>
+            </StyledLink>
+        </div>
+    }
+
+    return (
+        <Fragment>
+            {thumbnail}
+        </Fragment>
 
     );
 }

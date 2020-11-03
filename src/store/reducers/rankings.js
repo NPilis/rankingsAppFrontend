@@ -7,6 +7,8 @@ const initialState = {
     nextPrivate: null,
     followingRankings: [],
     nextFollowing: null,
+    foundRankings: [],
+    nextFound: null,
     hasMore: true,
 
     ranking: null,
@@ -33,6 +35,12 @@ export default (state=initialState, action) => {
                 publicRankings: [],
                 rankingLoading: true
             }
+        case actionTypes.SEARCH_RANKINGS_START:
+            return {
+                ...state,
+                foundRankings: [],
+                rankingLoading: true
+            }
         case actionTypes.LOAD_RANKING_START:
             return {
                 ...state,
@@ -47,6 +55,7 @@ export default (state=initialState, action) => {
         case actionTypes.LOAD_PRIVATE_RANKINGS_FAIL:
         case actionTypes.LOAD_PUBLIC_RANKINGS_FAIL:
         case actionTypes.LOAD_FOLLOWING_RANKINGS_FAIL:
+        case actionTypes.SEARCH_RANKINGS_FAIL:
                 return {
                     ...state,
                     rankingLoading: false,
@@ -78,6 +87,15 @@ export default (state=initialState, action) => {
                 nextFollowed: action.payload.next ? action.payload.next.slice(21) : null,
                 hasMore: action.payload.next ? true : false
             }
+        case actionTypes.SEARCH_RANKINGS_SUCCESS:
+        case actionTypes.LOAD_MORE_SEARCHED_RANKINGS_SUCCESS:
+                return {
+                    ...state,
+                    rankingLoading: false,
+                    foundRankings: action.payload.results ? state.foundRankings.concat(action.payload.results) : state.foundRankings,
+                    nextFound: action.payload.next ? action.payload.next.slice(21) : null,
+                    hasMore: action.payload.next ? true : false
+                }
         case actionTypes.LOAD_RANKING_SUCCESS:
             return {
                 ...state,

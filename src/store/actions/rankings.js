@@ -285,12 +285,13 @@ export const editRanking = (newRanking, rankingUUID, newPositions, oldPosLen) =>
 }
 
 export const searchRankings = (query) => (dispatch) => {
-    // dispatch({type: actionTypes.SEARCH_RANKINGS_START})
+    dispatch({type: actionTypes.SEARCH_RANKINGS_START})
 
-    axios.get('/api/rankings/search/' + query + '/')
+    axios.get('/api/rankings/search/' + query)
         .then(res => {
-            // dispatch({
-            //     type: actionTypes.SEARCH_RANKINGS_SUCCESS
-            // })
+            dispatch({
+                type: actionTypes.SEARCH_RANKINGS_SUCCESS,
+                payload: res.data
+            })
         })
 }

@@ -5,6 +5,7 @@ import NavbarToogle from '../SideDrawer/NavbarToogle/NavbarToogle';
 import ProfileImage from '../../User/ProfileImage/ProfileImage';
 import NavigationItem from '../NavigationItems/NavigationItem/NavigationItem';
 import { NavLink } from 'react-router-dom';
+import SearchBar from '../../UI/SearchBar/SearchBar';
 
 export default (props) => {
 
@@ -53,9 +54,8 @@ export default (props) => {
     return (
         <header className={cls.Toolbar}>
             <NavbarToogle clicked={props.toggleClicked} />
-            <div className={cls.Logo}>
-                <Logo />
-            </div>
+            <SearchBar>
+            </SearchBar>
             <div className={cls.UserAvatar}>
                 <a href="javascript:void(0);" onClick={() => setMenu(!showMenu)}>
                     <ProfileImage
