@@ -1,0 +1,39 @@
+.Center {
+    margin-bottom: 40px;
+    margin-top: 56px;
+    width: 71%;
+    display: flex;
+    float: right;
+}
+
+@media (max-width: 1254px) {
+    .Center {
+        width: 78%;
+    }
+}
+
+@media (max-width: 1024px) {
+    .Center {
+        width: 76%;
+    }
+}
+
+
+@media (max-width: 800px) {
+    .Center {
+        width: 76%;
+    }
+}
+
+@media (max-width: 530px) {
+    .Center {
+        width: 85%;
+    }
+}
+
+
+@media (max-width: 380px) {
+    .Center {
+        width: 100%;
+    }
+}

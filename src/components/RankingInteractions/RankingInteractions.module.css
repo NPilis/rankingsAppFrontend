@@ -56,8 +56,6 @@
     background-color: lightskyblue;
 }
 
-.Counter {
-}
 /* .RankingInteractions {
     background-color: rgb(242, 252, 247);
     height: 30%;
@@ -133,3 +131,13 @@
     box-shadow: 1;
     box-shadow: 0 0 0 1px grey;
 } */
+
+.BlankInteractions {
+    display: flex;
+    justify-content: space-between;
+    margin: 0 1em 0 1em;
+    min-width: 0;
+    height: 58.4px;
+    align-items: center;
+    background-color: red;
+}

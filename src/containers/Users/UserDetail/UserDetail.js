@@ -9,6 +9,7 @@ import ProfileNav from '../../../components/User/Profile/ProfileNav/ProfileNav';
 import ProfileStats from '../../../components/User/Profile/ProfileStats/ProfileStats';
 import UserRankings from '../UserRankings/UserRankings';
 import Button from '../../../components/UI/Button/Button';
+import Center from '../../../hoc/Center';
 
 class UserDetail extends Component {
     state = {
@@ -131,4 +132,4 @@ const mapDispatchToProps = dispatch => {
     }
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(UserDetail);
+export default connect(mapStateToProps, mapDispatchToProps)(Center(UserDetail));

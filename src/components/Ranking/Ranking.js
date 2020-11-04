@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 
 import RankingContent from '../RankingContent/RankingContent';
 import RankingInteractions from '../RankingInteractions/RankingInteractions';
+import BlankInteractions from '../RankingInteractions/BlankInteractions';
 import RankingMedia from '../RankingMedia/RankingMedia';
 import { Link } from 'react-router-dom';
 
@@ -45,7 +46,7 @@ class Ranking extends Component {
                                     title={this.props.rank.title}>
                                     Likes, comments, shares
                             </RankingInteractions>
-                                : null}
+                                : <BlankInteractions></BlankInteractions>}
                         </div>
                     </Link>
                 </div>

@@ -19,6 +19,7 @@ class RankingComments extends Component {
     render() {
         let comments = null;
         if (!this.props.commentsLoading && this.state.isLoaded && this.props.comments) {
+            console.log(this.props.comments);
             comments = (
                 <ul>
                     {this.props.comments.map(comment => {

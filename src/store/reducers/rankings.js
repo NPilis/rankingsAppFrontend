@@ -119,15 +119,14 @@ export default (state=initialState, action) => {
             return {
                 ...state,
                 comments: [],
-                commentsLoading: true,
-                hasMoreComments: true
+                commentsLoading: true
             }
         case actionTypes.LOAD_COMMENTS_SUCCESS:
         case actionTypes.LOAD_MORE_COMMENTS_SUCCESS:
             return {
                 ...state,
                 commentsLoading: false,
-                comments: state.comments.concat(action.payload.results),
+                comments: action.payload.results ? state.comments.concat(action.payload.results) : state.comments,
                 nextComments: action.payload.next ? action.payload.next.slice(21) : null,
                 hasMoreComments: action.payload.next ? true : false
             }
