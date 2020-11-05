@@ -1,4 +1,4 @@
-.RankingGrid {
+.GridLoading {
     display: grid;
     grid-template-columns: minmax(300px, 425px) minmax(300px, 425px);
     grid-template-rows: auto auto;
@@ -6,12 +6,7 @@
 }
 
 @media (max-width: 810px){
-    .RankingGrid {
+    .GridLoading {
         grid-template-columns: minmax(300px, 470px);
     }
-}
-
-.Wrapper {
-    margin-right: 4px;
-    margin-top: 4px;
 }

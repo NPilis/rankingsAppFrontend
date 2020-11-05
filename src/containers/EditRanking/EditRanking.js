@@ -9,6 +9,7 @@ import { arrayMove } from 'react-sortable-hoc';
 import SortablePositions from '../../components/RankingPositions/SortablePositions';
 import RankingImage from '../../components/RankingImage/RankingImage';
 import { Redirect } from 'react-router-dom';
+import Center from '../../hoc/Center';
 
 class EditRanking extends Component {
     state = {
@@ -219,7 +220,6 @@ class EditRanking extends Component {
                             <div>
                                 <div className={cls.SubmitBtn}>
                                     <Button authBtn={true} clicked={this.submitHandler}>Save</Button>
-                                    <Button authBtn={true} clicked={this.refreshPositions}>Refresh</Button>
                                 </div>
                                 <RankingImage
                                     link={this.state.imagePreviewUrl} />
@@ -271,4 +271,4 @@ const mapDispatchToProps = dispatch => {
     };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(EditRanking);
+export default connect(mapStateToProps, mapDispatchToProps)(Center(EditRanking));

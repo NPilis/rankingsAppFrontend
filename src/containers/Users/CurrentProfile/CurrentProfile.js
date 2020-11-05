@@ -7,6 +7,8 @@ import ProfileImage from '../../../components/User/ProfileImage/ProfileImage';
 import ProfileNav from '../../../components/User/Profile/ProfileNav/ProfileNav';
 import ProfileStats from '../../../components/User/Profile/ProfileStats/ProfileStats';
 import Button from '../../../components/UI/Button/Button';
+import Center from '../../../hoc/Center';
+
 
 class CurrentProfile extends Component {
     state = {
@@ -101,4 +103,4 @@ const mapDispatchToProps = dispatch => {
     }
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(CurrentProfile);
+export default connect(mapStateToProps, mapDispatchToProps)(Center(CurrentProfile));

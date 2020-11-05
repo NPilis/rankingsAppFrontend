@@ -3,18 +3,29 @@
     margin-top: 56px;
     width: 71%;
     display: flex;
-    float: right;
+    float: left;
+    max-width: 800px;
+    margin-left: 484px;
 }
+
+@media (max-width: 1560px) {
+    .Center {
+        margin-left: calc(10% + 254px);
+    }
+}
+
 
 @media (max-width: 1254px) {
     .Center {
-        width: 78%;
+        width: 77%;
+        margin-left: 254px;
     }
 }
 
 @media (max-width: 1024px) {
     .Center {
         width: 76%;
+        margin-left: 25%;
     }
 }
 
@@ -28,6 +39,7 @@
 @media (max-width: 530px) {
     .Center {
         width: 85%;
+        margin-left: 16%;
     }
 }
 
@@ -35,5 +47,6 @@
 @media (max-width: 380px) {
     .Center {
         width: 100%;
+        margin-left: 0;
     }
 }

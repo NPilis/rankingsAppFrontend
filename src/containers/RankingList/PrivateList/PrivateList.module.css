@@ -1,4 +1,4 @@
-.PrivateList {
+/* .PrivateList {
     margin-bottom: 40px;
     width: 75%;
     display: flex;
@@ -17,7 +17,7 @@
 }
 
 .NoRankings {
-    margin-top: 60px;
+    margin-top: 5px;
 }
 
 @media (min-width:801px){
@@ -76,8 +76,26 @@
     .PrivateList {
         width: 100%;
     }
-}
+} */
 
 .NoRankings {
     text-align: center;
+}
+
+.RankingGrid {
+    display: grid;
+    grid-template-columns: minmax(300px, 425px) minmax(300px, 425px);
+    grid-template-rows: auto auto;
+    grid-gap: 5px;
+}
+
+@media (max-width: 810px){
+    .RankingGrid {
+        grid-template-columns: minmax(300px, 470px);
+    }
+}
+
+.Wrapper {
+    margin-right: 4px;
+    margin-top: 4px;
 }

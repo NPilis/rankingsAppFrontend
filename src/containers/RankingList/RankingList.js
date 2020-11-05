@@ -7,6 +7,7 @@ import ListLoading from '../../components/UI/Loading/ListLoading';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import Spinner from '../../components/UI/Loading/Spinner';
 import { Redirect } from 'react-router-dom';
+import Center from '../../hoc/Center';
 
 class RankingList extends Component {
     state = {
@@ -19,7 +20,7 @@ class RankingList extends Component {
         } else if (this.props.match.params.type === "newest") {
             this.props.fetchPublicRankings(this.props.match.params.type, this.props.match.params.days);
         } else {
-            this.setState({shouldRedirect: true})
+            this.setState({ shouldRedirect: true })
         }
     }
 
@@ -34,11 +35,11 @@ class RankingList extends Component {
         if (this.props.loading) {
             list = <ListLoading />
         } else {
-            list = <ul>
+            list = <div className={cls.RankingGrid}>
                 {this.props.publicRankings.map(ranking => (
                     <Ranking
                         rank={ranking} />))}
-            </ul>
+            </div>
         }
         return (
             this.state.shouldRedirect
@@ -76,4 +77,4 @@ const mapDispatchToProps = dispatch => {
     };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(RankingList);
+export default connect(mapStateToProps, mapDispatchToProps)(Center(RankingList));

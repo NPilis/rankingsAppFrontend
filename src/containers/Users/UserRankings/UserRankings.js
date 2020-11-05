@@ -8,6 +8,7 @@ import InfiniteScroll from 'react-infinite-scroll-component';
 import Spinner from '../../../components/UI/Loading/Spinner';
 import SearchBar from '../../../components/UI/SearchBar/SearchBar';
 import Button from '../../../components/UI/Button/Button';
+import ListLoading from '../../../components/UI/Loading/ListLoading';
 
 class UserRankings extends Component {
     componentDidMount() {
@@ -19,26 +20,16 @@ class UserRankings extends Component {
 
     render() {
         let list = null;
-        if (this.props.loading) {
-            list = (
-                <ul>
-                    <Loading rankLoading={true} delay={0}></Loading>
-                    <Loading rankLoading={true} delay={0.2}></Loading>
-                    <Loading rankLoading={true} delay={0.2}></Loading>
-                    <Loading rankLoading={true} delay={0.3}></Loading>
-                    <Loading rankLoading={true} delay={0}></Loading>
-                    <Loading rankLoading={true} delay={0.1}></Loading>
-                    <Loading rankLoading={true} delay={0.2}></Loading>
-                    <Loading rankLoading={true} delay={0.3}></Loading>
-                </ul>)
+        if (this.props.userRankingsLoading) {
+            list = <ListLoading />
         } else {
             if (this.props.selectedUserRankings.length > 0) {
-                list = <ul>
-                {this.props.selectedUserRankings.map(ranking => (
-                    <Ranking
-                        rank={ranking}/>
-                ))}
-            </ul>
+                list = <div className={cls.RankingGrid}>
+                    {this.props.selectedUserRankings.map(ranking => (
+                        <Ranking
+                            rank={ranking} />
+                    ))}
+                </div>
             } else {
                 list = <div className={cls.NoRankings}>
                     <p>This user has no public rankings yet!</p>
@@ -49,8 +40,6 @@ class UserRankings extends Component {
             <Fragment>
                 <div className={cls.PrivateList}>
                     <div className={cls.Wrapper}>
-                        <SearchBar>
-                        </SearchBar>
                         {list}
                     </div>
                     <div className={cls.InfScroll}>

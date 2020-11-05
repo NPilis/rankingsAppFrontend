@@ -8,6 +8,9 @@ import InfiniteScroll from 'react-infinite-scroll-component';
 import Spinner from '../../../components/UI/Loading/Spinner';
 import SearchBar from '../../../components/UI/SearchBar/SearchBar';
 import Button from '../../../components/UI/Button/Button';
+import ListLoading from '../../../components/UI/Loading/ListLoading';
+import Center from '../../../hoc/Center';
+
 
 class PrivateList extends Component {
     componentDidMount() {
@@ -29,27 +32,17 @@ class PrivateList extends Component {
     render() {
         let list = null;
         if (this.props.loading) {
-            list = (
-                <ul>
-                    <Loading rankLoading={true} delay={0}></Loading>
-                    <Loading rankLoading={true} delay={0.2}></Loading>
-                    <Loading rankLoading={true} delay={0.2}></Loading>
-                    <Loading rankLoading={true} delay={0.3}></Loading>
-                    <Loading rankLoading={true} delay={0}></Loading>
-                    <Loading rankLoading={true} delay={0.1}></Loading>
-                    <Loading rankLoading={true} delay={0.2}></Loading>
-                    <Loading rankLoading={true} delay={0.3}></Loading>
-                </ul>)
+            list = <ListLoading />
         } else {
             if (this.props.privateRankings.length > 0) {
                 console.log(this.props.privateRankings)
-                list = <ul>
-                {this.props.privateRankings.map(ranking => (
-                    <Ranking
-                        withStatus
-                        rank={ranking}/>
-                ))}
-            </ul>
+                list = <div className={cls.RankingGrid}>
+                    {this.props.privateRankings.map(ranking => (
+                        <Ranking
+                            withStatus
+                            rank={ranking}/>
+                    ))}
+                </div>
             } else {
                 list = <div className={cls.NoRankings}>
                     <p>You don't have any rankings yet. Click button below to create!</p>
@@ -93,4 +86,4 @@ const mapDispatchToProps = dispatch => {
     };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(PrivateList);
+export default connect(mapStateToProps, mapDispatchToProps)(Center(PrivateList));

@@ -118,7 +118,7 @@ export const fetchMoreFollowingRankings = () => (dispatch, getState) => {
 export const fetchRanking = (uuid) => (dispatch, getState) => {
     dispatch({ type: actionTypes.LOAD_RANKING_START })
 
-    axios.get('/api/rankings/' + uuid, null, tokenConfig(getState))
+    axios.get('/api/rankings/' + uuid, tokenConfig(getState))
         .then(res => {
             dispatch({
                 type: actionTypes.LOAD_RANKING_SUCCESS,

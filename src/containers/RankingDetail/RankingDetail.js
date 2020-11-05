@@ -13,6 +13,7 @@ import RankingPositions from './RankingPositions/RankingPositions';
 import RankingComments from '../../components/RankingComments/RankingComments';
 import CommentForm from '../../components/RankingComments/CommentForm/CommentForm';
 import Button from '../../components/UI/Button/Button';
+import Center from '../../hoc/Center';
 
 class RankingDetail extends Component {
     state = {
@@ -42,7 +43,9 @@ class RankingDetail extends Component {
             }
             ranking = (
                 <div className={cls.RankingDetail}>
-                    {editButton}
+                    <div className={cls.EditButton}>
+                        {editButton}
+                    </div>
                     <div className={cls.RankingTitle}>
                         <p>{this.props.ranking.title}</p>
                     </div>
@@ -119,4 +122,4 @@ const mapDispatchToProps = dispatch => {
     };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(RankingDetail);
+export default connect(mapStateToProps, mapDispatchToProps)(Center(RankingDetail));

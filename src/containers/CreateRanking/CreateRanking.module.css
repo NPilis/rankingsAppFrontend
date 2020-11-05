@@ -1,10 +1,7 @@
 .CreateRanking {
-    margin: 5px auto 0 auto;
     min-height: 500px;
-    max-width: 700px;
-    width: 75%;
-    float: right;
-
+    max-width: 800px;
+    width: 100%;
     background-color: #F5F8FA;
     -webkit-box-shadow: 1px 1px 10px 1px rgba(0,0,0,0.25);
     -moz-box-shadow: 1px 1px 10px 1px rgba(0,0,0,0.25);
@@ -60,10 +57,10 @@
     margin: 10px 10px 0 0;
 }
 
-@media(min-width: 1024px) {
+/* @media(min-width: 1025px) {
     .CreateRanking {
-        float: left;
-        margin-left: 252px;
+        float: none;
+        margin-left: 254px;
     }
 }
 
@@ -79,9 +76,20 @@
     }
 }
 
-@media(max-width: 800px) {
+/* @media(max-width: 1024px) {
+    .CreateRanking {
+        float: left;
+        width: 73%;
+        margin-right: 4px;
+        margin-left: 250px;
+    }
+} */
+
+/* @media(max-width: 800px) {
     .CreateRanking {
         width: 75%;
+        margin-right: 2px;
+        margin-left: 2px;
     }
 }
 
@@ -95,4 +103,4 @@
     .CreateRanking {
         width: 100%;
     }
-}
+} */

@@ -7,6 +7,7 @@ import { connect } from 'react-redux';
 import CreatePosition from './CreatePosition/CreatePosition';
 import { arrayMove } from 'react-sortable-hoc';
 import SortablePositions from '../../components/RankingPositions/SortablePositions';
+import Center from '../../hoc/Center';
 
 class CreateRanking extends Component {
     state = {
@@ -179,4 +180,4 @@ const mapDispatchToProps = dispatch => {
     };
 };
 
-export default connect(null, mapDispatchToProps)(CreateRanking);
+export default connect(null, mapDispatchToProps)(Center(CreateRanking));

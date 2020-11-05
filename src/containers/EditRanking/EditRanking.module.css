@@ -1,9 +1,7 @@
 .EditRanking {
-    margin: 5px auto 0 auto;
     min-height: 500px;
-    max-width: 700px;
-    width: 75%;
-    float: right;
+    max-width: 800px;
+    width: 100%;
 
     background-color: #F5F8FA;
     -webkit-box-shadow: 1px 1px 10px 1px rgba(0,0,0,0.25);
@@ -60,7 +58,7 @@
     margin: 10px 10px 0 0;
 }
 
-@media(min-width: 1024px) {
+/* @media(min-width: 1024px) {
     .EditRanking {
         float: left;
         margin-left: 252px;
@@ -95,4 +93,4 @@
     .EditRanking {
         width: 100%;
     }
-}
+} */

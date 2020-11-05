@@ -8,6 +8,8 @@ import InfiniteScroll from 'react-infinite-scroll-component';
 import Spinner from '../../../components/UI/Loading/Spinner';
 import SearchBar from '../../../components/UI/SearchBar/SearchBar';
 import Button from '../../../components/UI/Button/Button';
+import Center from '../../../hoc/Center';
+import ListLoading from '../../../components/UI/Loading/ListLoading';
 
 class FollowingList extends Component {
     componentDidMount() {
@@ -27,26 +29,16 @@ class FollowingList extends Component {
     render() {
         let list = null;
         if (this.props.loading) {
-            list = (
-                <ul>
-                    <Loading rankLoading={true} delay={0}></Loading>
-                    <Loading rankLoading={true} delay={0.2}></Loading>
-                    <Loading rankLoading={true} delay={0.2}></Loading>
-                    <Loading rankLoading={true} delay={0.3}></Loading>
-                    <Loading rankLoading={true} delay={0}></Loading>
-                    <Loading rankLoading={true} delay={0.1}></Loading>
-                    <Loading rankLoading={true} delay={0.2}></Loading>
-                    <Loading rankLoading={true} delay={0.3}></Loading>
-                </ul>)
+            list = <ListLoading />
         } else {
             if (this.props.followingRankings.length > 0) {
                 console.log("LIST")
-                list = <ul>
-                {this.props.followingRankings.map(ranking => (
-                    <Ranking
-                        rank={ranking}/>
-                ))}
-            </ul>
+                list = <div className={cls.RankingGrid}>
+                    {this.props.followingRankings.map(ranking => (
+                        <Ranking
+                            rank={ranking}/>
+                    ))}
+                </div>
             } else {
                 list = <div className={cls.NoRankings}>
                     <p>You don't have any followed users yet..</p>
@@ -56,7 +48,7 @@ class FollowingList extends Component {
         }
         return (
             <Fragment>
-                <div className={cls.PrivateList}>
+                <div className={cls.FollowingList}>
                     <div className={cls.Wrapper}>
                         {list}
                     </div>
@@ -88,4 +80,4 @@ const mapDispatchToProps = dispatch => {
     };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(FollowingList);
+export default connect(mapStateToProps, mapDispatchToProps)(Center(FollowingList));
