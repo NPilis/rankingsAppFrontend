@@ -8,6 +8,7 @@ import InfiniteScroll from 'react-infinite-scroll-component';
 import Spinner from '../../components/UI/Loading/Spinner';
 import { Redirect } from 'react-router-dom';
 import Center from '../../hoc/Center';
+import Filters from '../../components/Filters/Filters';
 
 class RankingList extends Component {
     state = {
@@ -25,7 +26,7 @@ class RankingList extends Component {
     }
 
     componentDidUpdate(prevProps) {
-        if (this.props.isAuth !== prevProps.isAuth || this.props.match.params.type !== prevProps.match.params.type) {
+        if (this.props.isAuth !== prevProps.isAuth || this.props.match.params.type !== prevProps.match.params.type || this.props.match.params.days !== prevProps.match.params.days) {
             this.props.fetchPublicRankings(this.props.match.params.type, this.props.match.params.days);
         }
     }
@@ -46,6 +47,8 @@ class RankingList extends Component {
                 ? <Redirect to="/hottest/days=7" />
                 : <Fragment>
                     <div className={cls.RankingList}>
+                        <Filters
+                            rankingType={"hottest"}></Filters>
                         <div className={cls.Wrapper}>
                             {list}
                         </div>

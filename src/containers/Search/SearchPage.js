@@ -10,6 +10,7 @@ import Spinner from '../../components/UI/Loading/Spinner';
 import { Redirect } from 'react-router-dom';
 import SearchNav from '../../components/UI/SearchBar/SearchNav/SearchNav';
 import Thumbnail from '../../components/User/Thumbnail/Thumbnail';
+import Center from '../../hoc/Center';
 
 class SearchPage extends Component {
     state = {
@@ -47,19 +48,19 @@ class SearchPage extends Component {
             if (this.props.rankingLoading) {
                 list = <ListLoading />
             } else {
-                list = <ul>
+                list = <div className={cls.RankingGrid}>
                     {this.props.foundRankings.map(ranking => (
                         <Ranking
                             key={ranking.uuid}
                             rank={ranking} />
                     ))}
-                </ul>
+                </div>
             }
         } else {
             if (this.props.userLoading) {
                 list = <ListLoading />
             } else {
-                list = <div className={cls.UsersList}>
+                list = <div className={cls.RankingGrid}>
                     {this.props.foundUsers.map(user => (
                         <Thumbnail
                             username={user ? user.username : null}
@@ -83,12 +84,20 @@ class SearchPage extends Component {
                         {list}
                     </div>
                     <div className={cls.InfScroll}>
-                        {/* <InfiniteScroll
-                            dataLength={this.props.publicRankings.length}
-                            next={this.props.fetchMorePublicRankings}
-                            hasMore={this.props.hasMore}
-                            loader={<Spinner />}>
-                        </InfiniteScroll> */}
+                        {this.state.onRankings
+                            ?   <InfiniteScroll
+                                dataLength={this.props.foundRankings.length}
+                                next={this.props.fetchMoreSearchedRankings}
+                                hasMore={this.props.hasMoreRankings}
+                                loader={<Spinner />}>
+                            </InfiniteScroll>
+                            :   <InfiniteScroll
+                                dataLength={this.props.foundUsers.length}
+                                next={this.props.fetchMoreSearchedUsers}
+                                hasMore={this.props.hasMoreUsers}
+                                loader={<Spinner />}>
+                            </InfiniteScroll>}
+                        
                     </div>
                 </div>
             </Fragment>
@@ -111,10 +120,10 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => {
     return {
         searchRankings: (query) => dispatch(rankingActions.searchRankings(query)),
-        // fetchMoreSearchedRankings: () => dispatch(rankingActions.fetchMoreSearchedRankings()),
+        fetchMoreSearchedRankings: () => dispatch(rankingActions.fetchMoreSearchedRankings()),
         searchUsers: (query) => dispatch(userActions.searchUsers(query)),
-        // fetchMoreSearchedUsers: () => dispatch(rankingActions.fetchMoreSearchedUsers()),
+        fetchMoreSearchedUsers: () => dispatch(userActions.fetchMoreSearchedUsers()),
     };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(SearchPage);
+export default connect(mapStateToProps, mapDispatchToProps)(Center(SearchPage));

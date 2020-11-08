@@ -88,3 +88,24 @@ export const searchUsers = (query) => (dispatch, getState) => {
             })
         })
 }
+
+export const fetchMoreSearchedUsers = () => (dispatch, getState) => {
+
+    const nextUsers = getState().users.nextUsers
+    if (nextUsers) {
+        setTimeout(() => {
+            axios.get(getState().users.nextUsers, tokenConfig(getState))
+                .then(response => {
+                    console.log(response.data)
+                    dispatch({
+                        type: actionTypes.LOAD_MORE_SEARCHED_USERS_SUCCESS,
+                        payload: response.data
+                    });
+                }).catch(err => {
+                    dispatch({ type: actionTypes.SEARCH_USERS_FAIL })
+                    dispatch(returnErrors(err.response.data, err.status))
+                })
+        }, 100);
+    }
+
+}

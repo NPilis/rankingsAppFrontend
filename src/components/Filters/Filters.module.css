@@ -1,0 +1,51 @@
+.Filters {
+    background-color: #14171A;
+    max-width: 796px;
+    color:	#F5F8FA;
+}
+
+.Header {
+    font-size: 18px;
+    padding: 14px;
+    color:	#F5F8FA;
+    text-align: center;
+    font-weight: 700;
+    border-bottom: 2px solid lightskyblue;
+}
+
+.Filters select {
+    margin-right: 5px;
+    font-size: 14px;
+    padding: 3px 2px;
+    width: 120px;
+    color:	#F5F8FA;
+    font-weight: 600;
+    background-color: lightskyblue;
+}
+
+.Filters select:focus {
+    outline: none;
+}
+
+.Filters select option {
+    font-weight: 600;
+}
+
+.DateFilter {
+    width: 100%;
+    padding: 8px 4px;
+    display: flex;
+    color: #F5F8FA;
+}
+
+.DateFilter p {
+    margin-right: 10px;
+    font-weight: 600;
+    color: #F5F8FA;
+}
+
+@media (max-width: 810px) {
+    .Filters {
+        max-width: 425px;
+    }
+}

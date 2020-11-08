@@ -36,7 +36,7 @@ export const fetchMorePublicRankings = () => (dispatch, getState) => {
                 dispatch({ type: actionTypes.LOAD_PUBLIC_RANKINGS_FAIL })
                 dispatch(returnErrors(err.response.data, err.status))
             })
-    }, 300);
+    }, 100);
 }
 
 export const fetchPrivateRankings = () => (dispatch, getState) => {
@@ -72,7 +72,7 @@ export const fetchMorePrivateRankings = () => (dispatch, getState) => {
                     dispatch({ type: actionTypes.LOAD_MORE_PRIVATE_RANKINGS_FAIL })
                     dispatch(returnErrors(err.response.data, err.status))
                 })
-        }, 300);
+        }, 100);
     }
 
 }
@@ -294,4 +294,25 @@ export const searchRankings = (query) => (dispatch) => {
                 payload: res.data
             })
         })
+}
+
+export const fetchMoreSearchedRankings = () => (dispatch, getState) => {
+
+    const nextRankings = getState().rankings.nextFound
+    if (nextRankings) {
+        setTimeout(() => {
+            axios.get(getState().rankings.nextFound, tokenConfig(getState))
+                .then(response => {
+                    console.log(response.data)
+                    dispatch({
+                        type: actionTypes.LOAD_MORE_SEARCHED_RANKINGS_SUCCESS,
+                        payload: response.data
+                    });
+                }).catch(err => {
+                    dispatch({ type: actionTypes.SEARCH_RANKINGS_FAIL })
+                    dispatch(returnErrors(err.response.data, err.status))
+                })
+        }, 100);
+    }
+
 }
