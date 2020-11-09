@@ -17,12 +17,20 @@ import Center from '../../hoc/Center';
 
 class RankingDetail extends Component {
     state = {
-        isLoaded: false
+        isLoaded: false,
+        afterEdit: false
     }
 
     componentDidMount() {
         this.props.fetchRanking(this.props.match.params.uuid)
         this.setState({ isLoaded: true })
+    }
+
+    componentDidUpdate(prevProps) {
+        if(!this.state.afterEdit && prevProps.ranking != this.props.ranking){
+            this.props.fetchRanking(this.props.match.params.uuid)
+            this.setState({...this.state, afterEdit: true})
+        }
     }
 
     editRedirect = () => {
@@ -37,27 +45,31 @@ class RankingDetail extends Component {
             if (this.props.user) {
                 if (this.props.ranking.author.email === this.props.user.email) {
                     editButton = <Button editBtn clicked={this.editRedirect}>
-                        Edit ranking
+                        Update
                     </Button>
                 }
             }
             ranking = (
                 <div className={cls.RankingDetail}>
-                    <div className={cls.EditButton}>
-                        {editButton}
-                    </div>
                     <div className={cls.RankingTitle}>
                         <p>{this.props.ranking.title}</p>
                     </div>
                     <div className={cls.Wrapper}>
                         <div className={cls.FloatLeft}>
-                            <div className={cls.Date}>
-                                <p>{this.props.ranking.created_at.slice(0, 19).replace('T', ' at ')}</p>
-                            </div>
-                            <div className={cls.RankingAuthor}>
-                                <Thumbnail
-                                    username={this.props.ranking.author.username}
-                                    userImg={this.props.ranking.author.image} />
+                            <div style={{display: "flex", justifyContent: "space-between"}}>
+                                <div>
+                                    <div className={cls.Date}>
+                                        <p>{this.props.ranking.created_at.slice(0, 19).replace('T', ' at ')}</p>
+                                    </div>
+                                    <div className={cls.RankingAuthor}>
+                                        <Thumbnail
+                                            username={this.props.ranking.author.username}
+                                            userImg={this.props.ranking.author.image} />
+                                    </div>
+                                </div>
+                                <div className={cls.EditBtn}>
+                                    {editButton}
+                                </div>
                             </div>
                             <div className={cls.RankingImg}>
                                 <RankingImage
@@ -82,17 +94,20 @@ class RankingDetail extends Component {
                         </div>
                     </div>
                     <div className={cls.Description}>
-                        <p>Description:</p>
+                        <p className={cls.Header}>Description</p>
                         <div className={cls.Content}>
                             {this.props.ranking.content}
                         </div>
                     </div>
+                    
                     <div className={cls.RankingPositions}>
+                        <p className={cls.Header}>Positions</p>
                         <RankingPositions
                             detail
                             rankingPositions={this.props.ranking.ranking_positions} />
                     </div>
                     <div className={cls.CommentSection}>
+                        <p className={cls.Header}>Comments</p>
                         <CommentForm
                             detail />
                         <RankingComments
@@ -110,7 +125,8 @@ const mapStateToProps = state => ({
     message: state.messages,
     user: state.auth.user,
     ranking: state.rankings.ranking,
-    rankingLoading: state.rankings.rankingLoading
+    rankingLoading: state.rankings.rankingLoading,
+    justEdited: state.rankings.justEdited
 });
 
 const mapDispatchToProps = dispatch => {

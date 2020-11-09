@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import cls from './CreatePosition.module.css';
 import Button from '../../../components/UI/Button/Button';
 import Input from '../../../components/UI/Input/Input';
+import RankingImage from '../../../components/RankingImage/RankingImage';
 
 class CreatePosition extends Component {
     state = {
@@ -33,7 +34,8 @@ class CreatePosition extends Component {
                 touched: false
             }
         },
-        selectedImage: null
+        selectedImage: null,
+        imagePreviewUrl: null
     }
 
     checkValidity = () => true;
@@ -52,10 +54,17 @@ class CreatePosition extends Component {
     }
 
     imageSelectedHandler = event => {
-        this.setState({
-            ...this.state,
-            selectedImage: event.target.files[0]
-        });
+        let reader = new FileReader();
+        let img = event.target.files[0];
+
+        reader.onloadend = () => {
+            this.setState({
+                ...this.state,
+                selectedImage: img,
+                imagePreviewUrl: reader.result
+            });
+        }
+        reader.readAsDataURL(img);
     }
 
     clearForm = () => {
@@ -117,8 +126,15 @@ class CreatePosition extends Component {
                         <input type="file" accept="image/png, image/jpeg" onChange={this.imageSelectedHandler} />
                     </form>
                 </div>
-                <div className={cls.SubmitBtn}>
-                    <Button authBtn={true} clicked={this.submitHandler}>Add</Button>
+                <div>
+                    <div className={cls.SubmitBtn}>
+                        <Button authBtn={true} clicked={this.submitHandler}>Add</Button>
+                    </div>
+                    <div>
+                        <RankingImage
+                            positionImg={true}
+                            link={this.state.imagePreviewUrl} />
+                    </div>
                 </div>
             </div>
         );

@@ -8,6 +8,7 @@ import CreatePosition from './CreatePosition/CreatePosition';
 import { arrayMove } from 'react-sortable-hoc';
 import SortablePositions from '../../components/RankingPositions/SortablePositions';
 import Center from '../../hoc/Center';
+import RankingImage from '../../components/RankingImage/RankingImage';
 
 class CreateRanking extends Component {
     state = {
@@ -55,6 +56,7 @@ class CreateRanking extends Component {
             }
         },
         selectedImage: null,
+        imagePreviewUrl: null,
         positions: []
     }
 
@@ -74,11 +76,17 @@ class CreateRanking extends Component {
     }
 
     imageSelectedHandler = event => {
-        this.setState({
-            ...this.state,
-            selectedImage: event.target.files[0]
-        });
-        console.log(this.state)
+        let reader = new FileReader();
+        let img = event.target.files[0];
+
+        reader.onloadend = () => {
+            this.setState({
+                ...this.state,
+                selectedImage: img,
+                imagePreviewUrl: reader.result
+            });
+        }
+        reader.readAsDataURL(img)
     }
 
     addPosition = (positionData) => {
@@ -86,6 +94,18 @@ class CreateRanking extends Component {
         this.setState({
             ...this.state,
             positions: this.state.positions.concat(positionData)
+        })
+    }
+
+    deletePosHandler = (event, posIndex) => {
+        event.preventDefault();
+        event.stopPropagation();
+        const updatedPositions = this.state.positions.filter((pos, idx) => {
+            return idx !== posIndex
+        })
+        this.setState({
+            ...this.state,
+            positions: updatedPositions
         })
     }
 
@@ -138,16 +158,20 @@ class CreateRanking extends Component {
                         <div className={cls.RankingForm}>
                             <form>
                                 {form}
-                                <input type="file" accept="image/png, image/jpeg" onChange={this.imageSelectedHandler} />
                                 <div className={cls.Inline}>
+                                    <input type="file" accept="image/png, image/jpeg" onChange={this.imageSelectedHandler} />
                                 </div>
                             </form>
                         </div>
-                        <div className={cls.SubmitBtn}>
-                            <Button authBtn={true} clicked={this.submitHandler}>Create</Button>
+                        <div>
+                            <div className={cls.SubmitBtn}>
+                                <Button authBtn={true} clicked={this.submitHandler}>Save</Button>
+                            </div>
+                            <RankingImage
+                                link={this.state.imagePreviewUrl} />
                         </div>
                     </div>
-                    <div style={{ display: "flex", justifyContent: "center", width: "100%", borderBottom: "2px solid lightgrey" }}>
+                    <div className={cls.PositionsHeader}>
                         <h3>Positions</h3>
                         <div className={cls.Tip}>
                             <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-question-circle-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -160,7 +184,9 @@ class CreateRanking extends Component {
                         <SortablePositions
                             positions={this.state.positions}
                             onSortEnd={this.onSortEnd}
-                            onDelete={this.onDelete} />
+                            deletePosHandler={this.deletePosHandler}
+                            lockAxis="y"
+                            distance={2} />
                     </div>
                     <div className={cls.PositionForm}>
                         <CreatePosition

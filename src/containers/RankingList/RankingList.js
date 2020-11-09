@@ -9,6 +9,7 @@ import Spinner from '../../components/UI/Loading/Spinner';
 import { Redirect } from 'react-router-dom';
 import Center from '../../hoc/Center';
 import Filters from '../../components/Filters/Filters';
+import PageHeader from '../../components/UI/Headers/PageHeader';
 
 class RankingList extends Component {
     state = {
@@ -47,8 +48,10 @@ class RankingList extends Component {
                 ? <Redirect to="/hottest/days=7" />
                 : <Fragment>
                     <div className={cls.RankingList}>
+                        <PageHeader 
+                        pageTitle={this.props.match.params.type.charAt(0).toUpperCase() + this.props.match.params.type.slice(1)}></PageHeader>
                         <Filters
-                            rankingType={"hottest"}></Filters>
+                            rankingType={this.props.match.params.type}></Filters>
                         <div className={cls.Wrapper}>
                             {list}
                         </div>

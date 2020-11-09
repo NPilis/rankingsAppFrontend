@@ -262,21 +262,29 @@ export const deletePosition = (posID, rankingUUID) => (dispatch, getState) => {
 }
 
 
-export const editRanking = (newRanking, rankingUUID, newPositions, oldPosLen) => (dispatch, getState) => {
+export const editRanking = (newRanking, rankingUUID, newPositions) => (dispatch, getState) => {
     dispatch({ type: actionTypes.EDIT_RANKING_START })
     axios.put('/api/rankings/' + rankingUUID + '/edit/', newRanking, tokenConfig(getState))
         .then(res => {
-            dispatch({
-                type: actionTypes.EDIT_RANKING_SUCCESS,
-                payload: res.data
-            })
             const posLen = newPositions.length
             if (posLen > 0) {
                 for (const [place, pos] of newPositions.entries()) {
                     dispatch(editPosition(pos, rankingUUID, place + 1))
+                    if (place == posLen-1){
+                        console.log("wow")
+                        dispatch({
+                            type: actionTypes.EDIT_RANKING_SUCCESS,
+                            payload: res.data
+                        })
+                    }
                 }
+            } else {
+                console.log("wow")
+                dispatch({
+                    type: actionTypes.EDIT_RANKING_SUCCESS,
+                    payload: res.data
+                })
             }
-
         }).catch(err => {
             dispatch({ type: actionTypes.EDIT_RANKING_FAIL })
             // dispatch(returnErrors(err.response, err.response.status));

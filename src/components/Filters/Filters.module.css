@@ -1,23 +1,19 @@
 .Filters {
-    background-color: #14171A;
     max-width: 796px;
     color:	#F5F8FA;
-}
-
-.Header {
-    font-size: 18px;
-    padding: 14px;
-    color:	#F5F8FA;
+    border-radius: 20px;
+    margin-top: 5px;
+    width: 300px;
+    margin: 2px 0;
     text-align: center;
-    font-weight: 700;
-    border-bottom: 2px solid lightskyblue;
 }
 
 .Filters select {
     margin-right: 5px;
+    border-radius: 20px;
     font-size: 14px;
-    padding: 3px 2px;
-    width: 120px;
+    padding: 4px 4px;
+    width: 160px;
     color:	#F5F8FA;
     font-weight: 600;
     background-color: lightskyblue;
@@ -32,16 +28,19 @@
 }
 
 .DateFilter {
-    width: 100%;
-    padding: 8px 4px;
+    margin: 0 auto;
+    padding: 4px 4px;
     display: flex;
     color: #F5F8FA;
 }
 
 .DateFilter p {
-    margin-right: 10px;
+    margin-right: 8px;
     font-weight: 600;
     color: #F5F8FA;
+    background-color: #14171A;
+    border-radius: 20px;
+    padding: 4px 11px;
 }
 
 @media (max-width: 810px) {

@@ -10,6 +10,7 @@ import SearchBar from '../../../components/UI/SearchBar/SearchBar';
 import Button from '../../../components/UI/Button/Button';
 import ListLoading from '../../../components/UI/Loading/ListLoading';
 import Center from '../../../hoc/Center';
+import PageHeader from '../../../components/UI/Headers/PageHeader';
 
 
 class PrivateList extends Component {
@@ -55,6 +56,8 @@ class PrivateList extends Component {
         return (
             <Fragment>
                 <div className={cls.PrivateList}>
+                    <PageHeader
+                        pageTitle={"Owned rankings"}></PageHeader>
                     <div className={cls.Wrapper}>
                         {list}
                     </div>

@@ -136,7 +136,7 @@ class EditRanking extends Component {
             positions: this.props.ranking.ranking_positions
         })
     }
-    
+
     deletePosHandler = (event, posIndex) => {
         event.preventDefault();
         event.stopPropagation();
@@ -168,7 +168,7 @@ class EditRanking extends Component {
         if (this.state.selectedImage) {
             newRanking.append('image', this.state.selectedImage, this.state.selectedImage.name);
         }
-        this.props.editRanking(newRanking, this.props.ranking.uuid, this.state.positions, this.props.ranking.ranking_positions.length);
+        this.props.editRanking(newRanking, this.props.ranking.uuid, this.state.positions);
         this.setState({ ...this.state, shouldRedirect: true })
     }
 
@@ -212,8 +212,8 @@ class EditRanking extends Component {
                             <div className={cls.RankingForm}>
                                 <form>
                                     {form}
-                                    <input type="file" accept="image/png, image/jpeg" onChange={this.imageSelectedHandler} />
                                     <div className={cls.Inline}>
+                                        <input type="file" accept="image/png, image/jpeg" onChange={this.imageSelectedHandler} />
                                     </div>
                                 </form>
                             </div>
@@ -224,9 +224,8 @@ class EditRanking extends Component {
                                 <RankingImage
                                     link={this.state.imagePreviewUrl} />
                             </div>
-
                         </div>
-                        <div style={{ display: "flex", justifyContent: "center", width: "100%", borderBottom: "2px solid lightgrey" }}>
+                        <div className={cls.PositionsHeader}>
                             <h3>Positions</h3>
                             <div className={cls.Tip}>
                                 <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-question-circle-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -265,7 +264,7 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => {
     return {
         fetchRanking: (rankingUUID) => dispatch(rankingActions.fetchRanking(rankingUUID)),
-        editRanking: (newRanking, rankingUUID, newPositions, oldListLen) => dispatch(rankingActions.editRanking(newRanking, rankingUUID, newPositions, oldListLen)),
+        editRanking: (newRanking, rankingUUID, newPositions) => dispatch(rankingActions.editRanking(newRanking, rankingUUID, newPositions)),
         addPosition: (newPosition, rankingUUID, place) => dispatch(rankingActions.addPosition(newPosition, rankingUUID, place)),
         deletePosition: (posID, rankingUUID) => dispatch(rankingActions.deletePosition(posID, rankingUUID))
     };

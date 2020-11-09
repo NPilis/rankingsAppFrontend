@@ -2,7 +2,6 @@
     min-height: 500px;
     max-width: 800px;
     width: 100%;
-    margin-top: 6px;
     background-color: #F5F8FA;
     -webkit-box-shadow: 1px 1px 10px 1px rgba(0,0,0,0.25);
     -moz-box-shadow: 1px 1px 10px 1px rgba(0,0,0,0.25);
@@ -11,21 +10,16 @@
 
 .RankingTitle {
     width: 100%;
-    height: 50px;
-    border-bottom: 2px solid #AAB8C2;
-    background: rgb(255,255,255);
-    background: linear-gradient(0deg, rgba(255,255,255,1) 0%, rgba(225,232,237,1) 100%);
+    text-align: center;
+    background: #14171A;
+    color: #F5F8FA;
 }
-/* 
-.EditButton {
-    width: 150px;
-    margin-left: auto;
-    order: 2;
-} */
 
 .RankingTitle p {
     display: inline-block;
     font-weight: 700;
+    font-size: 18px;
+    padding: 6px;
     margin: 0.5em;
 }
 
@@ -33,11 +27,16 @@
     margin-left: 0.5em;
     color: #657786;
     font-size: 13px;
+    padding: 2px;
+}
+
+.EditBtn {
+    margin: 10px 10px 0 0;
+    width: 70px;
 }
 
 .Wrapper {
    display: flex;
-   border-bottom: 2px solid #AAB8C2;
 }
 
 .FloatLeft {
@@ -47,7 +46,7 @@
 
 .FloatRight {
     width: 20%;
-    border-left: 2px solid #AAB8C2;
+    border-left: 2px solid lightgray;
 }
 
 .RankingImg {
@@ -63,18 +62,13 @@
     margin-top: 0.5em;
 }
 
-.Description p {
-    font-weight: 700;
-    margin: 0.2em 0.2em 0.2em 0.2em;
-}
 
 .Content {
-    margin: 0.2em 0.2em 0.2em 0.2em;
+    padding: 10px 5px;
 }
 
 .RankingPositions {
     margin-top: 1em;
-    border-top: 2px solid #AAB8C2;
 }
 
 /* @media(min-width: 1024px) {
@@ -118,3 +112,12 @@
         width: 100%;
     }
 } */
+
+.Header {
+    text-align: center;
+    font-weight: 700;
+    background: #14171A;
+    color: #F5F8FA;
+    padding: 6px;
+    border-bottom: 3px solid lightskyblue;
+}

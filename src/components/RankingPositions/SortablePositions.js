@@ -7,7 +7,7 @@ const SortablePositions = SortableContainer((props) => {
     return (
         <div className={cls.SortablePositions}>
             {props.positions.map((position, index) => (
-                <SortablePosition key={position} index={index} position={position} pos={index} deletePosHandler={props.deletePosHandler}/>
+                <SortablePosition key={index} index={index} position={position} pos={index} deletePosHandler={props.deletePosHandler}/>
             ))}
         </div>
     );

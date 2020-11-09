@@ -18,7 +18,8 @@ const initialState = {
     comments: [],
     commentsLoading: false,
     hasMoreComments: true,
-    nextComments: null
+    nextComments: null,
+    justEdited: false
 }
 
 export default (state=initialState, action) => {
@@ -41,10 +42,12 @@ export default (state=initialState, action) => {
                 foundRankings: [],
                 rankingLoading: true
             }
+        case actionTypes.EDIT_RANKING_START:
         case actionTypes.LOAD_RANKING_START:
             return {
                 ...state,
-                rankingLoading: true
+                rankingLoading: true,
+                justEdited: false
             }
         case actionTypes.LOAD_FOLLOWING_RANKINGS_START:
             return {
@@ -60,6 +63,12 @@ export default (state=initialState, action) => {
                     ...state,
                     rankingLoading: false,
                 }
+        case actionTypes.EDIT_RANKING_SUCCESS:
+            return {
+                ...state,
+                rankingLoading: false,
+                justEdited: true
+            }
         case actionTypes.LOAD_PRIVATE_RANKINGS_SUCCESS:
         case actionTypes.LOAD_MORE_PRIVATE_RANKINGS_SUCCESS:
             return {

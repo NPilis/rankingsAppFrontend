@@ -10,6 +10,7 @@ import SearchBar from '../../../components/UI/SearchBar/SearchBar';
 import Button from '../../../components/UI/Button/Button';
 import Center from '../../../hoc/Center';
 import ListLoading from '../../../components/UI/Loading/ListLoading';
+import PageHeader from '../../../components/UI/Headers/PageHeader';
 
 class FollowingList extends Component {
     componentDidMount() {
@@ -49,6 +50,7 @@ class FollowingList extends Component {
         return (
             <Fragment>
                 <div className={cls.FollowingList}>
+                    <PageHeader pageTitle={"Followed rankings"}></PageHeader>
                     <div className={cls.Wrapper}>
                         {list}
                     </div>

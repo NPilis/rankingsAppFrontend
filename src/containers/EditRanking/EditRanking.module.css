@@ -2,7 +2,7 @@
     min-height: 500px;
     max-width: 800px;
     width: 100%;
-
+    margin-right: 15px;
     background-color: #F5F8FA;
     -webkit-box-shadow: 1px 1px 10px 1px rgba(0,0,0,0.25);
     -moz-box-shadow: 1px 1px 10px 1px rgba(0,0,0,0.25);
@@ -10,10 +10,14 @@
 }
 
 .EditRanking h2 {
-    padding: 8px;
-    margin: 0;
+    padding: 10px 0;
+    margin: 0 auto;
+    /* border-radius: 0 0 40px 40px; */
+    width: 100%;
     text-align: center;
-    border-bottom: 2px solid lightgrey;
+    border-bottom: 3px solid lightskyblue;
+    background-color:#14171A;
+    color: #F5F8FA;
 }
 
 .EditRanking h3 {
@@ -94,3 +98,14 @@
         width: 100%;
     }
 } */
+
+.PositionsHeader {
+    display: flex;
+    justify-content: center;
+    margin: 0 auto;
+    width: 100%;
+    /* border-radius: 3px 3px 30px 30px; */
+    border-bottom: 3px solid lightskyblue;
+    color: #F5F8FA;
+    background-color: #14171A;
+}

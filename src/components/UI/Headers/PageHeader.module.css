@@ -1,0 +1,18 @@
+.PageHeader h2 {
+    padding: 10px 0;
+    /* border-radius: 0 0 40px 40px; */
+    margin: 0;
+    max-width: 797px;
+    text-align: center;
+    border-bottom: 4px solid lightskyblue;
+    /* border-right: 2px solid lightskyblue;
+    border-left: 2px solid lightskyblue; */
+    background-color:#14171A;
+    color: #F5F8FA;
+}
+
+@media (max-width: 810px) {
+    .PageHeader h2 {
+        max-width: 425px;
+    }
+}
