@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import cls from './CreateRanking.module.css';
 import Button from '../../components/UI/Button/Button';
 import Input from '../../components/UI/Input/Input';
-import * as rankingActions from '../../store/actions/rankings';
+import { returnErrors } from '../../store/actions/messages';
+import { createRanking } from '../../store/actions/rankings';
 import { connect } from 'react-redux';
 import CreatePosition from './CreatePosition/CreatePosition';
 import { arrayMove } from 'react-sortable-hoc';
@@ -22,6 +23,8 @@ class CreateRanking extends Component {
                 value: '',
                 validation: {
                     required: true,
+                    maxLength: 70,
+                    minLength: 3
                 },
                 valid: false,
                 touched: false
@@ -35,8 +38,9 @@ class CreateRanking extends Component {
                 value: '',
                 validation: {
                     required: false,
+                    maxLength: 250
                 },
-                valid: false,
+                valid: true,
                 touched: false
             },
             status: {
@@ -49,9 +53,9 @@ class CreateRanking extends Component {
                 },
                 value: 'public',
                 validation: {
-                    required: false,
+                    required: true,
                 },
-                valid: false,
+                valid: true,
                 touched: false
             }
         },
@@ -60,15 +64,29 @@ class CreateRanking extends Component {
         positions: []
     }
 
-    checkValidity = () => true;
+    checkValidity = (value, rules) => {
+        let isValid = true;
+        if (rules) {
+            if (rules.required) {
+                isValid = value !== '' && isValid
+            }
+            if (rules.minLength) {
+                isValid = value.length >= rules.minLength && isValid
+            }
+            if (rules.maxLength) {
+                isValid = value.length <= rules.maxLength && isValid
+            }
+        }
+        return isValid
+    };
 
     inputChangedHandler = (event, controlName) => {
         const updatedControls = {
             ...this.state.controls,
             [controlName]: {
                 ...this.state.controls[controlName],
-                value: event.target.value,
-                valid: this.checkValidity(),
+                value: event.target.value.slice(0, this.state.controls[controlName].validation.maxLength),
+                valid: this.checkValidity(event.target.value, this.state.controls[controlName].validation),
                 touched: true
             }
         }
@@ -90,7 +108,6 @@ class CreateRanking extends Component {
     }
 
     addPosition = (positionData) => {
-        console.log(positionData)
         this.setState({
             ...this.state,
             positions: this.state.positions.concat(positionData)
@@ -116,16 +133,32 @@ class CreateRanking extends Component {
         })
     }
 
+    checkFormValidity = () => {
+        let isValid = true;
+        for (let control in this.state.controls){
+            isValid = this.state.controls[control].valid && isValid;
+        }
+        return isValid;
+    }
+
     submitHandler = (event) => {
         event.preventDefault();
-        let newRanking = new FormData();
-        newRanking.append('title', this.state.controls.title.value);
-        newRanking.append('content', this.state.controls.content.value);
-        newRanking.append('status', this.state.controls.status.value);
-        if (this.state.selectedImage) {
-            newRanking.append('image', this.state.selectedImage, this.state.selectedImage.name);
+        if (!this.checkFormValidity()) {
+            this.props.returnErrors({createValidation: 'Title is required'}, 401)
+        } else {
+            if (this.state.positions.length < 3) {
+                this.props.returnErrors({ tooFewPositions: 'Ranking must have at least 3 positions'}, 401);
+            } else {
+                let newRanking = new FormData();
+                newRanking.append('title', this.state.controls.title.value);
+                newRanking.append('content', this.state.controls.content.value);
+                newRanking.append('status', this.state.controls.status.value);
+                if (this.state.selectedImage) {
+                    newRanking.append('image', this.state.selectedImage, this.state.selectedImage.name);
+                }
+                this.props.createRanking(newRanking, this.state.positions);
+            }
         }
-        this.props.createRanking(newRanking, this.state.positions);
     }
 
     render() {
@@ -146,7 +179,7 @@ class CreateRanking extends Component {
                 changed={(event) => (this.inputChangedHandler(event, el.id))}
                 shouldValidate={true}
                 touched={el.config.touched}
-                invalid={!el.config.valid}
+                valid={el.config.valid}
             />
         ));
 
@@ -191,7 +224,8 @@ class CreateRanking extends Component {
                     <div className={cls.PositionForm}>
                         <CreatePosition
                             posNumber={this.state.positions.length}
-                            addPosition={this.addPosition}>
+                            addPosition={this.addPosition}
+                            returnError={this.props.returnErrors}>
                         </CreatePosition>
                     </div>
                 </div>
@@ -202,7 +236,8 @@ class CreateRanking extends Component {
 
 const mapDispatchToProps = dispatch => {
     return {
-        createRanking: (newRanking, newPositions) => dispatch(rankingActions.createRanking(newRanking, newPositions))
+        createRanking: (newRanking, newPositions) => dispatch(createRanking(newRanking, newPositions)),
+        returnErrors: (msg, status) => dispatch(returnErrors(msg, status))
     };
 };
 

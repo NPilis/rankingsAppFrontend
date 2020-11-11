@@ -14,6 +14,9 @@ class Alerts extends Component {
       if (error.msg.text) alert.error(`Comment: ${error.msg.text}`);
       if (error.msg.passwordNotMatch) alert.error(error.msg.passwordNotMatch);
       if (error.msg.detail) alert.error(`${error.msg.detail}`);
+      if (error.msg.tooFewPositions) alert.error(`${error.msg.tooFewPositions}`);
+      if (error.msg.createValidation) alert.error(`${error.msg.createValidation}`);
+      if (error.msg.posNameError) alert.error(`${error.msg.posNameError}`);
     }
 
     if (message !== prevProps.message) {

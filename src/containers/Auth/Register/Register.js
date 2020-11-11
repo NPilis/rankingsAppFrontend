@@ -23,6 +23,8 @@ class Register extends Component {
                 value: '',
                 validation: {
                     required: true,
+                    maxLenght: 40,
+                    minLength: 6
                 },
                 valid: false,
                 touched: false
@@ -37,6 +39,8 @@ class Register extends Component {
                 value: '',
                 validation: {
                     required: true,
+                    maxLenght: 40,
+                    minLength: 5
                 },
                 valid: false,
                 touched: false
@@ -51,6 +55,8 @@ class Register extends Component {
                 value: '',
                 validation: {
                     required: true,
+                    maxLenght: 40,
+                    minLength: 6
                 },
                 valid: false,
                 touched: false
@@ -65,6 +71,8 @@ class Register extends Component {
                 value: '',
                 validation: {
                     required: true,
+                    maxLenght: 40,
+                    minLength: 6
                 },
                 valid: false,
                 touched: false
@@ -74,20 +82,42 @@ class Register extends Component {
         imagePreviewUrl: null
     }
 
-    checkValidity = () => true;
+    checkValidity = (value, rules) => {
+        let isValid = true;
+        if (rules) {
+            if (rules.required) {
+                isValid = value !== '' && isValid
+            }
+            if (rules.minLength) {
+                isValid = value.length >= rules.minLength && isValid
+            }
+            if (rules.maxLength) {
+                isValid = value.length <= rules.maxLength && isValid
+            }
+        }
+        return isValid
+    };
+
+    checkFormValidity = () => {
+        let isValid = true;
+        for (let control in this.state.controls){
+            isValid = this.state.controls[control].valid && isValid;
+        }
+        return isValid;
+    }
 
     submitHandler = (event) => {
         event.preventDefault();
-        let formData = new FormData();
-        formData.append('username', this.state.controls.username.value);
-        formData.append('email', this.state.controls.email.value);
-        formData.append('password', this.state.controls.password1.value);
-        if (this.state.selectedImage) {
-            formData.append('image', this.state.selectedImage, this.state.selectedImage.name);
-        }
-        if (formData.get('password') !== this.state.controls.password2.value) {
+        if (this.state.controls.password1.value !== this.state.controls.password2.value) {
             this.props.returnError({ passwordNotMatch: 'Password do not match' }, 401)
         } else {
+            let formData = new FormData();
+            formData.append('username', this.state.controls.username.value);
+            formData.append('email', this.state.controls.email.value);
+            formData.append('password', this.state.controls.password1.value);
+            if (this.state.selectedImage) {
+                formData.append('image', this.state.selectedImage, this.state.selectedImage.name);
+            }
             this.props.onRegister(formData);
         }
     }
@@ -98,7 +128,7 @@ class Register extends Component {
             [controlName]: {
                 ...this.state.controls[controlName],
                 value: event.target.value,
-                valid: this.checkValidity(),
+                valid: this.checkValidity(event.target.value, this.state.controls[controlName].validation),
                 touched: true
             }
         }
@@ -141,7 +171,7 @@ class Register extends Component {
                     changed={(event) => (this.inputChangedHandler(event, el.id))}
                     shouldValidate={true}
                     touched={el.config.touched}
-                    invalid={!el.config.valid}
+                    valid={el.config.valid}
                 />
             </Fragment>
         ));

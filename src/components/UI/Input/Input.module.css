@@ -14,7 +14,7 @@
     outline: none;
     border: 1px solid darkgray;
     border-radius: 5px 5px 5px 5px;
-    background-color: whitesmoke;
+    background-color: #E1E8ED;
     font: inherit;
     padding: 6px 10px;
     margin-bottom: 10px;
@@ -28,9 +28,9 @@
     background-color: #F3FAFE;
 }
 
-.Invalid {
-    border: 1px solid red;
-    background-color: #FDA49A;
+.Invalid:focus {
+    border: 1px solid lightcoral;
+    background-color: #ede6e1;
 }
 
 .TextArea {

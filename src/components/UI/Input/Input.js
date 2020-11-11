@@ -4,6 +4,9 @@ import cls from './Input.module.css';
 export default (props) => {
     let inputElement = null;
     const inputCls = [cls.InputElement];
+    if (props.valid === false) {
+        inputCls.push(cls.Invalid);
+    }
 
     switch (props.elementType) {
         case ('input'):
@@ -27,7 +30,7 @@ export default (props) => {
         case ('select'):
             inputElement = (
                 <select
-                    className={inputCls.join(' ')}
+                    className={cls.InputElement}
                     {...props.elementConfig}
                     value={props.value}
                     onChange={props.changed}>

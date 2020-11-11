@@ -16,6 +16,9 @@ export default (props) => {
     if (props.center) {
         thumbnailClasses.push(cls.Center)
     }
+    if (props.bigger) {
+        thumbnailClasses.push(cls.Bigger)
+    }
 
     let thumbnail = null;
     if (props.username !== null) {

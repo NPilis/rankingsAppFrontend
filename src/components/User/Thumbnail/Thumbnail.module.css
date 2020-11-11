@@ -4,8 +4,12 @@
 }
 
 .Thumbnail a {
-    margin: 0 10px
+    margin: 0 10px;
+    text-decoration: none;
+    color: black;
+    padding: 5px 5px 12px 5px;
 }
+
 
 .Wrapper {
     display: flex;
@@ -31,7 +35,7 @@
 }
 
 .Username {
-    margin: auto 0.5em;
+    margin: auto 0 auto 0.5em;
     font-weight: bold;
 }
 
@@ -46,4 +50,22 @@
 
 .Center {
     justify-content: center;
+}
+
+.Bigger img {
+    width: 35px;
+    height: 35px;
+}
+
+.Bigger {
+    margin: 0;
+}
+
+.Bigger p {
+    margin: 0.2em 0.5em;
+}
+
+.Bigger a:hover {
+    background-color: #E1E8ED;
+    border-radius: 25px;
 }

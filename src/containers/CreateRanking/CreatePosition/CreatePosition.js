@@ -16,6 +16,8 @@ class CreatePosition extends Component {
                 value: '',
                 validation: {
                     required: true,
+                    maxLength: 70,
+                    minLength: 1
                 },
                 valid: false,
                 touched: false
@@ -28,9 +30,10 @@ class CreatePosition extends Component {
                 },
                 value: '',
                 validation: {
-                    required: true,
+                    required: false,
+                    maxLength: 250
                 },
-                valid: false,
+                valid: true,
                 touched: false
             }
         },
@@ -38,20 +41,43 @@ class CreatePosition extends Component {
         imagePreviewUrl: null
     }
 
-    checkValidity = () => true;
+    checkValidity = (value, rules) => {
+        let isValid = true;
+        if (rules) {
+            if (rules.required) {
+                isValid = value !== '' && isValid
+            }
+            if (rules.minLength) {
+                isValid = value.length >= rules.minLength && isValid
+            }
+            if (rules.maxLength) {
+                isValid = value.length <= rules.maxLength && isValid
+            }
+        }
+        return isValid
+    };
+
+    checkFormValidity = () => {
+        let isValid = true;
+        for (let control in this.state.controls){
+            isValid = this.state.controls[control].valid && isValid;
+        }
+        return isValid;
+    }
 
     inputChangedHandler = (event, controlName) => {
         const updatedControls = {
             ...this.state.controls,
             [controlName]: {
                 ...this.state.controls[controlName],
-                value: event.target.value,
-                valid: this.checkValidity(),
+                value: event.target.value.slice(0, this.state.controls[controlName].validation.maxLength),
+                valid: this.checkValidity(event.target.value, this.state.controls[controlName].validation),
                 touched: true
             }
         }
         this.setState({ controls: updatedControls });
     }
+
 
     imageSelectedHandler = event => {
         let reader = new FileReader();
@@ -79,20 +105,24 @@ class CreatePosition extends Component {
                 value: ''
             }
         }
-        this.setState({controls: initialControls, selectedImage: null, position: this.state.position + 1})
+        this.setState({controls: initialControls, selectedImage: null, imagePreviewUrl: null})
     }
 
     submitHandler = (event) => {
         event.preventDefault();
-        let newPosition = {
-            title: this.state.controls.name.value,
-            description: this.state.controls.content.value
+        if (!this.checkFormValidity()) {
+            this.props.returnError({posNameError: 'Name of position is required'}, 401)
+        } else {
+            let newPosition = {
+                title: this.state.controls.name.value,
+                description: this.state.controls.content.value
+            }
+            if (this.state.selectedImage) {
+                newPosition.image = this.state.selectedImage
+            }
+            this.props.addPosition(newPosition);
+            this.clearForm();
         }
-        if (this.state.selectedImage) {
-            newPosition.image = this.state.selectedImage
-        }
-        this.props.addPosition(newPosition);
-        this.clearForm();
     }
 
     render() {
@@ -113,7 +143,7 @@ class CreatePosition extends Component {
                 changed={(event) => (this.inputChangedHandler(event, el.id))}
                 shouldValidate={true}
                 touched={el.config.touched}
-                invalid={!el.config.valid}
+                valid={el.config.valid}
                 positionInput
             />
         ));

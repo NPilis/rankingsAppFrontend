@@ -11,6 +11,7 @@ import { Redirect } from 'react-router-dom';
 import SearchNav from '../../components/UI/SearchBar/SearchNav/SearchNav';
 import Thumbnail from '../../components/User/Thumbnail/Thumbnail';
 import Center from '../../hoc/Center';
+import StyledLink from '../../components/Utils/StyledLink';
 
 class SearchPage extends Component {
     state = {
@@ -62,9 +63,10 @@ class SearchPage extends Component {
             } else {
                 list = <div className={cls.RankingGrid}>
                     {this.props.foundUsers.map(user => (
-                        <Thumbnail
-                            username={user ? user.username : null}
-                            userImg={user ? user.image : null}/>
+                            <Thumbnail
+                                bigger
+                                username={user ? user.username : null}
+                                userImg={user ? user.image : null}/>
                     ))}
                 </div>
             }

@@ -19,6 +19,7 @@ import UserDetail from './containers/Users/UserDetail/UserDetail';
 import FollowingList from './containers/RankingList/FollowingList/FollowingList';
 import CurrentProfile from './containers/Users/CurrentProfile/CurrentProfile';
 import SearchPage from './containers/Search/SearchPage';
+import { Redirect } from 'react-router-dom';
 
 const alertOptions = {
   timeout: 3000,
@@ -42,13 +43,14 @@ class App extends Component {
         </Layout>
         <div className={'Container'}>
           <Switch>
-            <PrivateRoute isAuth={this.props.isAuth} path={'/create-ranking'} exact component={CreateRanking}/>
+            <Route exact path="/" render={() => (
+              <Redirect to="/rankings/hottest/days=1" />
+            )} />
+            <PrivateRoute isAuth={this.props.isAuth} path={'/create-ranking'} exact component={CreateRanking} />
             <Route path={'/rankings/:type/days=:days'} exact component={RankingList} />
             <Route path={'/rankings/:uuid'} exact component={RankingDetail} />
             <Route path={'/user/:username'} exact component={UserDetail} />
             <Route path={'/search/:query'} exact component={SearchPage} />
-            {/* <Route path={'/hottest'} exact component={RankingList} /> */}
-            {/* <PrivateRoute path={'/user/my-profile'} exact component={OwnProfille} /> */}
             <PrivateRoute isAuth={this.props.isAuth} path={'/private'} exact component={PrivateList} />
             <PrivateRoute isAuth={this.props.isAuth} path={'/rankings/:uuid/edit'} exact component={EditRanking} />
             <PrivateRoute isAuth={this.props.isAuth} path={'/followed'} exact component={FollowingList} />
@@ -62,7 +64,7 @@ class App extends Component {
 }
 
 const mapStateToProps = state => ({
-    isAuth: state.auth.isAuthenticated
+  isAuth: state.auth.isAuthenticated
 });
 
 export default connect(mapStateToProps, null)(App);
