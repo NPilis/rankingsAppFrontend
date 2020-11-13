@@ -5,11 +5,10 @@ export default (props) => {
     
     return (
         <div className={cls.ProfileStats}>
-            <div className={cls.Stat}><p>Followers: {props.nFollowers}</p></div>
-            <div className={cls.Stat}><p>Following: {props.nFollowing}</p></div>
-            <div className={cls.Stat}><p>Placeholder</p></div>
-            <div className={cls.Stat}><p>Placeholder</p></div>
-            <div className={cls.Stat}><p>Placeholder</p></div>
+            <div className={cls.Stat}><p style={{fontWeight: "700", padding: "1px 4px"}}>Followers: {props.nFollowers}</p></div>
+            <div className={cls.Stat}><p style={{fontWeight: "700", padding: "1px 4px"}}>Following: {props.nFollowing}</p></div>
+            <div className={cls.Stat}><p style={{fontWeight: "700", padding: "1px 4px"}}>Rankings: {props.nRankings}</p></div>
+            <div className={cls.Stat}><p style={{fontWeight: "700", padding: "1px 4px"}}>Comments: {props.nComments}</p></div>
         </div>
     );
 }

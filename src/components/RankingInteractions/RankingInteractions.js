@@ -3,6 +3,7 @@ import cls from './RankingInteractions.module.css';
 import * as rankingActions from '../../store/actions/rankings';
 import * as modalActions from '../../store/actions/modal';
 import { connect } from 'react-redux';
+import Login from '../../containers/Auth/Login/Login';
 import Modal from '../UI/Modal/Modal';
 import Comment from '../RankingComments/CommentForm/CommentForm';
 import modal from '../../store/reducers/modal';
@@ -32,7 +33,8 @@ class RankingInteractions extends Component {
         e.stopPropagation();
         e.preventDefault();
         if (!this.props.user) {
-            return null
+            this.props.toggleLogin();
+            return null;
         }
         if (this.state.isDisliked) {
             this.setState(prevState => {
@@ -67,7 +69,8 @@ class RankingInteractions extends Component {
         e.stopPropagation();
         e.preventDefault();
         if (!this.props.user) {
-            return null
+            this.props.toggleLogin();
+            return null;
         }
         if (this.state.isLiked) {
             this.setState(prevState => {
@@ -102,7 +105,8 @@ class RankingInteractions extends Component {
         e.stopPropagation();
         e.preventDefault();
         if (!this.props.user) {
-            return null
+            this.props.toggleLogin();
+            return null;
         }
         this.setState(prevState => {
             return {
@@ -124,7 +128,8 @@ class RankingInteractions extends Component {
         e.stopPropagation();
         e.preventDefault();
         if (!this.props.user) {
-            return null
+            this.props.toggleLogin();
+            return null;
         }
         this.setState(prevState => {
             return {
@@ -203,7 +208,7 @@ class RankingInteractions extends Component {
                         </div>
                         <div className={cls.Counter}>
                             {/* <p>{this.props.shares.length}</p> */}
-                            <p>1111</p>
+                            <p>0</p>
                         </div>
                     </div>
                     {commentInteraction}
@@ -226,7 +231,8 @@ const mapDispatchToProps = dispatch => {
         dislikeRanking: (uuid) => dispatch(rankingActions.dislikeRanking(uuid)),
         shareRanking: (uuid) => dispatch(rankingActions.shareRanking(uuid)),
         toggleCommentForm: (rankingData) => dispatch(modalActions.toggleCommentForm(rankingData)),
-        toggleShareModal: (rankingData) => dispatch(modalActions.toggleShareModal(rankingData))
+        toggleShareModal: (rankingData) => dispatch(modalActions.toggleShareModal(rankingData)),
+        toggleLogin: () => dispatch(modalActions.toggleLoginModal()),
     };
 };
 

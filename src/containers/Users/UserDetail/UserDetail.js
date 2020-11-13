@@ -10,6 +10,7 @@ import ProfileStats from '../../../components/User/Profile/ProfileStats/ProfileS
 import UserRankings from '../UserRankings/UserRankings';
 import Button from '../../../components/UI/Button/Button';
 import Center from '../../../hoc/Center';
+import * as modalActions from '../../../store/actions/modal';
 
 class UserDetail extends Component {
     state = {
@@ -58,6 +59,7 @@ class UserDetail extends Component {
         e.stopPropagation();
         e.preventDefault();
         if (!this.props.user) {
+            this.props.toggleLogin();
             return null
         }
         this.setState(prevState => {
@@ -93,7 +95,9 @@ class UserDetail extends Component {
                 {this.state.onStats
                     ? <ProfileStats
                         nFollowers={this.state.num_of_followers}
-                        nFollowing={this.state.num_of_following} />
+                        nFollowing={this.state.num_of_following}
+                        nRankings={this.props.selectedUser.num_of_rankings}
+                        nComments={this.props.selectedUser.num_of_comments} />
                     : <UserRankings
                         userUUID={this.props.selectedUser.uuid}
                         shouldFetch={this.state.shouldFetchRankings}
@@ -128,7 +132,8 @@ const mapDispatchToProps = dispatch => {
     return {
         clearSelectedUser: () => dispatch(userActions.clearSelectedUser()),
         fetchSelectedUser: (username) => dispatch(userActions.fetchSelectedUser(username)),
-        followUser: (username) => dispatch(userActions.followUser(username))
+        followUser: (username) => dispatch(userActions.followUser(username)),
+        toggleLogin: () => dispatch(modalActions.toggleLoginModal())
     }
 };
 

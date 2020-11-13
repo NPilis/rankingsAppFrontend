@@ -7,7 +7,7 @@ import { loadUser } from './auth';
 export const fetchSelectedUser = (username) => (dispatch, getState) => {
     dispatch({ type: actionTypes.FETCH_USER_START })
 
-    axios.get('/api/users/' + username, tokenConfig(getState))
+    axios.get('/api/users/' + username)
         .then(response => {
             console.log(response)
             dispatch({
@@ -23,7 +23,7 @@ export const fetchSelectedUser = (username) => (dispatch, getState) => {
 export const fetchUserRankings = (userUUID) => (dispatch, getState) => {
     dispatch({ type: actionTypes.FETCH_USER_RANKINGS_START })
 
-    axios.get('/api/users/' + userUUID + '/rankings', tokenConfig(getState))
+    axios.get('/api/users/' + userUUID + '/rankings')
     .then(response => {
         console.log(response)
         dispatch({
@@ -44,7 +44,7 @@ export const fetchMoreUserRankings = () => (dispatch, getState) => {
     dispatch({ type: actionTypes.FETCH_MORE_USER_RANKINGS_START })
 
     setTimeout(() => {
-        axios.get(getState().users.nextUserRankings, null, tokenConfig(getState))
+        axios.get(getState().users.nextUserRankings)
             .then(res => {
                 dispatch({
                     type: actionTypes.FETCH_MORE_USER_RANKINGS_SUCCESS,

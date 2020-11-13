@@ -24,3 +24,9 @@
 .ProfileHeader p {
     font-size: 14px;
 }
+
+@media (max-width: 810px) {
+    .UserDetail {
+        max-width: 450px;
+    }
+}

@@ -30,7 +30,7 @@ class EditRanking extends Component {
                     maxLength: 70,
                     minLength: 3
                 },
-                valid: false,
+                valid: true,
                 touched: false
             },
             content: {

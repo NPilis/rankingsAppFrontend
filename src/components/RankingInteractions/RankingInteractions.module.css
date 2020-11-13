@@ -31,14 +31,12 @@
     margin-bottom: 6px;
 }
 
-.DetailInteraction p {
-}
-
 .Btn svg {
     height: 1.4em;
     width: 1.4em;
     padding: 8px;
-    border-radius: 30%;
+    border-radius: 20px;
+    overflow: visible;
 }
 
 .Btn svg:hover {
@@ -50,10 +48,12 @@
 /* For now... */
 .Liked svg{
     background-color: lightskyblue;
+    color: white;
 }
 
 .Disliked svg{
     background-color: lightskyblue;
+    color: white;
 }
 
 /* .RankingInteractions {

@@ -171,7 +171,7 @@ export const commentRanking = (uuid, comment, user) => (dispatch, getState) => {
 
 export const fetchRankingComments = (uuid) => (dispatch, getState) => {
     dispatch({ type: actionTypes.LOAD_COMMENTS_START })
-    axios.get('/api/rankings/' + uuid + '/comments/', null, tokenConfig(getState))
+    axios.get('/api/rankings/' + uuid + '/comments/')
         .then(res => {
             dispatch({
                 type: actionTypes.LOAD_COMMENTS_SUCCESS,
@@ -184,7 +184,7 @@ export const fetchMoreComments = () => (dispatch, getState) => {
     dispatch({ type: actionTypes.LOAD_MORE_COMMENTS_START })
 
     setTimeout(() => {
-        axios.get(getState().rankings.nextComments, null, tokenConfig(getState))
+        axios.get(getState().rankings.nextComments)
             .then(res => {
                 dispatch({
                     type: actionTypes.LOAD_MORE_COMMENTS_SUCCESS,

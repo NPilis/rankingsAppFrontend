@@ -10,6 +10,10 @@
     padding: 5px 5px 12px 5px;
 }
 
+.NoPadding a {
+    padding: 0 5px;
+}
+
 
 .Wrapper {
     display: flex;

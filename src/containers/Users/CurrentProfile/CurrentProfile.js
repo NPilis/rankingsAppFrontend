@@ -71,13 +71,11 @@ class CurrentProfile extends Component {
                     <h1>{this.props.user.username}</h1>
                     <p>Joined {this.props.user.date_joined.slice(0, 10)}</p>
                 </div>
-                {/* <ProfileNav
-                    showStats={this.toggleStats}
-                    showRankings={this.toggleRankings}
-                    onStats={this.state.onStats}></ProfileNav> */}
                 <ProfileStats
                     nFollowers={this.state.num_of_followers}
-                    nFollowing={this.state.num_of_following} />
+                    nFollowing={this.state.num_of_following}
+                    nRankings={this.props.user.num_of_rankings}
+                    nComments={this.props.user.num_of_comments} />
             </div>
         } else {
             currentProfile = <p>Loading...</p>

@@ -61,7 +61,7 @@ class SearchPage extends Component {
             if (this.props.userLoading) {
                 list = <ListLoading />
             } else {
-                list = <div className={cls.RankingGrid}>
+                list = <div className={cls.UserGrid}>
                     {this.props.foundUsers.map(user => (
                             <Thumbnail
                                 bigger

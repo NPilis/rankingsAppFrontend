@@ -98,7 +98,8 @@ class CreatePosition extends Component {
             ...this.state.controls,
             name: {
                 ...this.state.controls.name,
-                value: ''
+                value: '',
+                valid: false
             },
             content: {
                 ...this.state.controls.content,

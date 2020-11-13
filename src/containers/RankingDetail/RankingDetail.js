@@ -27,9 +27,9 @@ class RankingDetail extends Component {
     }
 
     componentDidUpdate(prevProps) {
-        if(!this.state.afterEdit && prevProps.ranking != this.props.ranking){
+        if (!this.state.afterEdit && prevProps.ranking != this.props.ranking) {
             this.props.fetchRanking(this.props.match.params.uuid)
-            this.setState({...this.state, afterEdit: true})
+            this.setState({ ...this.state, afterEdit: true })
         }
     }
 
@@ -55,8 +55,8 @@ class RankingDetail extends Component {
                         <p>{this.props.ranking.title}</p>
                     </div>
                     <div className={cls.Wrapper}>
-                        <div className={cls.FloatLeft}>
-                            <div style={{display: "flex", justifyContent: "space-between"}}>
+                        <div className={this.props.ranking.status === "public" ? cls.FloatLeft : cls.FloatMiddle}>
+                            <div style={{ display: "flex", justifyContent: "space-between" }}>
                                 <div>
                                     <div className={cls.Date}>
                                         <p>{this.props.ranking.created_at.slice(0, 19).replace('T', ' at ')}</p>
@@ -77,42 +77,48 @@ class RankingDetail extends Component {
                                     bigger />
                             </div>
                         </div>
-                        <div className={cls.FloatRight}>
-                            <div className={cls.RankingInteractions}>
-                                <RankingInteractions
-                                    detail
-                                    ranking_uuid={this.props.ranking.uuid}
-                                    likes={this.props.ranking.likes}
-                                    dislikes={this.props.ranking.dislikes}
-                                    shares={this.props.ranking.shares}
-                                    comments={this.props.comments}
-                                    img={this.props.ranking.image}
-                                    author={this.props.ranking.author}
-                                    createdAt={this.props.ranking.created_at}
-                                    title={this.props.ranking.title} />
+                        {this.props.ranking.status === "public"
+                            ? <div className={cls.FloatRight}>
+                                <div className={cls.RankingInteractions}>
+                                    <RankingInteractions
+                                        detail
+                                        ranking_uuid={this.props.ranking.uuid}
+                                        likes={this.props.ranking.likes}
+                                        dislikes={this.props.ranking.dislikes}
+                                        shares={this.props.ranking.shares}
+                                        comments={this.props.comments}
+                                        img={this.props.ranking.image}
+                                        author={this.props.ranking.author}
+                                        createdAt={this.props.ranking.created_at}
+                                        title={this.props.ranking.title} />
+                                </div>
                             </div>
-                        </div>
+                            : null}
                     </div>
+
                     <div className={cls.Description}>
                         <p className={cls.Header}>Description</p>
                         <div className={cls.Content}>
                             {this.props.ranking.content}
                         </div>
                     </div>
-                    
+
                     <div className={cls.RankingPositions}>
                         <p className={cls.Header}>Positions</p>
                         <RankingPositions
                             detail
                             rankingPositions={this.props.ranking.ranking_positions} />
                     </div>
-                    <div className={cls.CommentSection}>
-                        <p className={cls.Header}>Comments</p>
-                        <CommentForm
-                            detail />
-                        <RankingComments
-                            rankingUUID={this.props.ranking.uuid} />
-                    </div>
+                    {this.props.ranking.status === "public"
+                        ? <div className={cls.CommentSection}>
+                            <p className={cls.Header}>Comments</p>
+                            <CommentForm
+                                detail />
+                            <RankingComments
+                                rankingUUID={this.props.ranking.uuid} />
+                        </div>
+                        : <div style={{ height: "10px", backgroundColor: "black" }}></div>}
+
                 </div>
             );
         }

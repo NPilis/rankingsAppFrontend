@@ -34,10 +34,6 @@
     .NavigationItem {
         width: 100%;
     }
-
-    .NavigationItem a {
-        max-width: 50px;
-    }
 }
 
 @media(max-width: 530px) {

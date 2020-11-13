@@ -12,6 +12,7 @@ export default (props) => {
     }
     if (props.smaller) {
         userClasses.push(cls.SmallerUserImg);
+        thumbnailClasses.push(cls.NoPadding);
     }
     if (props.center) {
         thumbnailClasses.push(cls.Center)

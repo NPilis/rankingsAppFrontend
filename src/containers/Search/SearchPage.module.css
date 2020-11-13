@@ -14,7 +14,7 @@
     padding-bottom: 10px;
 }
 
-.RankingGrid {
+.RankingGrid, .UserGrid {
     margin-top: 8px;
     display: grid;
     grid-template-columns: minmax(300px, 425px) minmax(300px, 425px);
@@ -30,9 +30,14 @@
     .Wrapper {
         max-width: 425px;
     }
+
+    .UserGrid {
+        grid-template-columns: minmax(100px, 210px) minmax(100px, 210px);
+    }
 }
 
-.Wrapper {
-    margin-right: 4px;
-    margin-top: 4px;
+@media (max-width: 400px){
+    .UserGrid {
+        grid-template-columns: minmax(300px, 470px);
+    }
 }
