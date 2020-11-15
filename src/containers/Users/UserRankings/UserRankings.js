@@ -3,11 +3,8 @@ import Ranking from '../../../components/Ranking/Ranking';
 import cls from './UserRankings.module.css';
 import { connect } from 'react-redux';
 import * as userActions from '../../../store/actions/users';
-import Loading from '../../../components/UI/Loading/Loading';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import Spinner from '../../../components/UI/Loading/Spinner';
-import SearchBar from '../../../components/UI/SearchBar/SearchBar';
-import Button from '../../../components/UI/Button/Button';
 import ListLoading from '../../../components/UI/Loading/ListLoading';
 
 class UserRankings extends Component {

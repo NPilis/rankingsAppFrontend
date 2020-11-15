@@ -1,23 +1,35 @@
 .Thumbnail {
     display: flex;
-    margin: 4px 0;
+    margin: 4px 0 0 0;
 }
 
 .Thumbnail a {
     margin: 0 10px;
     text-decoration: none;
+    padding: 3px 3px 8px 3px;
     color: black;
-    padding: 5px 5px 12px 5px;
 }
 
 .NoPadding a {
-    padding: 0 5px;
+    padding: 0;
+    margin-left: 5px;
+    /* background-color: #14171A !important; */
+    border-radius: 25px;
 }
 
+.NoPadding p {
+    /* background-color: #14171A !important; */
+    font-size: 14px;
+    color: #657786;
+    font-weight: 600;
+}
 
 .Wrapper {
     display: flex;
     margin: 0 auto;
+    /* background-color:#14171A !important; */
+    padding: 0px 8px 0px 0px;
+    border-radius: 25px;
 }
 
 .Wrapper:hover p {
@@ -25,13 +37,12 @@
 }
 
 .BlankUserImg {
-    width: 27px;
-    height: 27px;
+    width: 30px;
+    height: 30px;
     border-radius: 50%;
 }
 
 .BlankUserImg img {
-    border: 1px solid grey;
     border-radius: 50%;
     width: 100%;
     height: 100%;
@@ -48,8 +59,8 @@
 }
 
 .SmallerUserImg {
-    width: 27px;
-    height: 27px;
+    width: 32px;
+    height: 32px;
 }
 
 .Center {

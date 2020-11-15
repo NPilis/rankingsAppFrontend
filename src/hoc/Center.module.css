@@ -47,6 +47,6 @@
 @media (max-width: 380px) {
     .Center {
         width: 100%;
-        margin-left: 0;
+        margin: 0;
     }
 }

@@ -5,6 +5,7 @@ import RankingInteractions from '../RankingInteractions/RankingInteractions';
 import BlankInteractions from '../RankingInteractions/BlankInteractions';
 import RankingMedia from '../RankingMedia/RankingMedia';
 import { Link } from 'react-router-dom';
+import Thumbnail from '../../components/User/Thumbnail/Thumbnail';
 
 import cls from './Ranking.module.css'
 

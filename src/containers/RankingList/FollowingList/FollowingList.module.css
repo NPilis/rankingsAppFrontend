@@ -2,7 +2,7 @@
     display: grid;
     grid-template-columns: minmax(300px, 425px) minmax(300px, 425px);
     grid-template-rows: auto auto;
-    grid-gap: 5px;
+    grid-gap: 10px;
 }
 
 @media (max-width: 810px){

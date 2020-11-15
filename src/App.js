@@ -44,7 +44,7 @@ class App extends Component {
         <div className={'Container'}>
           <Switch>
             <Route exact path="/" render={() => (
-              <Redirect to="/rankings/hottest/days=1" />
+              <Redirect to="/rankings/hottest/days=3" />
             )} />
             <PrivateRoute isAuth={this.props.isAuth} path={'/create-ranking'} exact component={CreateRanking} />
             <Route path={'/rankings/:type/days=:days'} exact component={RankingList} />
