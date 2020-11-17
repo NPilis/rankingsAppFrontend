@@ -1,11 +1,7 @@
-/* .PrivateList {
-    margin-bottom: 40px;
-    width: 75%;
-    display: flex;
-    float: right;
-    margin-top: 56px;
+.PrivateList {
+    width: 100%;
 }
-
+/* 
 .PrivateList ul {
     margin-top: 5px;
     min-width: 0px;

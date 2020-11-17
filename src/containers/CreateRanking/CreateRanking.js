@@ -10,6 +10,8 @@ import { arrayMove } from 'react-sortable-hoc';
 import SortablePositions from '../../components/RankingPositions/SortablePositions';
 import Center from '../../hoc/Center';
 import RankingImage from '../../components/RankingImage/RankingImage';
+import {Redirect} from 'react-router';
+
 
 class CreateRanking extends Component {
     state = {
@@ -61,7 +63,8 @@ class CreateRanking extends Component {
         },
         selectedImage: null,
         imagePreviewUrl: null,
-        positions: []
+        positions: [],
+        shouldRedirect: false,
     }
 
     checkValidity = (value, rules) => {
@@ -157,6 +160,7 @@ class CreateRanking extends Component {
                     newRanking.append('image', this.state.selectedImage, this.state.selectedImage.name);
                 }
                 this.props.createRanking(newRanking, this.state.positions);
+                this.setState({ ...this.state, shouldRedirect: true })
             }
         }
     }
@@ -185,6 +189,7 @@ class CreateRanking extends Component {
 
         return (
             <div className={cls.CreateRanking}>
+                {this.state.shouldRedirect ? <Redirect to={`/private`}></Redirect> : null}
                 <h2>Create Ranking</h2>
                 <div className={cls.Wrapper}>
                     <div style={{ display: "flex", justifyContent: "space-between" }}>

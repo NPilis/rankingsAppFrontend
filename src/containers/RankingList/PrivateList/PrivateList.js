@@ -15,9 +15,10 @@ import PageHeader from '../../../components/UI/Headers/PageHeader';
 
 class PrivateList extends Component {
     componentDidMount() {
-        if (this.props.privateRankings.length < 1) {
-            this.props.fetchPrivateRankings();
-        }
+        setTimeout(
+            () => this.props.fetchPrivateRankings(),
+            500
+          );
     }
 
     componentDidUpdate(prevProps) {

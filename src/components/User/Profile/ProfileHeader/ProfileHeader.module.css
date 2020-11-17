@@ -12,3 +12,11 @@
 .ProfileHeader p {
     font-size: 14px;
 }
+
+
+@media (max-width: 380px) {
+    .ProfileHeader {
+        max-width: 450px;
+        margin-top: 56px;
+    }
+}

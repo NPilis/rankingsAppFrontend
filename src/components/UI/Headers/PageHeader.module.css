@@ -12,3 +12,10 @@
         max-width: 450px;
     }
 }
+
+@media (max-width: 380px) {
+    .PageHeader h2 {
+        max-width: 450px;
+        margin-top: 56px;
+    }
+}
